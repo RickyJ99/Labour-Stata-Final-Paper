@@ -1,86 +1,24 @@
 \begin{table}[htbp]\centering
-\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
-\caption{Regression table \label{reg1}}
-\begin{tabular}{l*{2}{c}}
-\toprule
-                    &\multicolumn{1}{c}{(1)}         &\multicolumn{1}{c}{(2)}         \\
-\midrule
-Age                 &       0.123\sym{***}&       0.104\sym{***}\\
-                    &     (0.017)         &     (0.006)         \\
-\addlinespace
-age2                &      -0.001\sym{***}&      -0.001\sym{***}\\
-                    &     (0.000)         &     (0.000)         \\
-\addlinespace
-Cohort=1            &       0.000         &       0.000         \\
-                    &         (.)         &         (.)         \\
-\addlinespace
-Cohort=2            &       0.200         &      -0.071         \\
-                    &     (0.574)         &     (0.425)         \\
-\addlinespace
-Cohort=3            &       0.227         &       0.051         \\
-                    &     (0.555)         &     (0.417)         \\
-\addlinespace
-Cohort=4            &       0.303         &       0.169         \\
-                    &     (0.556)         &     (0.417)         \\
-\addlinespace
-Cohort=5            &       0.592         &       0.301         \\
-                    &     (0.562)         &     (0.418)         \\
-\addlinespace
-Cohort=6            &       0.680         &       0.421         \\
-                    &     (0.572)         &     (0.421)         \\
-\addlinespace
-Cohort=7            &       0.780         &       0.552         \\
-                    &     (0.586)         &     (0.425)         \\
-\addlinespace
-Cohort=8            &       0.803         &       0.676         \\
-                    &     (0.602)         &     (0.429)         \\
-\addlinespace
-Cohort=9            &       0.982         &       0.768\sym{*}  \\
-                    &     (0.621)         &     (0.434)         \\
-\addlinespace
-Cohort=10           &       1.085\sym{*}  &       0.909\sym{**} \\
-                    &     (0.641)         &     (0.440)         \\
-\addlinespace
-Cohort=11           &       1.163\sym{*}  &       1.058\sym{**} \\
-                    &     (0.661)         &     (0.447)         \\
-\addlinespace
-Cohort=12           &       1.377\sym{**} &       1.236\sym{***}\\
-                    &     (0.684)         &     (0.454)         \\
-\addlinespace
-Cohort=13           &       1.512\sym{**} &       1.393\sym{***}\\
-                    &     (0.711)         &     (0.462)         \\
-\addlinespace
-Cohort=14           &       1.213         &       1.464\sym{***}\\
-                    &     (0.799)         &     (0.473)         \\
-\addlinespace
-years=1             &       0.000         &       0.000         \\
-                    &         (.)         &         (.)         \\
-\addlinespace
-years=2             &       0.046         &       0.116\sym{***}\\
-                    &     (0.068)         &     (0.029)         \\
-\addlinespace
-years=3             &       0.002         &       0.154\sym{***}\\
-                    &     (0.091)         &     (0.040)         \\
-\addlinespace
-years=4             &       0.181         &       0.297\sym{***}\\
-                    &     (0.123)         &     (0.054)         \\
-\addlinespace
-years=5             &       0.040         &       0.312\sym{***}\\
-                    &     (0.161)         &     (0.072)         \\
-\addlinespace
-years=6             &       0.161         &       0.341\sym{***}\\
-                    &     (0.189)         &     (0.086)         \\
-\addlinespace
-Cohort=15           &                     &       1.211\sym{**} \\
-                    &                     &     (0.523)         \\
-\addlinespace
-Constant            &      -0.130         &       0.287         \\
-                    &     (0.776)         &     (0.472)         \\
-\midrule
-Observations        &       10295         &       29451         \\
-\bottomrule
-\multicolumn{3}{l}{\footnotesize Standard errors in parentheses}\\
-\multicolumn{3}{l}{\footnotesize }\\
-\multicolumn{3}{l}{\footnotesize \sym{*} \(p<0.10\), \sym{**} \(p<0.05\), \sym{***} \(p<0.01\)}\\
-\end{tabular}
-\end{table}
+    \def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+    \caption{Regression table \label{reg1}}
+    \begin{tabular}{l*{2}{c}}
+    \hline
+                        &\multicolumn{1}{c}{(1)}         &\multicolumn{1}{c}{(2)}         \\
+    \hline
+    Age                 &       0.123\sym{***}&       0.104\sym{***}\\
+                        &     (0.017)         &     (0.006)         \\
+    \\
+    age2                &      -0.001\sym{***}&      -0.001\sym{***}\\
+                        &     (0.000)         &     (0.000)         \\
+    \\
+    Cohort fixed effect           &       Yes        &       Yes        \\
+    Years (5 y class) fixed effect             &       Yes       &       Yes         \\
+    \hline
+    Observations        &       10295         &       29451         \\
+    \hline
+    \multicolumn{3}{l}{\footnotesize Standard errors in parentheses}\\
+    \multicolumn{3}{l}{\footnotesize }\\
+    \multicolumn{3}{l}{\footnotesize \sym{*} \(p<0.10\), \sym{**} \(p<0.05\), \sym{***} \(p<0.01\)}\\
+    \end{tabular}
+    \end{table}
+    
