@@ -1,0 +1,2817 @@
+-------------------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  /Users/riccardodalcero/Library/CloudStorage/OneDrive-UniversitaCattolicaSacroCuore-ICATT/Materials/Labour/project/STATA.
+> log
+  log type:  text
+ opened on:  25 Feb 2023, 15:14:31
+
+. drop if anno<1981
+(39,182 observations deleted)
+
+. *mergin the data
+. merge 1:m nquest nord anno using "STATA/ldip.dta", generate(newv)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                       309,524
+        from master                   297,235  (newv==1)
+        from using                     12,289  (newv==2)
+
+    Matched                           118,876  (newv==3)
+    -----------------------------------------
+
+. drop if newv==1
+(297,235 observations deleted)
+
+. 
+. *getting log real annual wages
+. merge m:1 anno using "STATA/defl.dta"
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                            19
+        from master                         0  (_merge==1)
+        from using                         19  (_merge==2)
+
+    Matched                           131,165  (_merge==3)
+    -----------------------------------------
+
+. drop if _merge !=3
+(19 observations deleted)
+
+. gen l_wage = log(((ylm+ylnm)* defl)*13)
+(17,577 missing values generated)
+
+. 
+. 
+. *keep only y_log>=0
+. drop if l_wage ==0 | missing(l_wage)
+(17,577 observations deleted)
+
+. 
+. 
+. label var l_wage "Earnings per year in log levels"
+
+. rename studio educ
+
+. label define educlabels 1 "no edu" 2 "primary" 3 "lower secondary" 4 "secondary technical - 3 years" 5 "secondary" 6 "first level d
+> egree"
+
+. label values educ educlabels
+
+. rename anno year 
+
+. 
+. keep nquest year l_wage educ eta ireg  anasc area3 area5 sesso staciv oretot
+
+. drop if missing(anasc)
+(36,944 observations deleted)
+
+. drop if eta>60
+(2,341 observations deleted)
+
+. *define cohort
+. gen cohort = ceil((anasc-1900)/3)
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677335074572.do
+
+. egen mean_hours = mean(oretot), by(educ cohort year eta)
+(2 missing values generated)
+
+. 
+end of do-file
+
+. inspect mean_hours
+
+mean_hours:                                     Number of observations
+-------------                          ---------------------------------------
+                                             Total      Integers   Nonintegers
+|          #                 Negative            -             -             -
+|          #                 Zero                -             -             -
+|          #                 Positive       74,301         2,902        71,399
+|          #                           -----------   -----------   -----------
+|          #                 Total          74,301         2,902        71,399
+|  .   .   #   .   .         Missing             2
++----------------------                -----------
+5                    70                     74,303
+(More than 99 unique values)
+
+. drop mean_hours
+
+. inspect oretot
+
+oretot:  ORETOT                                 Number of observations
+---------------                        ---------------------------------------
+                                             Total      Integers   Nonintegers
+|      #                     Negative            -             -             -
+|      #                     Zero               10            10             -
+|      #                     Positive       74,203        74,203             -
+|      #                               -----------   -----------   -----------
+|      #                     Total          74,213        74,213             -
+|  .   #   .   .   .         Missing            90
++----------------------                -----------
+0                   150                     74,303
+  (89 unique values)
+
+. 74000/12
+74000 is not a valid command name
+r(199);
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677335254730.do
+
+. egen mean_hours = mean(oretot*12), by(educ cohort year eta)
+(2 missing values generated)
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677335330444.do
+
+. drop oretot
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677335334082.do
+
+. egen mean_hours = mean(oretot*12*4), by(educ cohort year eta)
+variable mean_hours already defined
+r(110);
+
+end of do-file
+
+r(110);
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677335423590.do
+
+. clear 
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677335429603.do
+
+. cd "/Users/riccardodalcero/Library/CloudStorage/OneDrive-UniversitaCattolicaSacroCuore-ICATT/Materials/Labour/project/"
+/Users/riccardodalcero/Library/CloudStorage/OneDrive-UniversitaCattolicaSacroCuore-ICATT/Materials/Labour/project
+
+. 
+. *+++++++++++++++++++*
+. *Rearenging the dataset*
+. *+++++++++++++++++++*
+. ** importing the individual dataset for dependet worker
+. 
+. use "STATA/comp.dta"
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677335434894.do
+
+. log using STATA.log, replace 
+log file already open
+r(604);
+
+end of do-file
+
+r(604);
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677335449547.do
+
+. gen cohort = ceil((anasc-1900)/3)
+(166,223 missing values generated)
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677335481832.do
+
+. drop if oretot==0
+oretot not found
+r(111);
+
+end of do-file
+
+r(111);
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677335518662.do
+
+. clear 
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677335521681.do
+
+. cd "/Users/riccardodalcero/Library/CloudStorage/OneDrive-UniversitaCattolicaSacroCuore-ICATT/Materials/Labour/project/"
+/Users/riccardodalcero/Library/CloudStorage/OneDrive-UniversitaCattolicaSacroCuore-ICATT/Materials/Labour/project
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677335524486.do
+
+. use "STATA/comp.dta"
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677335529103.do
+
+. drop if anno<1981
+(39,182 observations deleted)
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677335533035.do
+
+. merge 1:m nquest nord anno using "STATA/ldip.dta", generate(newv)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                       309,524
+        from master                   297,235  (newv==1)
+        from using                     12,289  (newv==2)
+
+    Matched                           118,876  (newv==3)
+    -----------------------------------------
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677335537369.do
+
+. drop if newv==1
+(297,235 observations deleted)
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677335542498.do
+
+. merge m:1 anno using "STATA/defl.dta"
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                            19
+        from master                         0  (_merge==1)
+        from using                         19  (_merge==2)
+
+    Matched                           131,165  (_merge==3)
+    -----------------------------------------
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677335555444.do
+
+. drop if _merge !=3
+(19 observations deleted)
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677335559448.do
+
+. gen l_wage = log(((ylm+ylnm)* defl)*12)
+(17,577 missing values generated)
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677335572801.do
+
+. drop if l_wage ==0 | missing(l_wage)
+(17,577 observations deleted)
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677335576156.do
+
+. label var l_wage "Earnings per year in log levels"
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677335578685.do
+
+. rename studio educ
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677335582048.do
+
+. label define educlabels 1 "no edu" 2 "primary" 3 "lower secondary" 4 "secondary technical - 3 years" 5 "secondary" 6 "first level d
+> egree"
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677335585110.do
+
+. label values educ educlabels
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677335587952.do
+
+. rename anno year 
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677335598663.do
+
+. drop if missing(anasc)
+(36,944 observations deleted)
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677335612852.do
+
+. drop if eta>60
+(2,341 observations deleted)
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677335620132.do
+
+. gen cohort = ceil((anasc-1900)/3)
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677335624206.do
+
+. drop if oretot==0
+(10 observations deleted)
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677335650814.do
+
+. egen mean_hours = mean(oretot*12*4), by(educ cohort year eta)
+(2 missing values generated)
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677335684133.do
+
+. drop if missing(mean_hours)
+(2 observations deleted)
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677335713939.do
+
+. gen time_endowments = mean_hours / 2000
+
+. 
+end of do-file
+
+. do "main.do"
+
+. ** Riccardo Dal Cero
+. ** Labour economics project
+. clear 
+
+. ** Our working directory today is:
+. cd "/Users/riccardodalcero/Library/CloudStorage/OneDrive-UniversitaCattolicaSacroCuore-ICATT/Materials/Labour/project/"
+/Users/riccardodalcero/Library/CloudStorage/OneDrive-UniversitaCattolicaSacroCuore-ICATT/Materials/Labour/project
+
+. 
+. *+++++++++++++++++++*
+. *Rearenging the dataset*
+. *+++++++++++++++++++*
+. ** importing the individual dataset for dependet worker
+. 
+. use "STATA/comp.dta"
+
+. *log file
+. log using STATA.log, replace 
+log file already open
+r(604);
+
+end of do-file
+
+r(604);
+
+. do "main.do"
+
+. ** Riccardo Dal Cero
+. ** Labour economics project
+. clear 
+
+. ** Our working directory today is:
+. cd "/Users/riccardodalcero/Library/CloudStorage/OneDrive-UniversitaCattolicaSacroCuore-ICATT/Materials/Labour/project/"
+/Users/riccardodalcero/Library/CloudStorage/OneDrive-UniversitaCattolicaSacroCuore-ICATT/Materials/Labour/project
+
+. 
+. *+++++++++++++++++++*
+. *Rearenging the dataset*
+. *+++++++++++++++++++*
+. ** importing the individual dataset for dependet worker
+. 
+. use "STATA/comp.dta"
+
+. *log file
+. log using STATA.log, replace 
+log file already open
+r(604);
+
+end of do-file
+
+r(604);
+
+. do "main.do"
+
+. ** Riccardo Dal Cero
+. ** Labour economics project
+. clear 
+
+. ** Our working directory today is:
+. cd "/Users/riccardodalcero/Library/CloudStorage/OneDrive-UniversitaCattolicaSacroCuore-ICATT/Materials/Labour/project/"
+/Users/riccardodalcero/Library/CloudStorage/OneDrive-UniversitaCattolicaSacroCuore-ICATT/Materials/Labour/project
+
+. 
+. *+++++++++++++++++++*
+. *Rearenging the dataset*
+. *+++++++++++++++++++*
+. ** importing the individual dataset for dependet worker
+. 
+. use "STATA/comp.dta"
+
+. *log file
+. *log using STATA.log, replace 
+. drop if anno<1981
+(39,182 observations deleted)
+
+. *mergin the data
+. merge 1:m nquest nord anno using "STATA/ldip.dta", generate(newv)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                       309,524
+        from master                   297,235  (newv==1)
+        from using                     12,289  (newv==2)
+
+    Matched                           118,876  (newv==3)
+    -----------------------------------------
+
+. drop if newv==1
+(297,235 observations deleted)
+
+. 
+. *getting log real annual wages
+. merge m:1 anno using "STATA/defl.dta"
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                            19
+        from master                         0  (_merge==1)
+        from using                         19  (_merge==2)
+
+    Matched                           131,165  (_merge==3)
+    -----------------------------------------
+
+. drop if _merge !=3
+(19 observations deleted)
+
+. gen l_wage = log(((ylm+ylnm)* defl)*12)
+(17,577 missing values generated)
+
+. 
+. 
+. *keep only y_log>=0
+. drop if l_wage ==0 | missing(l_wage)
+(17,577 observations deleted)
+
+. 
+. 
+. label var l_wage "Earnings per year in log levels"
+
+. rename studio educ
+
+. label define educlabels 1 "no edu" 2 "primary" 3 "lower secondary" 4 "secondary technical - 3 years" 5 "secondary" 6 "first level d
+> egree"
+
+. label values educ educlabels
+
+. rename anno year 
+
+. 
+. keep nquest year l_wage educ eta ireg  anasc area3 area5 sesso staciv oretot
+
+. drop if missing(anasc)
+(36,944 observations deleted)
+
+. drop if eta>60
+(2,341 observations deleted)
+
+. 
+. *define cohort for year of birth
+. gen cohort = ceil((anasc-1900)/3)
+
+. 
+. *The age hours profiles measure time endowments. Specifically, I set %s,c,t
+. *to mean annual hours in each (s,c,t)
+. drop if oretot==0
+(10 observations deleted)
+
+. egen mean_hours = mean(oretot*12*4), by(educ cohort eta)
+(1 missing value generated)
+
+. drop if missing(mean_hours)
+(1 observation deleted)
+
+. gen time_endowments = mean_hours / 2000
+
+. *graph twoway scatter l_wage eta if cohort==29 & educ==3 & area3==1 & sesso==1 & eta<60
+. 
+. *Mean log wages of each (s,c,t)
+. 
+. gen mean_lwage = mean(l_wage), by(educ cohort eta)
+unknown function mean()
+r(133);
+
+end of do-file
+
+r(133);
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677336309648.do
+
+. egen mean_lwage = mean(l_wage), by(educ cohort eta)
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677336909409.do
+
+. tsset cohort year
+repeated time values within panel
+r(451);
+
+end of do-file
+
+r(451);
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677338764384.do
+
+. hpfilter log_wage, lambda(1600)
+command hpfilter is unrecognized
+r(199);
+
+end of do-file
+
+r(199);
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677338779368.do
+
+. hpfilter log_wage, lambda(1600)
+command hpfilter is unrecognized
+r(199);
+
+end of do-file
+
+r(199);
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677339862708.do
+
+. reg mean_hours i.anasc eta2
+variable eta2 not found
+r(111);
+
+end of do-file
+
+r(111);
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677339996484.do
+
+. gen age2 = eta^2
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677340001596.do
+
+. reg mean_hours i.anasc age2
+
+      Source |       SS           df       MS      Number of obs   =    74,292
+-------------+----------------------------------   F(70, 74221)    =    122.20
+       Model |   105455844        70  1506512.06   Prob > F        =    0.0000
+    Residual |   915009149    74,221  12328.1706   R-squared       =    0.1033
+-------------+----------------------------------   Adj R-squared   =    0.1025
+       Total |  1.0205e+09    74,291  13736.0514   Root MSE        =    111.03
+
+------------------------------------------------------------------------------
+  mean_hours | Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+       anasc |
+       1932  |  -35.08183   23.15747    -1.51   0.130    -80.47038    10.30673
+       1933  |     23.309   19.34427     1.20   0.228    -14.60569    61.22368
+       1934  |  -30.71769   19.11326    -1.61   0.108    -68.17961    6.744224
+       1935  |   22.36151   18.23267     1.23   0.220    -13.37445    58.09748
+       1936  |   -44.5618   17.96061    -2.48   0.013    -79.76453   -9.359073
+       1937  |  -27.19837   17.96769    -1.51   0.130    -62.41497    8.018219
+       1938  |  -36.28252   17.68203    -2.05   0.040    -70.93923   -1.625814
+       1939  |  -29.27579   17.37295    -1.69   0.092     -63.3267    4.775116
+       1940  |  -39.07778   17.34497    -2.25   0.024    -73.07386   -5.081704
+       1941  |  -74.97135   17.27913    -4.34   0.000    -108.8384   -41.10432
+       1942  |  -57.13239    17.2182    -3.32   0.001       -90.88   -23.38478
+       1943  |  -85.97661   17.12172    -5.02   0.000    -119.5351   -52.41811
+       1944  |  -113.2282    17.0582    -6.64   0.000    -146.6622   -79.79417
+       1945  |  -87.45641   17.06162    -5.13   0.000    -120.8971    -54.0157
+       1946  |   -101.734   16.89841    -6.02   0.000    -134.8549   -68.61323
+       1947  |  -108.9253   16.86964    -6.46   0.000    -141.9897   -75.86082
+       1948  |   -108.122   16.86033    -6.41   0.000    -141.1681   -75.07579
+       1949  |  -103.0815   16.83421    -6.12   0.000    -136.0765   -70.08653
+       1950  |  -120.2031   16.79921    -7.16   0.000    -153.1295   -87.27669
+       1951  |   -108.259   16.82735    -6.43   0.000    -141.2405   -75.27744
+       1952  |  -125.0849   16.78376    -7.45   0.000     -157.981   -92.18878
+       1953  |  -159.4171   16.79268    -9.49   0.000    -192.3306   -126.5035
+       1954  |  -111.0296   16.75413    -6.63   0.000    -143.8676   -78.19159
+       1955  |  -144.1904   16.76351    -8.60   0.000    -177.0468    -111.334
+       1956  |  -130.9084    16.7525    -7.81   0.000    -163.7432   -98.07357
+       1957  |  -143.6261   16.77026    -8.56   0.000    -176.4957   -110.7564
+       1958  |  -147.5205   16.75641    -8.80   0.000     -180.363    -114.678
+       1959  |  -143.9839   16.74754    -8.60   0.000     -176.809   -111.1588
+       1960  |  -133.7785   16.74676    -7.99   0.000    -166.6021    -100.955
+       1961  |  -160.1951   16.76032    -9.56   0.000    -193.0452   -127.3449
+       1962  |   -182.005   16.76588   -10.86   0.000    -214.8661    -149.144
+       1963  |  -156.9972   16.77324    -9.36   0.000    -189.8727   -124.1217
+       1964  |  -151.6593   16.77011    -9.04   0.000    -184.5287     -118.79
+       1965  |  -158.7728   16.76685    -9.47   0.000    -191.6358   -125.9099
+       1966  |  -147.1052    16.7872    -8.76   0.000    -180.0081   -114.2024
+       1967  |  -163.9275   16.80127    -9.76   0.000    -196.8579   -130.9971
+       1968  |  -151.2996   16.81618    -9.00   0.000    -184.2593     -118.34
+       1969  |  -155.6461   16.81544    -9.26   0.000    -188.6043   -122.6879
+       1970  |  -174.4702   16.82098   -10.37   0.000    -207.4393   -141.5012
+       1971  |  -145.9599   16.87511    -8.65   0.000     -179.035   -112.8847
+       1972  |  -180.0272   16.87727   -10.67   0.000    -213.1066   -146.9478
+       1973  |  -191.1403   16.87697   -11.33   0.000    -224.2191   -158.0616
+       1974  |  -151.0525   16.89462    -8.94   0.000    -184.1659   -117.9391
+       1975  |  -195.6415   16.91141   -11.57   0.000    -228.7878   -162.4952
+       1976  |  -199.3618   16.93224   -11.77   0.000    -232.5489   -166.1747
+       1977  |  -161.7327   16.97238    -9.53   0.000    -194.9985   -128.4669
+       1978  |  -207.7455   17.00775   -12.21   0.000    -241.0806   -174.4104
+       1979  |  -194.2741   17.03117   -11.41   0.000    -227.6551   -160.8931
+       1980  |  -197.3058   17.09371   -11.54   0.000    -230.8094   -163.8022
+       1981  |  -202.2496   17.12272   -11.81   0.000      -235.81   -168.6891
+       1982  |  -203.2082   17.19157   -11.82   0.000    -236.9036   -169.5128
+       1983  |  -207.9524   17.24143   -12.06   0.000    -241.7456   -174.1593
+       1984  |  -194.9413    17.3219   -11.25   0.000    -228.8922   -160.9904
+       1985  |  -233.1093   17.36409   -13.42   0.000    -267.1428   -199.0757
+       1986  |  -259.2868   17.49586   -14.82   0.000    -293.5786    -224.995
+       1987  |  -238.6852   17.54158   -13.61   0.000    -273.0666   -204.3038
+       1988  |  -271.0186   17.72056   -15.29   0.000    -305.7508   -236.2863
+       1989  |  -281.0229   17.95268   -15.65   0.000    -316.2101   -245.8357
+       1990  |  -262.6313    18.0446   -14.55   0.000    -297.9986   -227.2639
+       1991  |   -304.821   18.45327   -16.52   0.000    -340.9894   -268.6527
+       1992  |  -295.2431   19.08599   -15.47   0.000    -332.6516   -257.8347
+       1993  |   -328.735   20.03386   -16.41   0.000    -368.0012   -289.4687
+       1994  |  -340.4362   21.65873   -15.72   0.000    -382.8872   -297.9852
+       1995  |  -395.6637   22.02146   -17.97   0.000    -438.8257   -352.5017
+       1996  |  -301.2925   25.55528   -11.79   0.000    -351.3807   -251.2042
+       1997  |  -438.2579   29.44016   -14.89   0.000    -495.9605   -380.5553
+       1998  |  -571.2332   42.67095   -13.39   0.000    -654.8681   -487.5983
+       1999  |  -175.8914   66.25021    -2.65   0.008    -305.7416   -46.04128
+       2000  |   858.0438   112.2866     7.64   0.000     637.9626    1078.125
+             |
+        age2 |  -.0536704   .0007415   -72.38   0.000    -.0551238    -.052217
+       _cons |   2035.696   16.76561   121.42   0.000     2002.835    2068.556
+------------------------------------------------------------------------------
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677340143557.do
+
+. drop if anasc<1941
+(2,297 observations deleted)
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677340148058.do
+
+. reg mean_hours i.anasc age2
+
+      Source |       SS           df       MS      Number of obs   =    71,995
+-------------+----------------------------------   F(60, 71934)    =    132.51
+       Model |  96704571.1        60  1611742.85   Prob > F        =    0.0000
+    Residual |   874925662    71,934  12162.8946   R-squared       =    0.0995
+-------------+----------------------------------   Adj R-squared   =    0.0988
+       Total |   971630233    71,994   13495.989   Root MSE        =    110.29
+
+------------------------------------------------------------------------------
+  mean_hours | Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+       anasc |
+       1942  |   17.83459   6.768933     2.63   0.008     4.567505    31.10168
+       1943  |  -10.95211   6.516176    -1.68   0.093     -23.7238    1.819574
+       1944  |  -38.20317   6.349634    -6.02   0.000    -50.64844   -25.75791
+       1945  |  -12.38058   6.352505    -1.95   0.051    -24.83147    .0703074
+       1946  |   -26.6454   5.904745    -4.51   0.000    -38.21869   -15.07212
+       1947  |   -33.7993   5.818078    -5.81   0.000    -45.20272   -22.39589
+       1948  |  -32.97166   5.788124    -5.70   0.000    -44.31636   -21.62695
+       1949  |  -27.90858   5.709562    -4.89   0.000    -39.09931   -16.71786
+       1950  |  -45.04997   5.609671    -8.03   0.000    -56.04491   -34.05503
+       1951  |  -33.06055   5.686105    -5.81   0.000     -44.2053    -21.9158
+       1952  |  -49.88038   5.556714    -8.98   0.000    -60.77153   -38.98924
+       1953  |  -84.17752   5.578396   -15.09   0.000    -95.11115   -73.24388
+       1954  |  -35.80981   5.465612    -6.55   0.000     -46.5224   -25.09723
+       1955  |  -68.91829   5.486562   -12.56   0.000    -79.67193   -58.16464
+       1956  |    -55.614   5.450135   -10.20   0.000    -66.29625   -44.93175
+       1957  |  -68.28765   5.497582   -12.42   0.000    -79.06289   -57.51241
+       1958  |  -72.16554   5.453446   -13.23   0.000    -82.85427    -61.4768
+       1959  |  -68.58568   5.420317   -12.65   0.000    -79.20948   -57.96187
+       1960  |  -58.33633   5.411691   -10.78   0.000    -68.94323   -47.72944
+       1961  |  -84.70892   5.446756   -15.55   0.000    -95.38455    -74.0333
+       1962  |  -106.4922   5.459843   -19.50   0.000    -117.1935   -95.79092
+       1963  |  -81.44269   5.476258   -14.87   0.000    -92.17613   -70.70924
+       1964  |  -76.05192   5.459334   -13.93   0.000     -86.7522   -65.35164
+       1965  |  -83.12933   5.444368   -15.27   0.000    -93.80028   -72.45839
+       1966  |  -71.40492   5.497952   -12.99   0.000    -82.18089   -60.62895
+       1967  |  -88.18205    5.53394   -15.93   0.000    -99.02856   -77.33554
+       1968  |  -75.53013   5.575138   -13.55   0.000    -86.45738   -64.60288
+       1969  |  -79.83425   5.567095   -14.34   0.000    -90.74574   -68.92276
+       1970  |  -98.63409   5.580261   -17.68   0.000    -109.5714    -87.6968
+       1971  |  -70.06471   5.731356   -12.22   0.000    -81.29815   -58.83127
+       1972  |    -104.12   5.736026   -18.15   0.000    -115.3626   -92.87742
+       1973  |  -115.2058   5.731484   -20.10   0.000    -126.4395   -103.9721
+       1974  |  -75.09413   5.779424   -12.99   0.000    -86.42178   -63.76648
+       1975  |   -119.649   5.823194   -20.55   0.000    -131.0624   -108.2356
+       1976  |  -123.3623   5.881675   -20.97   0.000    -134.8904   -111.8343
+       1977  |  -85.69933   5.990428   -14.31   0.000    -97.44055   -73.95811
+       1978  |  -131.6936   6.086269   -21.64   0.000    -143.6227   -119.7645
+       1979  |     -118.2   6.147783   -19.23   0.000    -130.2496   -106.1504
+       1980  |  -121.2253   6.315931   -19.19   0.000    -133.6046   -108.8461
+       1981  |   -126.141   6.389621   -19.74   0.000    -138.6647   -113.6174
+       1982  |  -127.1031    6.56989   -19.35   0.000      -139.98   -114.2261
+       1983  |    -131.82   6.694454   -19.69   0.000    -144.9411   -118.6989
+       1984  |   -118.807   6.896143   -17.23   0.000    -132.3234   -105.2906
+       1985  |  -156.9487   6.997163   -22.43   0.000    -170.6631   -143.2342
+       1986  |  -183.1183   7.313027   -25.04   0.000    -197.4518   -168.7848
+       1987  |  -162.4943   7.417986   -21.91   0.000    -177.0336   -147.9551
+       1988  |  -194.8124   7.824953   -24.90   0.000    -210.1492   -179.4755
+       1989  |   -204.809   8.329908   -24.59   0.000    -221.1356   -188.4824
+       1990  |  -186.4101   8.522957   -21.87   0.000     -203.115   -169.7051
+       1991  |   -228.583   9.345096   -24.46   0.000    -246.8994   -210.2666
+       1992  |  -218.9947    10.5237   -20.81   0.000    -239.6211   -198.3683
+       1993  |  -252.4798   12.13761   -20.80   0.000    -276.2695   -228.6902
+       1994  |  -264.1584   14.63297   -18.05   0.000     -292.839   -235.4778
+       1995  |  -319.3798   15.15737   -21.07   0.000    -349.0882   -289.6713
+       1996  |  -225.0059    19.8901   -11.31   0.000    -263.9905   -186.0214
+       1997  |  -361.9437   24.62438   -14.70   0.000    -410.2074     -313.68
+       1998  |  -494.9002    39.3399   -12.58   0.000    -572.0063   -417.7941
+       1999  |  -99.57225    63.8866    -1.56   0.119    -224.7898    25.64529
+       2000  |   934.4253   110.4102     8.46   0.000     718.0218    1150.829
+             |
+        age2 |  -.0531188   .0007385   -71.92   0.000    -.0545663   -.0516713
+       _cons |   1959.173   5.315723   368.56   0.000     1948.754    1969.592
+------------------------------------------------------------------------------
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677340248253.do
+
+. predict hour_age_prof
+(option xb assumed; fitted values)
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677340464510.do
+
+. graph scatter hour_age_prof mean_hours
+scattergraph_g.new hour_age_prof mean_hours: class member function not found
+r(4023);
+
+end of do-file
+
+r(4023);
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677340484419.do
+
+. describe hour_age_prof
+
+Variable      Storage   Display    Value
+    name         type    format    label      Variable label
+-------------------------------------------------------------------------------------------------------------------------------------
+hour_age_prof   float   %9.0g                 Fitted values
+
+. 
+end of do-file
+
+. inspect hour_age_prof
+
+hour_age_prof:  Fitted values                   Number of observations
+-----------------------------          ---------------------------------------
+                                             Total      Integers   Nonintegers
+|      #                     Negative            -             -             -
+|      #                     Zero                -             -             -
+|      #                     Positive       71,995           209        71,786
+|      #                               -----------   -----------   -----------
+|      #                     Total          71,995           209        71,786
+|  .   #   .   .   .         Missing             -
++----------------------                -----------
+1438.563           2880                     71,995
+(More than 99 unique values)
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677340556741.do
+
+. graph scatter( hour_age_prof eta)
+) required
+r(100);
+
+end of do-file
+
+r(100);
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677340572146.do
+
+. graph scatter( hour_age_prof)
+) required
+r(100);
+
+end of do-file
+
+r(100);
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677340582773.do
+
+. graph points( hour_age_prof)
+) required
+r(100);
+
+end of do-file
+
+r(100);
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677340723782.do
+
+. graph twoway (scatter hour_age_prof mean_hours) (lfit hour_age_prof mean_hours)
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677340811420.do
+
+. graph twoway (scatter hour_age_prof mean_hours) (lfit hour_age_prof mean_hours) (lfitci hour_age_prof mean_hours), title("Model Che
+> ck") subtitle("Plot of Observed v Predicted") xlabel(1(1)6) ylabel(1(1)6) note("plot1.png", size(vsmall))
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677340853475.do
+
+. graph twoway (scatter hour_age_prof mean_hours) (lfit hour_age_prof mean_hours) , title("Model Check") subtitle("Plot of Observed v
+>  Predicted") 
+
+. 
+end of do-file
+
+. do "main.do"
+
+. ** Riccardo Dal Cero
+. ** Labour economics project
+. clear 
+
+. ** Our working directory today is:
+. cd "/Users/riccardodalcero/Library/CloudStorage/OneDrive-UniversitaCattolicaSacroCuore-ICATT/Materials/Labour/project/"
+/Users/riccardodalcero/Library/CloudStorage/OneDrive-UniversitaCattolicaSacroCuore-ICATT/Materials/Labour/project
+
+. 
+. *+++++++++++++++++++*
+. *Rearenging the dataset*
+. *+++++++++++++++++++*
+. ** importing the individual dataset for dependet worker
+. 
+. use "STATA/comp.dta"
+
+. *log file
+. *log using STATA.log, replace 
+. drop if anno<1981
+(39,182 observations deleted)
+
+. *mergin the data
+. merge 1:m nquest nord anno using "STATA/ldip.dta", generate(newv)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                       309,524
+        from master                   297,235  (newv==1)
+        from using                     12,289  (newv==2)
+
+    Matched                           118,876  (newv==3)
+    -----------------------------------------
+
+. drop if newv==1
+(297,235 observations deleted)
+
+. 
+. *getting log real annual wages
+. merge m:1 anno using "STATA/defl.dta"
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                            19
+        from master                         0  (_merge==1)
+        from using                         19  (_merge==2)
+
+    Matched                           131,165  (_merge==3)
+    -----------------------------------------
+
+. drop if _merge !=3
+(19 observations deleted)
+
+. gen l_wage = log(((ylm+ylnm)* defl)*12)
+(17,577 missing values generated)
+
+. 
+. 
+. *keep only y_log>=0
+. drop if l_wage ==0 | missing(l_wage)
+(17,577 observations deleted)
+
+. 
+. 
+. label var l_wage "Earnings per year in log levels"
+
+. rename studio educ
+
+. label define educlabels 1 "no edu" 2 "primary" 3 "lower secondary" 4 "secondary technical - 3 years" 5 "secondary" 6 "first level d
+> egree"
+
+. label values educ educlabels
+
+. rename anno year 
+
+. 
+. 
+. keep nquest year l_wage educ eta ireg  anasc area3 area5 sesso staciv oretot
+
+. drop if missing(anasc)
+(36,944 observations deleted)
+
+. drop if eta>65
+(396 observations deleted)
+
+. 
+. *define cohort for year of birth
+. gen cohort = ceil((anasc-1900)/3)
+
+. 
+. *The age hours profiles measure time endowments. Specifically, I set %s,c,t
+. *to mean annual hours in each (s,c,t)
+. drop if oretot==0
+(11 observations deleted)
+
+. egen mean_hours = mean(oretot*12*4), by(educ cohort eta)
+(2 missing values generated)
+
+. drop if missing(mean_hours)
+(2 observations deleted)
+
+. gen time_endowments = mean_hours / 2000
+
+. *graph twoway scatter l_wage eta if cohort==29 & educ==3 & area3==1 & sesso==1 & eta<60
+. 
+. *Mean log wages of each (s,c,t)
+. 
+. egen mean_lwage = mean(l_wage), by(educ cohort eta)
+
+. drop if missing(mean_lwage)
+(0 observations deleted)
+
+. 
+. ** applying an HP filter to smooth the data
+. ** setting the time series index of time 
+. *  tsset cohort year 
+. *xtset mean_lwage year
+. *tsfilter hp ct=mean_lwage,  smooth(5)
+. *i do not think is needed
+. 
+. 
+. **age years profiles
+. *estimate a common age hours profile by regressing average
+. *hours on birth year dummies and a quartic in age. 
+. 
+. gen age2 = eta^2
+
+. drop if anasc<1941
+(2,879 observations deleted)
+
+. reg mean_hours i.anasc age2 
+
+      Source |       SS           df       MS      Number of obs   =    73,356
+-------------+----------------------------------   F(60, 73295)    =    148.33
+       Model |   111016616        60  1850276.94   Prob > F        =    0.0000
+    Residual |   914263981    73,295  12473.7565   R-squared       =    0.1083
+-------------+----------------------------------   Adj R-squared   =    0.1075
+       Total |  1.0253e+09    73,355  13976.9695   Root MSE        =    111.69
+
+------------------------------------------------------------------------------
+  mean_hours | Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+       anasc |
+       1942  |   21.21516   6.534267     3.25   0.001      8.40802     34.0223
+       1943  |  -10.16607   6.238492    -1.63   0.103    -22.39349    2.061352
+       1944  |  -32.10699   6.131315    -5.24   0.000    -44.12434   -20.08963
+       1945  |  -8.567696    6.12609    -1.40   0.162    -20.57481    3.439418
+       1946  |  -27.94779   5.690719    -4.91   0.000    -39.10158     -16.794
+       1947  |  -33.90087   5.578586    -6.08   0.000    -44.83487   -22.96686
+       1948  |  -31.81121   5.584684    -5.70   0.000    -42.75717   -20.86525
+       1949  |  -36.31899   5.479115    -6.63   0.000    -47.05804   -25.57995
+       1950  |  -45.04225   5.389487    -8.36   0.000    -55.60563   -34.47888
+       1951  |  -41.96332   5.446121    -7.71   0.000    -52.63769   -31.28894
+       1952  |  -45.31571    5.31811    -8.52   0.000    -55.73919   -34.89224
+       1953  |  -74.78282   5.338361   -14.01   0.000    -85.24599   -64.31965
+       1954  |  -31.07873   5.254531    -5.91   0.000    -41.37759   -20.77986
+       1955  |  -68.45749   5.263661   -13.01   0.000    -78.77424   -58.14073
+       1956  |  -50.98554   5.258677    -9.70   0.000    -61.29253   -40.67855
+       1957  |   -63.4882   5.310103   -11.96   0.000    -73.89598   -53.08042
+       1958  |  -67.67131    5.26303   -12.86   0.000    -77.98683   -57.35579
+       1959  |  -63.44355   5.228091   -12.14   0.000    -73.69059   -53.19651
+       1960  |  -55.58121   5.223465   -10.64   0.000    -65.81918   -45.34323
+       1961  |  -82.13736   5.260868   -15.61   0.000    -92.44864   -71.82607
+       1962  |  -104.0321   5.274823   -19.72   0.000    -114.3708    -93.6935
+       1963  |  -79.15672   5.292287   -14.96   0.000    -89.52959   -68.78386
+       1964  |   -73.9872   5.274286   -14.03   0.000    -84.32478   -63.64961
+       1965  |  -81.21527   5.258312   -15.45   0.000    -91.52155     -70.909
+       1966  |  -69.72825   5.314952   -13.12   0.000    -80.14553   -59.31096
+       1967  |  -86.69408   5.352853   -16.20   0.000    -97.18565   -76.20251
+       1968  |  -74.14267   5.396347   -13.74   0.000    -84.71949   -63.56585
+       1969  |  -78.62358   5.387474   -14.59   0.000    -89.18301   -68.06415
+       1970  |  -97.52509   5.401195   -18.06   0.000    -108.1114   -86.93876
+       1971  |  -69.20228   5.560461   -12.45   0.000    -80.10076    -58.3038
+       1972  |  -103.3079   5.565254   -18.56   0.000    -114.2157   -92.39997
+       1973  |   -114.508   5.560108   -20.59   0.000    -125.4057   -103.6102
+       1974  |  -74.49585   5.610451   -13.28   0.000    -85.49231   -63.49938
+       1975  |  -119.1932    5.65619   -21.07   0.000    -130.2793   -108.1071
+       1976  |  -122.9358   5.717807   -21.50   0.000    -134.1427   -111.7289
+       1977  |  -85.41431   5.831932   -14.65   0.000    -96.84488   -73.98375
+       1978  |   -131.486   5.932537   -22.16   0.000    -143.1137   -119.8582
+       1979  |  -118.0853    5.99687   -19.69   0.000    -129.8391   -106.3315
+       1980  |   -121.137    6.17337   -19.62   0.000    -133.2368   -109.0372
+       1981  |  -126.1703   6.250188   -20.19   0.000    -138.4206   -113.9199
+       1982  |  -127.1181   6.439059   -19.74   0.000    -139.7386   -114.4976
+       1983  |  -131.9489    6.56887   -20.09   0.000    -144.8238   -119.0739
+       1984  |  -118.9438   6.779436   -17.54   0.000    -132.2315   -105.6561
+       1985  |  -157.1955   6.884339   -22.83   0.000    -170.6888   -143.7022
+       1986  |  -183.3979   7.213035   -25.43   0.000    -197.5355   -169.2604
+       1987  |  -162.8674    7.32176   -22.24   0.000     -177.218   -148.5168
+       1988  |  -195.2497   7.743789   -25.21   0.000    -210.4275   -180.0719
+       1989  |  -205.2786   8.266213   -24.83   0.000    -221.4804   -189.0769
+       1990  |  -186.9101   8.465518   -22.08   0.000    -203.5025   -170.3178
+       1991  |  -229.1533   9.312685   -24.61   0.000    -247.4061   -210.9005
+       1992  |  -219.6084   10.52327   -20.87   0.000     -240.234   -198.9828
+       1993  |  -253.1215   12.17562   -20.79   0.000    -276.9857   -229.2573
+       1994  |  -264.8948   14.72239   -17.99   0.000    -293.7506    -236.039
+       1995  |  -320.1418   15.25676   -20.98   0.000     -350.045   -290.2386
+       1996  |   -225.779    20.0718   -11.25   0.000    -265.1196   -186.4383
+       1997  |  -362.8319   24.87971   -14.58   0.000    -411.5961   -314.0678
+       1998  |  -495.8671    39.8035   -12.46   0.000    -573.8819   -417.8524
+       1999  |  -100.4815   64.67576    -1.55   0.120    -227.2458    26.28271
+       2000  |   933.2556   111.7993     8.35   0.000     714.1293    1152.382
+             |
+        age2 |  -.0554237   .0007072   -78.37   0.000    -.0568098   -.0540376
+       _cons |   1960.933   5.104072   384.19   0.000     1950.929    1970.937
+------------------------------------------------------------------------------
+
+. predict hour_age_prof /* very poor predictive power */
+(option xb assumed; fitted values)
+
+. graph twoway (scatter hour_age_prof mean_hours) (lfit hour_age_prof mean_hours) , title("Model Check") subtitle("Plot of Observed v
+>  Predicted") 
+
+. *smoothing with hp filter with parameter 20  (i do not need it)
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. /**gen eta2 = eta^2
+> reg l_wage eta eta2 i.cohort if educ==3  & sesso==1 & eta<60
+> drop yhat
+> predict yhat
+> 
+> 
+> reg l_wage eta eta2 i.cohort if  educ==5  & sesso==1 & eta<60
+> drop yhat2
+> predict yhat2
+> graph twoway (scatter yhat eta) (scatter yhat2 eta) if cohort==12
+> graph twoway (scatter yhat l_wage, symbol(d)) (lfit yhat l_wage) (lfitci yhat l_wage), title("Model Check")
+> subtitle("Plot of Observed v Predicted") xlabel(1(1)6) ylabel(1(1)6) note("plot1.png", size(vsmall))
+> fit 
+> tsset year
+> *ridefine the label values
+> 
+> 
+
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677342418914.do
+
+. graph twoway (line hour_age_prof mean_hours)
+
+. 
+end of do-file
+
+. inspect cohort
+
+cohort:                                         Number of observations
+---------                              ---------------------------------------
+                                             Total      Integers   Nonintegers
+|      #                     Negative            -             -             -
+|      #   #                 Zero                -             -             -
+|      #   #                 Positive       73,356        73,356             -
+|      #   #                           -----------   -----------   -----------
+|  #   #   #   #             Total          73,356        73,356             -
+|  #   #   #   #   .         Missing             -
++----------------------                -----------
+14                   34                     73,356
+  (21 unique values)
+
+. median cohort
+option by() required
+r(198);
+
+. summerize cohort
+command summerize is unrecognized
+r(199);
+
+. mode(cohort)
+command mode is unrecognized
+r(199);
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677342711658.do
+
+. graph twoway (line hour_age_prof eta) if cohort ==20
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677342735335.do
+
+. graph twoway (scatter hour_age_prof eta) if cohort ==20
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677342811465.do
+
+. graph twoway (scatter hour_age_prof eta) if cohort ==15
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677342871806.do
+
+. graph twoway (scatter mean_hours eta) if cohort ==15
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677342890263.do
+
+. graph twoway (scatter mean_hours eta) if cohort ==10
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677342897523.do
+
+. graph twoway (scatter mean_hours eta) if cohort ==14
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677343523285.do
+
+. wage=1 if wage==0
+command wage is unrecognized
+r(199);
+
+end of do-file
+
+r(199);
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677343545193.do
+
+. replace wage=1 if wage==0
+variable wage not found
+r(111);
+
+end of do-file
+
+r(111);
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677343635854.do
+
+. replace wage=1 if wage==0
+variable wage not found
+r(111);
+
+end of do-file
+
+r(111);
+
+. do "main.do"
+
+. ** Riccardo Dal Cero
+. ** Labour economics project
+. clear 
+
+. ** Our working directory today is:
+. cd "/Users/riccardodalcero/Library/CloudStorage/OneDrive-UniversitaCattolicaSacroCuore-ICATT/Materials/Labour/project/"
+/Users/riccardodalcero/Library/CloudStorage/OneDrive-UniversitaCattolicaSacroCuore-ICATT/Materials/Labour/project
+
+. 
+. *+++++++++++++++++++*
+. *Rearenging the dataset*
+. *+++++++++++++++++++*
+. ** importing the individual dataset for dependet worker
+. 
+. use "STATA/comp.dta"
+
+. *log file
+. *log using STATA.log, replace 
+. drop if anno<1981
+(39,182 observations deleted)
+
+. *mergin the data
+. merge 1:m nquest nord anno using "STATA/ldip.dta", generate(newv)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                       309,524
+        from master                   297,235  (newv==1)
+        from using                     12,289  (newv==2)
+
+    Matched                           118,876  (newv==3)
+    -----------------------------------------
+
+. drop if newv==1
+(297,235 observations deleted)
+
+. 
+. *getting log real annual wages
+. merge m:1 anno using "STATA/defl.dta"
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                            19
+        from master                         0  (_merge==1)
+        from using                         19  (_merge==2)
+
+    Matched                           131,165  (_merge==3)
+    -----------------------------------------
+
+. drop if _merge !=3
+(19 observations deleted)
+
+. gen wage = ((ylm+ylnm)* defl)*12 
+(17,574 missing values generated)
+
+. replace wage=1 if wage==0
+(3 real changes made)
+
+. gen l_wage = log(wage) 
+(17,574 missing values generated)
+
+. 
+. 
+. 
+. label var l_wage "Earnings per year in log levels"
+
+. rename studio educ
+
+. label define educlabels 1 "no edu" 2 "primary" 3 "lower secondary" 4 "secondary technical - 3 years" 5 "secondary" 6 "first level d
+> egree"
+
+. label values educ educlabels
+
+. rename anno year 
+
+. 
+. 
+. keep nquest year l_wage educ eta ireg  anasc area3 area5 sesso staciv oretot
+
+. drop if missing(anasc)
+(49,746 observations deleted)
+
+. drop if eta>65
+(492 observations deleted)
+
+. 
+. *define cohort for year of birth
+. gen cohort = ceil((anasc-1900)/3)
+
+. 
+. *The age hours profiles measure time endowments. Specifically, I set %s,c,t
+. *to mean annual hours in each (s,c,t)
+. 
+. *getting mean wage
+. 
+. egen mean_wage = mean(wage), by(educ cohort eta)
+wage not found
+r(111);
+
+end of do-file
+
+r(111);
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677343793927.do
+
+. gen wage = ((ylm+ylnm)* defl)*12 
+ylm not found
+r(111);
+
+end of do-file
+
+r(111);
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677343805188.do
+
+. clear 
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677343808393.do
+
+. use "STATA/comp.dta"
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677343813596.do
+
+. drop if anno<1981
+(39,182 observations deleted)
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677343820144.do
+
+. merge 1:m nquest nord anno using "STATA/ldip.dta", generate(newv)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                       309,524
+        from master                   297,235  (newv==1)
+        from using                     12,289  (newv==2)
+
+    Matched                           118,876  (newv==3)
+    -----------------------------------------
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677343823302.do
+
+. drop if newv==1
+(297,235 observations deleted)
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677343888485.do
+
+. use "STATA/comp.dta"
+no; dataset in memory has changed since last saved
+r(4);
+
+end of do-file
+
+r(4);
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677343891927.do
+
+. drop if anno<1981
+(12,289 observations deleted)
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677343896453.do
+
+. merge 1:m nquest nord anno using "STATA/ldip.dta", generate(newv)
+variable newv already defined
+r(110);
+
+end of do-file
+
+r(110);
+
+. drop newv
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677343912844.do
+
+. merge 1:m nquest nord anno using "STATA/ldip.dta", generate(newv)
+variables nquest nord anno do not uniquely identify observations in the master data
+r(459);
+
+end of do-file
+
+r(459);
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677343916340.do
+
+. clear 
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677343919537.do
+
+. use "STATA/comp.dta"
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677343922742.do
+
+. drop if anno<1981
+(39,182 observations deleted)
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677343925603.do
+
+. merge 1:m nquest nord anno using "STATA/ldip.dta", generate(newv)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                       309,524
+        from master                   297,235  (newv==1)
+        from using                     12,289  (newv==2)
+
+    Matched                           118,876  (newv==3)
+    -----------------------------------------
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677343984919.do
+
+. clear 
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677343988197.do
+
+. drop if anno<1981
+anno not found
+r(111);
+
+end of do-file
+
+r(111);
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677343991330.do
+
+. merge 1:m nquest nord  using "STATA/ldip.dta", generate(newv)
+no variables defined
+r(111);
+
+end of do-file
+
+r(111);
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677344007382.do
+
+. clear 
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677344010462.do
+
+. use "STATA/comp.dta"
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677344013683.do
+
+. drop if anno<1981
+(39,182 observations deleted)
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677344016419.do
+
+. merge 1:m nquest nord  using "STATA/ldip.dta", generate(newv)
+variables nquest nord do not uniquely identify observations in the master data
+r(459);
+
+end of do-file
+
+r(459);
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677344040554.do
+
+. merge 1:m nquest nord anno  using "STATA/ldip.dta", generate(newv)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                       309,524
+        from master                   297,235  (newv==1)
+        from using                     12,289  (newv==2)
+
+    Matched                           118,876  (newv==3)
+    -----------------------------------------
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677344099872.do
+
+. keep if newv==3
+(309,524 observations deleted)
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677344119890.do
+
+. merge m:1 anno using "STATA/defl.dta"
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                            23
+        from master                         0  (_merge==1)
+        from using                         23  (_merge==2)
+
+    Matched                           118,876  (_merge==3)
+    -----------------------------------------
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677344138745.do
+
+. drop if _merge !=3
+(23 observations deleted)
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677344148279.do
+
+. gen wage = ((ylm+ylnm)* defl)*12 
+(5,285 missing values generated)
+
+. 
+end of do-file
+
+. drop wage
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677344179054.do
+
+. gen y_wage = ((ylm+ylnm)* defl)*12 
+(5,285 missing values generated)
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677344191503.do
+
+. replace y_wage=1 if y_wage==0
+(3 real changes made)
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677344238718.do
+
+. replace y_wage=1 if y_wage==0 | missing(y_wage)
+(5,285 real changes made)
+
+. 
+end of do-file
+
+. describe nonoc
+
+Variable      Storage   Display    Value
+    name         type    format    label      Variable label
+-------------------------------------------------------------------------------------------------------------------------------------
+nonoc           byte    %8.0g                 NONOC
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677482660852.do
+
+. cd "/Users/riccardodalcero/Library/CloudStorage/OneDrive-UniversitaCattolicaSacroCuore-ICATT/Materials/Labour/project/"
+/Users/riccardodalcero/Library/CloudStorage/OneDrive-UniversitaCattolicaSacroCuore-ICATT/Materials/Labour/project
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677482664495.do
+
+. use "STATA/comp.dta"
+no; dataset in memory has changed since last saved
+r(4);
+
+end of do-file
+
+r(4);
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677482701731.do
+
+. reg mean_hours i.anasc age2 
+variable mean_hours not found
+r(111);
+
+end of do-file
+
+r(111);
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677482714546.do
+
+. egen mean_wage = mean(wage), by(educ cohort eta)
+wage not found
+r(111);
+
+end of do-file
+
+r(111);
+
+. do "main.do"
+
+. ** Riccardo Dal Cero
+. ** Labour economics project
+. clear 
+
+. ** Our working directory today is:
+. cd "/Users/riccardodalcero/Library/CloudStorage/OneDrive-UniversitaCattolicaSacroCuore-ICATT/Materials/Labour/project/"
+/Users/riccardodalcero/Library/CloudStorage/OneDrive-UniversitaCattolicaSacroCuore-ICATT/Materials/Labour/project
+
+. 
+. *+++++++++++++++++++*
+. *Rearenging the dataset*
+. *+++++++++++++++++++*
+. ** importing the individual dataset for dependet worker
+. 
+. use "STATA/comp.dta"
+
+. *log file
+. *log using STATA.log, replace 
+. drop if anno<1981
+(39,182 observations deleted)
+
+. *mergin the data
+. merge 1:m nquest nord anno  using "STATA/ldip.dta", generate(newv)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                       309,524
+        from master                   297,235  (newv==1)
+        from using                     12,289  (newv==2)
+
+    Matched                           118,876  (newv==3)
+    -----------------------------------------
+
+. drop if newv==3
+(118,876 observations deleted)
+
+. 
+. *getting log real annual wages
+. merge m:1 anno using "STATA/defl.dta"
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                            19
+        from master                         0  (_merge==1)
+        from using                         19  (_merge==2)
+
+    Matched                           309,524  (_merge==3)
+    -----------------------------------------
+
+. drop if _merge !=3
+(19 observations deleted)
+
+. 
+. gen y_wage = ((ylm+ylnm)* defl)*12 
+(309,524 missing values generated)
+
+. replace y_wage=1 if y_wage==0 | missing(y_wage)
+(309,524 real changes made)
+
+. gen l_wage = log(wage) 
+wage not found
+r(111);
+
+end of do-file
+
+r(111);
+
+. do "main.do"
+
+. ** Riccardo Dal Cero
+. ** Labour economics project
+. clear 
+
+. ** Our working directory today is:
+. cd "/Users/riccardodalcero/Library/CloudStorage/OneDrive-UniversitaCattolicaSacroCuore-ICATT/Materials/Labour/project/"
+/Users/riccardodalcero/Library/CloudStorage/OneDrive-UniversitaCattolicaSacroCuore-ICATT/Materials/Labour/project
+
+. 
+. *+++++++++++++++++++*
+. *Rearenging the dataset*
+. *+++++++++++++++++++*
+. ** importing the individual dataset for dependet worker
+. 
+. use "STATA/comp.dta"
+
+. *log file
+. *log using STATA.log, replace 
+. drop if anno<1981
+(39,182 observations deleted)
+
+. *mergin the data
+. merge 1:m nquest nord anno  using "STATA/ldip.dta", generate(newv)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                       309,524
+        from master                   297,235  (newv==1)
+        from using                     12,289  (newv==2)
+
+    Matched                           118,876  (newv==3)
+    -----------------------------------------
+
+. drop if newv==3
+(118,876 observations deleted)
+
+. 
+. *getting log real annual wages
+. merge m:1 anno using "STATA/defl.dta"
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                            19
+        from master                         0  (_merge==1)
+        from using                         19  (_merge==2)
+
+    Matched                           309,524  (_merge==3)
+    -----------------------------------------
+
+. drop if _merge !=3
+(19 observations deleted)
+
+. 
+. gen y_wage = ((ylm+ylnm)* defl)*12 
+(309,524 missing values generated)
+
+. replace y_wage=1 if y_wage==0 | missing(y_wage)
+(309,524 real changes made)
+
+. gen l_wage = log(y_wage) 
+
+. 
+. 
+. 
+. label var l_wage "Earnings per year in log levels"
+
+. rename studio educ
+
+. label define educlabels 1 "no edu" 2 "primary" 3 "lower secondary" 4 "secondary technical - 3 years" 5 "secondary" 6 "first level d
+> egree"
+
+. label values educ educlabels
+
+. rename anno year 
+
+. 
+. 
+. keep nquest year l_wage educ eta ireg  anasc area3 area5 sesso staciv oretot
+
+. drop if missing(anasc)
+(102,173 observations deleted)
+
+. drop if eta>65
+(56,207 observations deleted)
+
+. 
+. *define cohort for year of birth
+. gen cohort = ceil((anasc-1900)/3)
+
+. 
+. *The age hours profiles measure time endowments. Specifically, I set %s,c,t
+. *to mean annual hours in each (s,c,t)
+. 
+. *getting mean wage
+. 
+. egen mean_wage = mean(wage), by(educ cohort eta)
+wage not found
+r(111);
+
+end of do-file
+
+r(111);
+
+. do "main.do"
+
+. ** Riccardo Dal Cero
+. ** Labour economics project
+. clear 
+
+. ** Our working directory today is:
+. cd "/Users/riccardodalcero/Library/CloudStorage/OneDrive-UniversitaCattolicaSacroCuore-ICATT/Materials/Labour/project/"
+/Users/riccardodalcero/Library/CloudStorage/OneDrive-UniversitaCattolicaSacroCuore-ICATT/Materials/Labour/project
+
+. 
+. *+++++++++++++++++++*
+. *Rearenging the dataset*
+. *+++++++++++++++++++*
+. ** importing the individual dataset for dependet worker
+. 
+. use "STATA/comp.dta"
+
+. *log file
+. *log using STATA.log, replace 
+. drop if anno<1981
+(39,182 observations deleted)
+
+. *mergin the data
+. merge 1:m nquest nord anno  using "STATA/ldip.dta", generate(newv)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                       309,524
+        from master                   297,235  (newv==1)
+        from using                     12,289  (newv==2)
+
+    Matched                           118,876  (newv==3)
+    -----------------------------------------
+
+. drop if newv==3
+(118,876 observations deleted)
+
+. 
+. *getting log real annual wages
+. merge m:1 anno using "STATA/defl.dta"
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                            19
+        from master                         0  (_merge==1)
+        from using                         19  (_merge==2)
+
+    Matched                           309,524  (_merge==3)
+    -----------------------------------------
+
+. drop if _merge !=3
+(19 observations deleted)
+
+. 
+. gen y_wage = ((ylm+ylnm)* defl)*12 
+(309,524 missing values generated)
+
+. replace y_wage=1 if y_wage==0 | missing(y_wage)
+(309,524 real changes made)
+
+. gen l_wage = log(y_wage) 
+
+. 
+. 
+. 
+. label var l_wage "Earnings per year in log levels"
+
+. rename studio educ
+
+. label define educlabels 1 "no edu" 2 "primary" 3 "lower secondary" 4 "secondary technical - 3 years" 5 "secondary" 6 "first level d
+> egree"
+
+. label values educ educlabels
+
+. rename anno year 
+
+. 
+. 
+. keep nquest year l_wage educ eta ireg  anasc area3 area5 sesso staciv oretot
+
+. drop if missing(anasc)
+(102,173 observations deleted)
+
+. drop if eta>65
+(56,207 observations deleted)
+
+. 
+. *define cohort for year of birth
+. gen cohort = ceil((anasc-1900)/3)
+
+. 
+. *The age hours profiles measure time endowments. Specifically, I set %s,c,t
+. *to mean annual hours in each (s,c,t)
+. 
+. *getting mean wage
+. 
+. egen mean_wage = mean(y_wage), by(educ cohort eta)
+y_wage not found
+r(111);
+
+end of do-file
+
+r(111);
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677482899804.do
+
+. drop if eta>65
+(0 observations deleted)
+
+. 
+. *define cohort for year of birth
+. gen cohort = ceil((anasc-1900)/3)
+variable cohort already defined
+r(110);
+
+end of do-file
+
+r(110);
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677482912892.do
+
+. ** Riccardo Dal Cero
+. ** Labour economics project
+. clear 
+
+. ** Our working directory today is:
+. cd "/Users/riccardodalcero/Library/CloudStorage/OneDrive-UniversitaCattolicaSacroCuore-ICATT/Materials/Labour/project/"
+/Users/riccardodalcero/Library/CloudStorage/OneDrive-UniversitaCattolicaSacroCuore-ICATT/Materials/Labour/project
+
+. 
+. *+++++++++++++++++++*
+. *Rearenging the dataset*
+. *+++++++++++++++++++*
+. ** importing the individual dataset for dependet worker
+. 
+. use "STATA/comp.dta"
+
+. *log file
+. *log using STATA.log, replace 
+. drop if anno<1981
+(39,182 observations deleted)
+
+. *mergin the data
+. merge 1:m nquest nord anno  using "STATA/ldip.dta", generate(newv)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                       309,524
+        from master                   297,235  (newv==1)
+        from using                     12,289  (newv==2)
+
+    Matched                           118,876  (newv==3)
+    -----------------------------------------
+
+. drop if newv==3
+(118,876 observations deleted)
+
+. 
+. *getting log real annual wages
+. merge m:1 anno using "STATA/defl.dta"
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                            19
+        from master                         0  (_merge==1)
+        from using                         19  (_merge==2)
+
+    Matched                           309,524  (_merge==3)
+    -----------------------------------------
+
+. drop if _merge !=3
+(19 observations deleted)
+
+. 
+. egen y_wage = ((ylm+ylnm)* defl)*12 
+unknown egen function (()
+r(133);
+
+end of do-file
+
+r(133);
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677482940128.do
+
+. gen y_wage = ((ylm+ylnm)* defl)*12 
+(309,524 missing values generated)
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677482946045.do
+
+. replace y_wage=1 if y_wage==0 | missing(y_wage)
+(309,524 real changes made)
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677482949202.do
+
+. egen l_wage = log(y_wage) 
+unknown egen function log()
+r(133);
+
+end of do-file
+
+r(133);
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677482955351.do
+
+. gen l_wage = log(y_wage) 
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677482958726.do
+
+. label var l_wage "Earnings per year in log levels"
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677482962472.do
+
+. rename studio educ
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677482965390.do
+
+. label define educlabels 1 "no edu" 2 "primary" 3 "lower secondary" 4 "secondary technical - 3 years" 5 "secondary" 6 "first level d
+> egree"
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677482968458.do
+
+. label values educ educlabels
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677482971415.do
+
+. rename anno year 
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677482985319.do
+
+. keep nquest year l_wage educ eta ireg  anasc area3 area5 sesso staciv oretot
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677482988548.do
+
+. drop if missing(anasc)
+(102,173 observations deleted)
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677482991202.do
+
+. drop if eta>65
+(56,207 observations deleted)
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677482994073.do
+
+. gen cohort = ceil((anasc-1900)/3)
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677482997813.do
+
+. egen mean_wage = mean(y_wage), by(educ cohort eta)
+y_wage not found
+r(111);
+
+end of do-file
+
+r(111);
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677483028784.do
+
+. ** Riccardo Dal Cero
+. ** Labour economics project
+. clear 
+
+. ** Our working directory today is:
+. cd "/Users/riccardodalcero/Library/CloudStorage/OneDrive-UniversitaCattolicaSacroCuore-ICATT/Materials/Labour/project/"
+/Users/riccardodalcero/Library/CloudStorage/OneDrive-UniversitaCattolicaSacroCuore-ICATT/Materials/Labour/project
+
+. 
+. *+++++++++++++++++++*
+. *Rearenging the dataset*
+. *+++++++++++++++++++*
+. ** importing the individual dataset for dependet worker
+. 
+. use "STATA/comp.dta"
+
+. *log file
+. *log using STATA.log, replace 
+. drop if anno<1981
+(39,182 observations deleted)
+
+. *mergin the data
+. merge 1:m nquest nord anno  using "STATA/ldip.dta", generate(newv)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                       309,524
+        from master                   297,235  (newv==1)
+        from using                     12,289  (newv==2)
+
+    Matched                           118,876  (newv==3)
+    -----------------------------------------
+
+. drop if newv==3
+(118,876 observations deleted)
+
+. 
+. *getting log real annual wages
+. merge m:1 anno using "STATA/defl.dta"
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                            19
+        from master                         0  (_merge==1)
+        from using                         19  (_merge==2)
+
+    Matched                           309,524  (_merge==3)
+    -----------------------------------------
+
+. drop if _merge !=3
+(19 observations deleted)
+
+. 
+. gen y_wage = ((ylm+ylnm)* defl)*12 
+(309,524 missing values generated)
+
+. replace y_wage=1 if y_wage==0 | missing(y_wage)
+(309,524 real changes made)
+
+. gen l_wage = log(y_wage) 
+
+. 
+. 
+. 
+. label var l_wage "Earnings per year in log levels"
+
+. rename studio educ
+
+. label define educlabels 1 "no edu" 2 "primary" 3 "lower secondary" 4 "secondary technical - 3 years" 5 "secondary" 6 "first level d
+> egree"
+
+. label values educ educlabels
+
+. rename anno year 
+
+. 
+. 
+. keep nquest year l_wage educ eta ireg  anasc area3 area5 sesso staciv oretot
+
+. drop if missing(anasc)
+(102,173 observations deleted)
+
+. drop if eta>65
+(56,207 observations deleted)
+
+. 
+. *define cohort for year of birth
+. gen cohort = ceil((anasc-1900)/3)
+
+. 
+. *The age hours profiles measure time endowments. Specifically, I set %s,c,t
+. *to mean annual hours in each (s,c,t)
+. 
+. *getting mean wage
+. 
+. egen mean_wage = mean(y_wage), by(educ cohort eta)
+y_wage not found
+r(111);
+
+end of do-file
+
+r(111);
+
+. do "main.do"
+
+. ** Riccardo Dal Cero
+. ** Labour economics project
+. clear 
+
+. ** Our working directory today is:
+. cd "/Users/riccardodalcero/Library/CloudStorage/OneDrive-UniversitaCattolicaSacroCuore-ICATT/Materials/Labour/project/"
+/Users/riccardodalcero/Library/CloudStorage/OneDrive-UniversitaCattolicaSacroCuore-ICATT/Materials/Labour/project
+
+. 
+. *+++++++++++++++++++*
+. *Rearenging the dataset*
+. *+++++++++++++++++++*
+. ** importing the individual dataset for dependet worker
+. 
+. use "STATA/comp.dta"
+
+. *log file
+. *log using STATA.log, replace 
+. drop if anno<1981
+(39,182 observations deleted)
+
+. *mergin the data
+. merge 1:m nquest nord anno  using "STATA/ldip.dta", generate(newv)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                       309,524
+        from master                   297,235  (newv==1)
+        from using                     12,289  (newv==2)
+
+    Matched                           118,876  (newv==3)
+    -----------------------------------------
+
+. drop if newv==3
+(118,876 observations deleted)
+
+. 
+. *getting log real annual wages
+. merge m:1 anno using "STATA/defl.dta"
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                            19
+        from master                         0  (_merge==1)
+        from using                         19  (_merge==2)
+
+    Matched                           309,524  (_merge==3)
+    -----------------------------------------
+
+. drop if _merge !=3
+(19 observations deleted)
+
+. 
+. gen y_wage = ((ylm+ylnm)* defl)*12 
+(309,524 missing values generated)
+
+. replace y_wage=1 if y_wage==0 | missing(y_wage)
+(309,524 real changes made)
+
+. gen l_wage = log(y_wage) 
+
+. 
+. 
+. 
+. label var l_wage "Earnings per year in log levels"
+
+. rename studio educ
+
+. label define educlabels 1 "no edu" 2 "primary" 3 "lower secondary" 4 "secondary technical - 3 years" 5 "secondary" 6 "first level d
+> egree"
+
+. label values educ educlabels
+
+. rename anno year 
+
+. 
+. 
+. keep nquest year l_wage educ eta ireg  anasc area3 area5 sesso staciv oretot
+
+. drop if missing(anasc)
+(102,173 observations deleted)
+
+. drop if eta>65
+(56,207 observations deleted)
+
+. 
+. *define cohort for year of birth
+. gen cohort = ceil((anasc-1900)/3)
+
+. 
+. *The age hours profiles measure time endowments. Specifically, I set %s,c,t
+. *to mean annual hours in each (s,c,t)
+. 
+. *getting mean wage
+. 
+. egen mean_wage = mean(y_wage), by(educ cohort eta)
+y_wage not found
+r(111);
+
+end of do-file
+
+r(111);
+
+. do "main.do"
+
+. ** Riccardo Dal Cero
+. ** Labour economics project
+. clear 
+
+. ** Our working directory today is:
+. cd "/Users/riccardodalcero/Library/CloudStorage/OneDrive-UniversitaCattolicaSacroCuore-ICATT/Materials/Labour/project/"
+/Users/riccardodalcero/Library/CloudStorage/OneDrive-UniversitaCattolicaSacroCuore-ICATT/Materials/Labour/project
+
+. 
+. *+++++++++++++++++++*
+. *Rearenging the dataset*
+. *+++++++++++++++++++*
+. ** importing the individual dataset for dependet worker
+. 
+. use "STATA/comp.dta"
+
+. *log file
+. *log using STATA.log, replace 
+. drop if anno<1981
+(39,182 observations deleted)
+
+. *mergin the data
+. merge 1:m nquest nord anno  using "STATA/ldip.dta", generate(newv)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                       309,524
+        from master                   297,235  (newv==1)
+        from using                     12,289  (newv==2)
+
+    Matched                           118,876  (newv==3)
+    -----------------------------------------
+
+. drop if newv==3
+(118,876 observations deleted)
+
+. 
+. *getting log real annual wages
+. merge m:1 anno using "STATA/defl.dta"
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                            19
+        from master                         0  (_merge==1)
+        from using                         19  (_merge==2)
+
+    Matched                           309,524  (_merge==3)
+    -----------------------------------------
+
+. drop if _merge !=3
+(19 observations deleted)
+
+. 
+. gen y_wage = ((ylm+ylnm)* defl)*12 
+(309,524 missing values generated)
+
+. replace y_wage=1 if y_wage==0 | missing(y_wage)
+(309,524 real changes made)
+
+. gen l_wage = log(y_wage) 
+
+. 
+. 
+. 
+. label var l_wage "Earnings per year in log levels"
+
+. rename studio educ
+
+. label define educlabels 1 "no edu" 2 "primary" 3 "lower secondary" 4 "secondary technical - 3 years" 5 "secondary" 6 "first level d
+> egree"
+
+. label values educ educlabels
+
+. rename anno year 
+
+. 
+. 
+. keep nquest year l_wage educ eta ireg  anasc area3 area5 sesso staciv oretot
+
+. drop if missing(anasc)
+(102,173 observations deleted)
+
+. drop if eta>65
+(56,207 observations deleted)
+
+. 
+. *define cohort for year of birth
+. gen cohort = ceil((anasc-1900)/3)
+
+. 
+. *The age hours profiles measure time endowments. Specifically, I set %s,c,t
+. *to mean annual hours in each (s,c,t)
+. 
+. *getting mean wage
+. 
+. gen mean_wage = mean(y_wage), by(educ cohort eta)
+unknown function mean()
+r(133);
+
+end of do-file
+
+r(133);
+
+. mean(y_wage)
+variable y_wage not found
+r(111);
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677483135642.do
+
+. gen y_wage = ((ylm+ylnm)* defl)*12 
+ylm not found
+r(111);
+
+end of do-file
+
+r(111);
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677483145907.do
+
+. clear 
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677483148284.do
+
+. cd "/Users/riccardodalcero/Library/CloudStorage/OneDrive-UniversitaCattolicaSacroCuore-ICATT/Materials/Labour/project/"
+/Users/riccardodalcero/Library/CloudStorage/OneDrive-UniversitaCattolicaSacroCuore-ICATT/Materials/Labour/project
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677483151108.do
+
+. use "STATA/comp.dta"
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677483153852.do
+
+. drop if anno<1981
+(39,182 observations deleted)
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677483157097.do
+
+. merge 1:m nquest nord anno  using "STATA/ldip.dta", generate(newv)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                       309,524
+        from master                   297,235  (newv==1)
+        from using                     12,289  (newv==2)
+
+    Matched                           118,876  (newv==3)
+    -----------------------------------------
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677483159914.do
+
+. drop if newv==3
+(118,876 observations deleted)
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677483162840.do
+
+. merge m:1 anno using "STATA/defl.dta"
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                            19
+        from master                         0  (_merge==1)
+        from using                         19  (_merge==2)
+
+    Matched                           309,524  (_merge==3)
+    -----------------------------------------
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677483165755.do
+
+. drop if _merge !=3
+(19 observations deleted)
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677483168670.do
+
+. gen y_wage = ((ylm+ylnm)* defl)*12 
+(309,524 missing values generated)
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677483172088.do
+
+. replace y_wage=1 if y_wage==0 | missing(y_wage)
+(309,524 real changes made)
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677483175001.do
+
+. gen l_wage = log(y_wage) 
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677483178709.do
+
+. label var l_wage "Earnings per year in log levels"
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677483181383.do
+
+. rename studio educ
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677483184333.do
+
+. label define educlabels 1 "no edu" 2 "primary" 3 "lower secondary" 4 "secondary technical - 3 years" 5 "secondary" 6 "first level d
+> egree"
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677483186891.do
+
+. label values educ educlabels
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677483189247.do
+
+. rename anno year 
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677483193153.do
+
+. keep nquest year l_wage educ eta ireg  anasc area3 area5 sesso staciv oretot
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677483196055.do
+
+. drop if missing(anasc)
+(102,173 observations deleted)
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677483198936.do
+
+. drop if eta>65
+(56,207 observations deleted)
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677483202041.do
+
+. gen cohort = ceil((anasc-1900)/3)
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677483207163.do
+
+. gen mean_wage = mean(y_wage), by(educ cohort eta)
+unknown function mean()
+r(133);
+
+end of do-file
+
+r(133);
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677483426376.do
+
+. gen y_wage = ((ylm+ylnm)* defl)*12 
+ylm not found
+r(111);
+
+end of do-file
+
+r(111);
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677483434370.do
+
+. gen y_wage = ((ylm+ylnm)* defl)*12 
+ylm not found
+r(111);
+
+end of do-file
+
+r(111);
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677483457413.do
+
+. clear 
+
+. ** Our working directory today is:
+. cd "/Users/riccardodalcero/Library/CloudStorage/OneDrive-UniversitaCattolicaSacroCuore-ICATT/Materials/Labour/project/"
+/Users/riccardodalcero/Library/CloudStorage/OneDrive-UniversitaCattolicaSacroCuore-ICATT/Materials/Labour/project
+
+. 
+. *+++++++++++++++++++*
+. *Rearenging the dataset*
+. *+++++++++++++++++++*
+. ** importing the individual dataset for dependet worker
+. 
+. use "STATA/comp.dta"
+
+. *log file
+. *log using STATA.log, replace 
+. drop if anno<1981
+(39,182 observations deleted)
+
+. *mergin the data
+. merge 1:m nquest nord anno  using "STATA/ldip.dta", generate(newv)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                       309,524
+        from master                   297,235  (newv==1)
+        from using                     12,289  (newv==2)
+
+    Matched                           118,876  (newv==3)
+    -----------------------------------------
+
+. drop if newv==3
+(118,876 observations deleted)
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677483462339.do
+
+. merge m:1 anno using "STATA/defl.dta"
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                            19
+        from master                         0  (_merge==1)
+        from using                         19  (_merge==2)
+
+    Matched                           309,524  (_merge==3)
+    -----------------------------------------
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677483466131.do
+
+. drop if _merge !=3
+(19 observations deleted)
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677483470200.do
+
+. gen y_wage = ((ylm+ylnm)* defl)*12 
+(309,524 missing values generated)
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677483474111.do
+
+. replace y_wage=1 if y_wage==0 | missing(y_wage)
+(309,524 real changes made)
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677483482186.do
+
+. gen l_wage = log(y_wage) 
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677483491613.do
+
+. label var l_wage "Earnings per year in log levels"
+
+. rename studio educ
+
+. label define educlabels 1 "no edu" 2 "primary" 3 "lower secondary" 4 "secondary technical - 3 years" 5 "secondary" 6 "first level d
+> egree"
+
+. label values educ educlabels
+
+. rename anno year 
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677483514296.do
+
+. drop if missing(anasc)
+(102,173 observations deleted)
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677483518201.do
+
+. drop if eta>65
+(56,207 observations deleted)
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677483521374.do
+
+. gen cohort = ceil((anasc-1900)/3)
+
+. 
+end of do-file
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677483526259.do
+
+. gen mean_wage = mean(y_wage), by(educ cohort eta)
+unknown function mean()
+r(133);
+
+end of do-file
+
+r(133);
+
+. mean(y_wage)
+
+Mean estimation                        Number of obs = 151,144
+
+--------------------------------------------------------------
+             |       Mean   Std. err.     [95% conf. interval]
+-------------+------------------------------------------------
+      y_wage |          1          0             .           .
+--------------------------------------------------------------
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677483562049.do
+
+. gen mean_wage = mean(y_wage), by(educ cohort eta)
+unknown function mean()
+r(133);
+
+end of do-file
+
+r(133);
+
+. do /var/folders/zd/nzwwg11s06sf2dv5349vbjxh0000gn/T/StataRun1677483691845.do
+
+. gen mean_hours = mean(oretot*12*4), by(educ cohort eta)
+unknown function mean()
+r(133);
+
+end of do-file
+
+r(133);
+
