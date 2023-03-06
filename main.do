@@ -189,19 +189,19 @@ eststo: reg l_wage  age age2  i.cohort i.years if educ==5 & sex==0
 predict w_m_h
 eststo: reg l_wage  age age2  i.cohort i.years if educ==5 & sex==1
 predict w_f_h
-eststo: reg l_wage  age age2  i.cohort i.years if educ==3 & sex==0
+eststo: reg l_wage  age age2  i.cohort i.years if educ==3 & sex==0 
 predict w_m_l
-eststo: reg l_wage  age age2  i.cohort i.years if educ==3 & sex==1
+eststo: reg l_wage  age age2  i.cohort i.years if educ==3 & sex==1 
 predict w_f_l
 esttab using "./regression2.tex", replace  ///
  b(5) se(5) nomtitle label star(* 0.10 ** 0.05 *** 0.01) ///
  booktabs  ///
  title("Regression table \label{reg2}")   ///
  addnotes("")
-graph twoway (scatter w_m_l age) (scatter w_f_l age), by(cohort, title("Wage profiles of low secondary school and gender gap"))  legend(label(1 "Male")) legend(label(2 "Female"))
-graph export "graph2.png", replace
-graph twoway (scatter w_m_h age) (scatter w_f_h age), by(cohort, title("Wage profiles of secondary school and gender gap"))  legend(label(1 "Male")) legend(label(2 "Female"))
-graph export "graph3.png", replace
+graph twoway (scatter w_f_l age) (scatter w_m_l age), by(cohort,title("Wage profiles of low secondary school and gender gap"))  legend(label(1 "Female")) legend(label(2 "Male"))
+graph export "./latex/graph2.png", replace
+graph twoway (scatter w_f_h age) (scatter w_m_h age), by(cohort, title("Wage profiles of secondary school and gender gap"))  legend(label(1 "Female")) legend(label(2 "Male"))
+graph export "./latex/graph3.png", replace
 
 
 

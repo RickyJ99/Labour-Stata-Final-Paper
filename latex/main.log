@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.3.5)  5 MAR 2023 22:34
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.3.5)  6 MAR 2023 16:13
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -527,83 +527,97 @@ File: doclicense-CC-by-nc-nd-88x31.pdf Graphic file (type pdf)
 Package pdftex.def Info: doclicense-CC-by-nc-nd-88x31.pdf  used on input line 234.
 (pdftex.def)             Requested size: 49.0pt x 17.15022pt.
  [5]
-<graph1.png, id=86, 1104.125pt x 803.0pt>
-File: graph1.png Graphic file (type png)
-<use graph1.png>
-Package pdftex.def Info: graph1.png  used on input line 255.
-(pdftex.def)             Requested size: 331.24005pt x 240.90186pt.
 File: doclicense-CC-by-nc-nd-88x31.pdf Graphic file (type pdf)
 <use doclicense-CC-by-nc-nd-88x31.pdf>
-Package pdftex.def Info: doclicense-CC-by-nc-nd-88x31.pdf  used on input line 263.
+Package pdftex.def Info: doclicense-CC-by-nc-nd-88x31.pdf  used on input line 255.
 (pdftex.def)             Requested size: 49.0pt x 17.15022pt.
  [6]
-<graph3.png, id=97, 996.72375pt x 724.7075pt>
-File: graph3.png Graphic file (type png)
-<use graph3.png>
-Package pdftex.def Info: graph3.png  used on input line 271.
-(pdftex.def)             Requested size: 299.01944pt x 217.41393pt.
-<graph4.png, id=99, 996.72375pt x 724.7075pt>
-File: graph4.png Graphic file (type png)
-<use graph4.png>
-Package pdftex.def Info: graph4.png  used on input line 280.
-(pdftex.def)             Requested size: 299.01944pt x 217.41393pt.
-
-Underfull \vbox (badness 1924) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 File: doclicense-CC-by-nc-nd-88x31.pdf Graphic file (type pdf)
 <use doclicense-CC-by-nc-nd-88x31.pdf>
-Package pdftex.def Info: doclicense-CC-by-nc-nd-88x31.pdf  used on input line 303.
+Package pdftex.def Info: doclicense-CC-by-nc-nd-88x31.pdf  used on input line 301.
 (pdftex.def)             Requested size: 49.0pt x 17.15022pt.
- [7 <./graph1.png>]
+ [7]
 File: doclicense-CC-by-nc-nd-88x31.pdf Graphic file (type pdf)
 <use doclicense-CC-by-nc-nd-88x31.pdf>
-Package pdftex.def Info: doclicense-CC-by-nc-nd-88x31.pdf  used on input line 303.
+Package pdftex.def Info: doclicense-CC-by-nc-nd-88x31.pdf  used on input line 301.
 (pdftex.def)             Requested size: 49.0pt x 17.15022pt.
- [8 <./graph3.png> <./graph4.png>]
-<graph5.png, id=122, 996.72375pt x 724.7075pt>
-File: graph5.png Graphic file (type png)
-<use graph5.png>
-Package pdftex.def Info: graph5.png  used on input line 316.
-(pdftex.def)             Requested size: 299.01944pt x 217.41393pt.
-<graph6.png, id=123, 996.72375pt x 724.7075pt>
-File: graph6.png Graphic file (type png)
-<use graph6.png>
-Package pdftex.def Info: graph6.png  used on input line 329.
-(pdftex.def)             Requested size: 299.01944pt x 217.41393pt.
+ [8]
 File: doclicense-CC-by-nc-nd-88x31.pdf Graphic file (type pdf)
 <use doclicense-CC-by-nc-nd-88x31.pdf>
-Package pdftex.def Info: doclicense-CC-by-nc-nd-88x31.pdf  used on input line 333.
+Package pdftex.def Info: doclicense-CC-by-nc-nd-88x31.pdf  used on input line 317.
 (pdftex.def)             Requested size: 49.0pt x 17.15022pt.
- [9 <./graph5.png>] (./table1.tex) (./table2.tex) (./cohort.tex) (./regression1.tex) (./regression2.tex) (./regression3.tex) (./regression4.tex)
+ [9] (./table1.tex) (./table2.tex) (./cohort.tex) (./regression1.tex) (./regression2.tex) (./regression3.tex) (./regression4.tex)
 File: doclicense-CC-by-nc-nd-88x31.pdf Graphic file (type pdf)
 <use doclicense-CC-by-nc-nd-88x31.pdf>
-Package pdftex.def Info: doclicense-CC-by-nc-nd-88x31.pdf  used on input line 343.
+Package pdftex.def Info: doclicense-CC-by-nc-nd-88x31.pdf  used on input line 328.
 (pdftex.def)             Requested size: 49.0pt x 17.15022pt.
- [10 <./graph6.png>]
+ [10]
 File: doclicense-CC-by-nc-nd-88x31.pdf Graphic file (type pdf)
 <use doclicense-CC-by-nc-nd-88x31.pdf>
-Package pdftex.def Info: doclicense-CC-by-nc-nd-88x31.pdf  used on input line 343.
+Package pdftex.def Info: doclicense-CC-by-nc-nd-88x31.pdf  used on input line 328.
 (pdftex.def)             Requested size: 49.0pt x 17.15022pt.
  [11]
 File: doclicense-CC-by-nc-nd-88x31.pdf Graphic file (type pdf)
 <use doclicense-CC-by-nc-nd-88x31.pdf>
-Package pdftex.def Info: doclicense-CC-by-nc-nd-88x31.pdf  used on input line 343.
+Package pdftex.def Info: doclicense-CC-by-nc-nd-88x31.pdf  used on input line 328.
 (pdftex.def)             Requested size: 49.0pt x 17.15022pt.
  [12]
+<graph1.png, id=170, 1104.125pt x 803.0pt>
+File: graph1.png Graphic file (type png)
+<use graph1.png>
+Package pdftex.def Info: graph1.png  used on input line 334.
+(pdftex.def)             Requested size: 331.24005pt x 240.90186pt.
+<graph2.png, id=171, 1104.125pt x 803.0pt>
+File: graph2.png Graphic file (type png)
+<use graph2.png>
+Package pdftex.def Info: graph2.png  used on input line 340.
+(pdftex.def)             Requested size: 331.24005pt x 240.90186pt.
+<graph3.png, id=172, 996.72375pt x 724.7075pt>
+File: graph3.png Graphic file (type png)
+<use graph3.png>
+Package pdftex.def Info: graph3.png  used on input line 346.
+(pdftex.def)             Requested size: 299.01944pt x 217.41393pt.
+<graph4.png, id=173, 996.72375pt x 724.7075pt>
+File: graph4.png Graphic file (type png)
+<use graph4.png>
+Package pdftex.def Info: graph4.png  used on input line 352.
+(pdftex.def)             Requested size: 299.01944pt x 217.41393pt.
+<graph5.png, id=174, 996.72375pt x 724.7075pt>
+File: graph5.png Graphic file (type png)
+<use graph5.png>
+Package pdftex.def Info: graph5.png  used on input line 358.
+(pdftex.def)             Requested size: 299.01944pt x 217.41393pt.
+<graph6.png, id=175, 996.72375pt x 724.7075pt>
+File: graph6.png Graphic file (type png)
+<use graph6.png>
+Package pdftex.def Info: graph6.png  used on input line 364.
+(pdftex.def)             Requested size: 299.01944pt x 217.41393pt.
 File: doclicense-CC-by-nc-nd-88x31.pdf Graphic file (type pdf)
 <use doclicense-CC-by-nc-nd-88x31.pdf>
-Package pdftex.def Info: doclicense-CC-by-nc-nd-88x31.pdf  used on input line 343.
+Package pdftex.def Info: doclicense-CC-by-nc-nd-88x31.pdf  used on input line 368.
 (pdftex.def)             Requested size: 49.0pt x 17.15022pt.
  [13]
 File: doclicense-CC-by-nc-nd-88x31.pdf Graphic file (type pdf)
 <use doclicense-CC-by-nc-nd-88x31.pdf>
-Package pdftex.def Info: doclicense-CC-by-nc-nd-88x31.pdf  used on input line 343.
+Package pdftex.def Info: doclicense-CC-by-nc-nd-88x31.pdf  used on input line 368.
+(pdftex.def)             Requested size: 49.0pt x 17.15022pt.
+ [14 <./graph1.png> <./graph2.png>]
+File: doclicense-CC-by-nc-nd-88x31.pdf Graphic file (type pdf)
+<use doclicense-CC-by-nc-nd-88x31.pdf>
+Package pdftex.def Info: doclicense-CC-by-nc-nd-88x31.pdf  used on input line 368.
+(pdftex.def)             Requested size: 49.0pt x 17.15022pt.
+ [15 <./graph3.png> <./graph4.png>]
+File: doclicense-CC-by-nc-nd-88x31.pdf Graphic file (type pdf)
+<use doclicense-CC-by-nc-nd-88x31.pdf>
+Package pdftex.def Info: doclicense-CC-by-nc-nd-88x31.pdf  used on input line 368.
 (pdftex.def)             Requested size: 49.0pt x 17.15022pt.
  (/usr/local/texlive/2022/texmf-dist/tex/generic/stringenc/se-pdfdoc.def
 File: se-pdfdoc.def 2019/11/29 v1.12 stringenc: PDFDocEncoding
 ) (/usr/local/texlive/2022/texmf-dist/tex/generic/stringenc/se-utf8.def
 File: se-utf8.def 2019/11/29 v1.12 stringenc: UTF-8
-) [14] (./main.aux)
+) [16 <./graph5.png> <./graph6.png>] (./main.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 128.69374pt have occurred.
@@ -612,18 +626,18 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 050B43E6585FA02105421C2061002A1C;337.
  ) 
 Here is how much of TeX's memory you used:
- 12523 strings out of 476024
- 205574 string characters out of 5790019
- 1879388 words of memory out of 5000000
- 32694 multiletter control sequences out of 15000+600000
+ 12544 strings out of 476024
+ 205818 string characters out of 5790019
+ 1880388 words of memory out of 5000000
+ 32708 multiletter control sequences out of 15000+600000
  518777 words of font info for 50 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  87i,18n,91p,961b,652s stack positions out of 10000i,1000n,20000p,200000b,200000s
-{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
-Output written on main.pdf (14 pages, 677445 bytes).
+{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
+Output written on main.pdf (16 pages, 805316 bytes).
 PDF statistics:
- 240 PDF objects out of 1000 (max. 8388607)
- 189 compressed objects within 2 object streams
- 52 named destinations out of 1000 (max. 500000)
- 43 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 279 PDF objects out of 1000 (max. 8388607)
+ 222 compressed objects within 3 object streams
+ 58 named destinations out of 1000 (max. 500000)
+ 48 words of extra memory for PDF output out of 10000 (max. 10000000)
 
