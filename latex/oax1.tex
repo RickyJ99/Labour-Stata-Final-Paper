@@ -1,0 +1,50 @@
+\begin{table}
+    \begin{center}
+        
+    
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{2}{c}}
+\hline\hline
+            &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}\\
+            &\multicolumn{1}{c}{l\_hours}&\multicolumn{1}{c}{l\_wage}\\
+\hline
+overall     &                     &                     \\
+group\_1     &       7.542\sym{***}&       3.971\sym{***}\\
+            &   (4319.00)         &    (437.48)         \\
+[1em]
+group\_2     &       7.366\sym{***}&       3.896\sym{***}\\
+            &   (1872.07)         &    (328.45)         \\
+[1em]
+difference  &       0.176\sym{***}&      0.0742\sym{***}\\
+            &     (40.79)         &      (4.97)         \\
+[1em]
+explained   &   -0.000203         &     -0.0184\sym{***}\\
+            &     (-0.94)         &     (-5.52)         \\
+[1em]
+unexplained &       0.176\sym{***}&      0.0926\sym{***}\\
+            &     (40.79)         &      (6.35)         \\
+\hline
+explained   &                     &                     \\
+age         &    -0.00489\sym{***}&     -0.0519\sym{***}\\
+            &     (-3.92)         &     (-4.50)         \\
+[1em]
+age2        &     0.00469\sym{***}&      0.0336\sym{***}\\
+            &      (3.66)         &      (3.90)         \\
+\hline
+unexplained &                     &                     \\
+age         &       0.717\sym{***}&       0.370         \\
+            &      (6.53)         &      (1.00)         \\
+[1em]
+age2        &      -0.372\sym{***}&      -0.224         \\
+            &     (-6.20)         &     (-1.11)         \\
+[1em]
+\_cons      &      -0.169\sym{***}&     -0.0535         \\
+            &     (-3.29)         &     (-0.31)         \\
+\hline
+\(N\)       &       28968         &       28968         \\
+\hline\hline
+\multicolumn{3}{l}{\footnotesize \textit{t} statistics in parentheses}\\
+\multicolumn{3}{l}{\footnotesize \sym{*} \(p<0.05\), \sym{**} \(p<0.01\), \sym{***} \(p<0.001\)}\\
+\end{tabular}
+\end{center}
+\end{table}

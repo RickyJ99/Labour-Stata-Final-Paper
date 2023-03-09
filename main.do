@@ -33,11 +33,24 @@ label define educlabels 1 "no edu" 2 "primary" 3 "lower secondary" 4 "secondary 
 label values educ educlabels
 rename eta age
 label var age "Age"
-rename sesso sex
-label var sex "Sex (female==1)"
+rename sesso female
+label var female "Gender (female==1)"
 rename anno year 
 label var year "Year"
 label var educ "Education level"
+
+*define group as education and geneder
+replace female = female-1
+gen group_l=.
+gen group_h=.
+*female and lower education
+replace group_l=1 if female==1 & educ==3 
+*female and higher education
+replace group_h=1 if female==1 & educ==5
+*male and lower education
+replace group_l=0 if female==0 & educ==3 
+*male and higher education
+replace group_h=0 if female==0 & educ==5
 
 *retrive wages from income
 gen y = ((ylm+ylnm)* defl)*12 
@@ -52,7 +65,6 @@ drop if age>61
 
 *define cohort for year of birth
 gen cohort = ceil((anasc-1925)/5)
-replace sex = sex-1
 gen years  = ceil((year-1988)/5)
 egen mean_ly    =   mean(l_y), by(educ cohort age)
 egen mean_hours =   mean(oretot*12*4), by(educ cohort age)
@@ -64,7 +76,7 @@ gen time_e = mean_hours / 2000
 gen age2    =   age^2
 
 *id
-egen id=group(nquest anasc ireg sex)
+egen id=group(nquest anasc ireg female)
 // sort data by id and year
 sort id year
 
@@ -96,47 +108,40 @@ ssc install estout, replace
 *Now let’s generate a simple summary statistics table of cohorts
 est clear  // clear the stored estimates
 tab cohort
-//esttab using "cohort.tex", replace booktabs
+//*esttab using "cohort.tex", replace booktabs
 est clear  // clear the stored estimates
 // ttest difference for wages
-gen     group1 =0 if educ==2 & sex==0 //lower education and male
-replace group1 =1 if educ==2 & sex==1 //lower education and female
-ttest   wage, by(group1) //difference in  wages for gender with low education
-drop    group1
+ttest   wage, by(group_l) //difference in  wages for gender with low education
 
-gen     group1 =0 if educ==3 & sex==0 //higher education and male
-replace group1 =1 if educ==3 & sex==1 //higher education and female
-ttest   wage, by(group1) //difference in  wages for gender with higher education
-drop    group1
+ttest   wage, by(group_h) //difference in  wages for gender with higher education
 
-gen     group1 =0 if educ==2 & sex==0 //low education male
-replace group1 =1 if educ==3& sex==0 //higher education and male
+
+gen     group1 =0 if educ==2 & female==0 //low education male
+replace group1 =1 if educ==3& female==0 //higher education and male
 ttest   wage, by(group1) //difference in  wages for lower education for male
 drop    group1
 
-gen     group1 =0 if educ==2 & sex==1 //low education female
-replace group1 =1 if educ==3& sex==1 //higher education and female
+gen     group1 =0 if educ==2 & female==1 //low education female
+replace group1 =1 if educ==3& female==1 //higher education and female
 ttest   wage, by(group1) //difference in  wages for  higer education for female
 drop    group1
 
 //differences for annual working hour
-gen     group1 =0 if educ==2 & sex==0 //lower education and male
-replace group1 =1 if educ==2 & sex==1 //lower education and female
+gen     group1 =0 if educ==2 & female==0 //lower education and male
+replace group1 =1 if educ==2 & female==1 //lower education and female
 ttest   hours, by(group1) //difference in  whours for gender with low education
 drop    group1
 
-gen     group1 =0 if educ==3 & sex==0 //higher education and male
-replace group1 =1 if educ==3 & sex==1 //higher education and female
-ttest   hours, by(group1) //difference in  whours for gender with higher education
-drop    group1
 
-gen     group1 =0 if educ==2 & sex==0 //low education male
-replace group1 =1 if educ==3& sex==0 //higher education and male
-ttest   hours, by(group1) //difference in  whours for lower education for male
-drop    group1
+ttest   hours, by(group_h) //difference in  whours for gender with higher education
 
-gen     group1 =0 if educ==2 & sex==1 //low education female
-replace group1 =1 if educ==3& sex==1 //higher education and female
+
+
+ttest   hours, by(group_l) //difference in  whours for lower education for male
+
+
+gen     group1 =0 if educ==2 & female==1 //low education female
+replace group1 =1 if educ==3& female==1 //higher education and female
 ttest   hours, by(group1) //difference in  whours for  higer education for female
 drop    group1
 
@@ -144,15 +149,15 @@ drop    group1
 *generating table to export in latex+*
 *++++++++++++++++++++++++++++++++++++*
 
-gen group1 =0 if educ==2 & sex==0
-replace group1 =1 if educ==2 & sex==1 //lower education and female
-eststo grp1: estpost tabstat wage hours if educ ==2 & sex==0 , c(stat) stat(mean sd) 
-eststo grp2: estpost tabstat wage hours if educ ==2 & sex==1 , c(stat) stat(mean sd) 
-eststo grp3: estpost tabstat wage hours if educ ==5 & sex==0 , c(stat) stat(mean sd) 
-eststo grp4: estpost tabstat wage hours if educ ==5 & sex==1, c(stat) stat(mean sd) 
+gen group1 =0 if educ==2 & female==0
+replace group1 =1 if educ==2 & female==1 //lower education and female
+eststo grp1: estpost tabstat wage hours if educ ==2 & female==0 , c(stat) stat(mean sd) 
+eststo grp2: estpost tabstat wage hours if educ ==2 & female==1 , c(stat) stat(mean sd) 
+eststo grp3: estpost tabstat wage hours if educ ==5 & female==0 , c(stat) stat(mean sd) 
+eststo grp4: estpost tabstat wage hours if educ ==5 & female==1, c(stat) stat(mean sd) 
 ereturn list // list the stored locals
 //export in latex
-/*esttab grp* using "./table1.tex", replace ///
+/**esttab grp* using "./table1.tex", replace ///
   main(mean %8.2fc) aux(sd %8.2fc) nostar nonumber unstack ///
    compress nonote noobs gap label booktabs   ///
    collabels(none) mtitle("All" "L. Sec." "Sec." "L. Sec Female" "Sec. Female") ///
@@ -160,8 +165,8 @@ title("\label{desc-table1}Descriptive statistics")*/
 
 *also export summary statistics by some control groups educ and cohort
 /*est clear
-estpost tabstat mean_lwage mean_hours mean_y sex if cohort==10 & year==2008, by(educ) c(stat) stat(mean sd n) nototal
-esttab using "./table2.tex", replace ///
+estpost tabstat mean_lwage mean_hours mean_y female if cohort==10 & year==2008, by(educ) c(stat) stat(mean sd n) nototal
+*esttab using "./table2.tex", replace ///
   main(mean %8.2fc) aux(sd %8.2fc) nostar nonumber unstack ///
    compress nonote noobs gap label booktabs   ///
    collabels(none) ///
@@ -184,7 +189,7 @@ predict w_1
 eststo: xtreg  l_wage  age age2  i.cohort i.years if educ==3 
 predict w_2
 
-esttab using "./latex/regression1.tex", replace  ///
+*esttab using "./latex/regression1.tex", replace  ///
  b(3) se(3) nomtitle label star(* 0.10 ** 0.05 *** 0.01) ///
  booktabs  ///
  title("Regression table \label{reg1}")   ///
@@ -197,15 +202,15 @@ graph export "./latex/graph1.png", replace
 *replicating adding gender effects
 
 est clear
-eststo: xtreg l_wage  age age2  i.cohort i.years if educ==5 & sex==0
+eststo: xtreg l_wage  age age2  i.cohort i.years if group_h==0
 predict w_m_h
-eststo: xtreg l_wage  age age2  i.cohort i.years if educ==5 & sex==1
+eststo: xtreg l_wage  age age2  i.cohort i.years if group_h==1
 predict w_f_h
-eststo: xtreg l_wage  age age2  i.cohort i.years if educ==3 & sex==0 
+eststo: xtreg l_wage  age age2  i.cohort i.years if group_l==0
 predict w_m_l
-eststo: xtreg l_wage  age age2  i.cohort i.years if educ==3 & sex==1 
+eststo: xtreg l_wage  age age2  i.cohort i.years if group_l==1
 predict w_f_l
-esttab using "./latex/regression2.tex", replace  ///
+*esttab using "./latex/regression2.tex", replace  ///
  b(5) se(5) nomtitle label star(* 0.10 ** 0.05 *** 0.01) ///
  booktabs  ///
  title("Regression table \label{reg2}")   ///
@@ -222,7 +227,7 @@ predict h_1
 eststo: xtreg  l_hours  age age2  i.cohort i.years if educ==3 
 predict h_2
 
-esttab using "./latex/regression3.tex", replace  ///
+*esttab using "./latex/regression3.tex", replace  ///
  b(3) se(3) nomtitle label star(* 0.10 ** 0.05 *** 0.01) ///
  booktabs  ///
  title("Regression table \label{reg3}")   ///
@@ -235,15 +240,15 @@ graph export "/latex/graph4.png", replace
 *+differentiating for gender+*
 *++++++++++++++++++++++++++++*
 est clear
-eststo: xtreg l_hours  age age2  i.cohort i.years if educ==5 & sex==0
+eststo: xtreg l_hours  age age2  i.cohort i.years if group_h==0
 predict h_m_h
-eststo: xtreg l_hours  age age2  i.cohort i.years if educ==5 & sex==1
+eststo: xtreg l_hours  age age2  i.cohort i.years if group_h==1
 predict h_f_h
-eststo: xtreg l_hours  age age2  i.cohort i.years if educ==3 & sex==0
+eststo: xtreg l_hours  age age2  i.cohort i.years if group_l==0
 predict h_m_l
-eststo: xtreg l_hours  age age2  i.cohort i.years if educ==3 & sex==1
+eststo: xtreg l_hours  age age2  i.cohort i.years if group_l==1
 predict h_f_l
-esttab using "./latex/regression4.tex", replace  ///
+*esttab using "./latex/regression4.tex", replace  ///
  b(5) se(5) nomtitle label star(* 0.10 ** 0.05 *** 0.01) ///
  booktabs  ///
  title("Regression table \label{reg4}")   ///
@@ -253,3 +258,17 @@ graph export "./latex/graph5.png", replace
 /*graph twoway (scatter h_m_h age) (scatter h_f_h age), by(cohort, title("Hour age profiles of secondary school and gender gap"))  legend(label(1 "Male")) legend(label(2 "Female"))
 graph export "./latex/graph6.png", replace
 
+*****
+*Oxaca decomposition
+*****/
+ssc install oaxaca
+eststo: oaxaca l_wage  age age2,by(group_l) weight(1)
+**esttab using "./latex/oax1.tex", replace
+eststo: oaxaca l_wage  age age2,by(group_h) weight(1)
+*esttab using "./latex/oax2.tex", replace
+est clear
+eststo: oaxaca l_hours  age age2,by(group_l) weight(1)
+*esttab using "./latex/oax3.tex", replace
+est clear
+eststo: oaxaca l_hours  age age2,by(group_h) weight(1)
+*esttab using "./latex/oax4.tex", replace
