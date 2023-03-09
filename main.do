@@ -44,6 +44,7 @@ gen y = ((ylm+ylnm)* defl)*12
 replace y=10 if y<=0 | missing(y)
 gen l_y = log(y) 
 gen hours = oretot*12*4
+gen l_hours =log(hours)
 gen l_wage = log(y/hours)
 egen mean_y     =   mean(y)
 drop if missing(anasc)
@@ -62,6 +63,17 @@ replace mean_hours=0 if missing(mean_hours)
 gen time_e = mean_hours / 2000
 gen age2    =   age^2
 
+*id
+egen id=group(nquest anasc ireg sex)
+// sort data by id and year
+sort id year
+
+// mark duplicates by id and year
+duplicates tag id year, gen(dup)
+
+// drop duplicates
+keep if dup==0
+xtset id year
 
 *Mean log wages of each (s,c,t)
 label var y             "Annual Income"
@@ -84,7 +96,7 @@ ssc install estout, replace
 *Now let’s generate a simple summary statistics table of cohorts
 est clear  // clear the stored estimates
 tab cohort
-esttab using "cohort.tex", replace booktabs
+//esttab using "cohort.tex", replace booktabs
 est clear  // clear the stored estimates
 // ttest difference for wages
 gen     group1 =0 if educ==2 & sex==0 //lower education and male
@@ -140,20 +152,20 @@ eststo grp3: estpost tabstat wage hours if educ ==5 & sex==0 , c(stat) stat(mean
 eststo grp4: estpost tabstat wage hours if educ ==5 & sex==1, c(stat) stat(mean sd) 
 ereturn list // list the stored locals
 //export in latex
-esttab grp* using "./table1.tex", replace ///
+/*esttab grp* using "./table1.tex", replace ///
   main(mean %8.2fc) aux(sd %8.2fc) nostar nonumber unstack ///
    compress nonote noobs gap label booktabs   ///
    collabels(none) mtitle("All" "L. Sec." "Sec." "L. Sec Female" "Sec. Female") ///
-title("\label{desc-table1}Descriptive statistics")
+title("\label{desc-table1}Descriptive statistics")*/
 
 *also export summary statistics by some control groups educ and cohort
-est clear
+/*est clear
 estpost tabstat mean_lwage mean_hours mean_y sex if cohort==10 & year==2008, by(educ) c(stat) stat(mean sd n) nototal
 esttab using "./table2.tex", replace ///
   main(mean %8.2fc) aux(sd %8.2fc) nostar nonumber unstack ///
    compress nonote noobs gap label booktabs   ///
    collabels(none) ///
-   nomtitles
+   nomtitles*/
 //eqlabels() ///  
 
 
@@ -164,84 +176,80 @@ esttab using "./table2.tex", replace ///
 ********************
 *some naive inspections
 graph twoway (scatter mean_lwage  age  if educ==5 ) (scatter mean_lwage  age  if educ==3), by(cohort, title("Mean wage by cohorts"))  legend(label(1 "Secondary")) legend(label(2 "Lower secondary"))
-graph export "graph.png", replace
+graph export "./latex/graph.png", replace
 
 est clear
-eststo: reg  l_wage  age age2  i.cohort i.years if educ==5 
+eststo: xtreg  l_wage  age age2  i.cohort i.years if educ==5 
 predict w_1
-eststo: reg  l_wage  age age2  i.cohort i.years if educ==3 
+eststo: xtreg  l_wage  age age2  i.cohort i.years if educ==3 
 predict w_2
 
-esttab using "./regression1.tex", replace  ///
+esttab using "./latex/regression1.tex", replace  ///
  b(3) se(3) nomtitle label star(* 0.10 ** 0.05 *** 0.01) ///
  booktabs  ///
  title("Regression table \label{reg1}")   ///
- addnotes("")
+addnotes("")
 
-graph twoway (scatter w_1 age) (scatter w_2 age), by(cohort, title("Wage age profiles cond. on education")) legend(label(1 "Secondary")) legend(label(2 "Lower secondary"))
-graph export "graph1.png", replace
+graph twoway (lowess w_1 age) (lowess w_2 age), by(cohort, title("Wage age profiles cond. on education")) legend(label(1 "Secondary")) legend(label(2 "Lower secondary"))
+graph export "./latex/graph1.png", replace
 
 
 *replicating adding gender effects
 
 est clear
-eststo: reg l_wage  age age2  i.cohort i.years if educ==5 & sex==0
+eststo: xtreg l_wage  age age2  i.cohort i.years if educ==5 & sex==0
 predict w_m_h
-eststo: reg l_wage  age age2  i.cohort i.years if educ==5 & sex==1
+eststo: xtreg l_wage  age age2  i.cohort i.years if educ==5 & sex==1
 predict w_f_h
-eststo: reg l_wage  age age2  i.cohort i.years if educ==3 & sex==0 
+eststo: xtreg l_wage  age age2  i.cohort i.years if educ==3 & sex==0 
 predict w_m_l
-eststo: reg l_wage  age age2  i.cohort i.years if educ==3 & sex==1 
+eststo: xtreg l_wage  age age2  i.cohort i.years if educ==3 & sex==1 
 predict w_f_l
-esttab using "./regression2.tex", replace  ///
+esttab using "./latex/regression2.tex", replace  ///
  b(5) se(5) nomtitle label star(* 0.10 ** 0.05 *** 0.01) ///
  booktabs  ///
  title("Regression table \label{reg2}")   ///
  addnotes("")
-graph twoway (scatter w_f_l age) (scatter w_m_l age), by(cohort,title("Wage profiles of low secondary school and gender gap"))  legend(label(1 "Female")) legend(label(2 "Male"))
+graph twoway (lowess w_f_l age) (lowess w_m_l age) (lowess w_f_h age) (lowess w_m_h age), by(cohort,title("Wage profiles per education vs gender gap"))  legend(label(1 "Female L.S.")) legend(label(2 "Male L.S.")) legend(label(3 "Female S.")) legend(label(4 "Male S."))
 graph export "./latex/graph2.png", replace
-graph twoway (scatter w_f_h age) (scatter w_m_h age), by(cohort, title("Wage profiles of secondary school and gender gap"))  legend(label(1 "Female")) legend(label(2 "Male"))
-graph export "./latex/graph3.png", replace
-
-
 
 *********************
 * Hours age profile*
 *********************
 est clear
-eststo: reg  mean_lhours  age age2  i.cohort i.years if educ==5 
+eststo: xtreg  l_hours  age age2  i.cohort i.years if educ==5 
 predict h_1
-eststo: reg  mean_lhours  age age2  i.cohort i.years if educ==3 
+eststo: xtreg  l_hours  age age2  i.cohort i.years if educ==3 
 predict h_2
 
-esttab using "./regression3.tex", replace  ///
+esttab using "./latex/regression3.tex", replace  ///
  b(3) se(3) nomtitle label star(* 0.10 ** 0.05 *** 0.01) ///
  booktabs  ///
  title("Regression table \label{reg3}")   ///
  addnotes("")
 
-graph twoway (scatter h_1 age) (scatter h_2 age), by(cohort, title("Hour age profiles cond. on education")) legend(label(1 "Secondary")) legend(label(2 "Lower secondary"))
-graph export "graph4.png", replace
+graph twoway (lowess h_1 age) (lowess h_2 age), by(cohort, title("Hour age profiles cond. on education")) legend(label(1 "Secondary")) legend(label(2 "Lower secondary"))
+graph export "/latex/graph4.png", replace
 
 *++++++++++++++++++++++++++++*
 *+differentiating for gender+*
 *++++++++++++++++++++++++++++*
 est clear
-eststo: reg mean_lhours  age age2  i.cohort i.years if educ==5 & sex==0
+eststo: xtreg l_hours  age age2  i.cohort i.years if educ==5 & sex==0
 predict h_m_h
-eststo: reg mean_lhours  age age2  i.cohort i.years if educ==5 & sex==1
+eststo: xtreg l_hours  age age2  i.cohort i.years if educ==5 & sex==1
 predict h_f_h
-eststo: reg mean_lhours  age age2  i.cohort i.years if educ==3 & sex==0
+eststo: xtreg l_hours  age age2  i.cohort i.years if educ==3 & sex==0
 predict h_m_l
-eststo: reg mean_lhours  age age2  i.cohort i.years if educ==3 & sex==1
+eststo: xtreg l_hours  age age2  i.cohort i.years if educ==3 & sex==1
 predict h_f_l
-esttab using "./regression4.tex", replace  ///
+esttab using "./latex/regression4.tex", replace  ///
  b(5) se(5) nomtitle label star(* 0.10 ** 0.05 *** 0.01) ///
  booktabs  ///
  title("Regression table \label{reg4}")   ///
  addnotes("")
-graph twoway (scatter w_m_l age) (scatter w_f_l age), by(cohort, title("Hour age profiles of lower-secondary school and gender gap"))  legend(label(1 "Male")) legend(label(2 "Female"))
-graph export "graph5.png", replace
-graph twoway (scatter w_m_h age) (scatter w_f_h age), by(cohort, title("Hour age profiles of secondary school and gender gap"))  legend(label(1 "Male")) legend(label(2 "Female"))
-graph export "graph6.png", replace
+graph twoway (lowess h_f_l age) (lowess h_m_l age) (lowess h_f_h age) (lowess h_m_h age), by(cohort,title("Hours-age profiles per education vs gender gap"))  legend(label(1 "Female L.S.")) legend(label(2 "Male L.S.")) legend(label(3 "Female S.")) legend(label(4 "Male S."))
+graph export "./latex/graph5.png", replace
+/*graph twoway (scatter h_m_h age) (scatter h_f_h age), by(cohort, title("Hour age profiles of secondary school and gender gap"))  legend(label(1 "Male")) legend(label(2 "Female"))
+graph export "./latex/graph6.png", replace
 
