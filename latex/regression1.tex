@@ -1,26 +1,27 @@
 \begin{table}[htbp]\centering
 \def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
-\caption{Regression table \label{reg1}}
+\caption{Regression on \(log(wage)\)\label{Tab:reg1}}
 \begin{tabular}{l*{2}{c}}
 \toprule
-                    &\multicolumn{1}{c}{(1)}         &\multicolumn{1}{c}{(2)}         \\
+                    &\multicolumn{1}{c}{(1)Sec.\label{reg1_w_heduc}}         &\multicolumn{1}{c}{(2)Lower sec.\label{reg1_w_leduc}}         \\
 \midrule
 Age                 &       0.126\sym{***}&       0.109\sym{***}\\
-                    &     (0.018)         &     (0.006)         \\
-                    \\
-                    Cohort f.e           &       Yes        &      Yes \\
-                                                \\
-                    \addlinespace
-                    years f.e.            &       Yes         &       Yes         \\
-                                               \\
-                    \addlinespace
-Constant            &      -0.199         &       0.038         \\
-                    &     (0.784)         &     (0.475)         \\
+                    &      (7.07)         &     (17.45)         \\
+\addlinespace
+age2                &   -0.000871\sym{***}&   -0.000832\sym{***}\\
+                    &     (-4.70)         &    (-12.96)         \\
+\addlinespace
+Constant            &      -0.199         &      0.0380         \\
+                    &     (-0.25)         &      (0.08)         \\
+\addlinespace
+Year fixed effect & Yes             &       Yes\\
+\addlinespace
+Cohort fixed effect& Yes    &           Yes\\
 \midrule
 Observations        &       10088         &       28968         \\
 \bottomrule
-\multicolumn{3}{l}{\footnotesize Standard errors in parentheses}\\
-\multicolumn{3}{l}{\footnotesize }\\
+\multicolumn{3}{l}{\footnotesize \textit{t} statistics in parentheses}\\
+\multicolumn{3}{l}{\footnotesize Regression on \(log(wage)\) for lower secondary group (1) and for secondary school (2)}\\
 \multicolumn{3}{l}{\footnotesize \sym{*} \(p<0.10\), \sym{**} \(p<0.05\), \sym{***} \(p<0.01\)}\\
 \end{tabular}
 \end{table}

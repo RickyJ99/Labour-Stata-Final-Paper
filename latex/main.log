@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.3.5)  9 MAR 2023 19:46
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.3.5)  13 MAR 2023 18:08
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -40,137 +40,223 @@ File: pdftex.def 2022/09/22 v1.2b Graphics/color driver for pdftex
 ))
 \Gin@req@height=\dimen141
 \Gin@req@width=\dimen142
+) (/usr/local/texlive/2022/texmf-dist/tex/latex/blindtext/blindtext.sty
+Package: blindtext 2012/01/06 V2.0 blindtext-Package
+ (/usr/local/texlive/2022/texmf-dist/tex/latex/tools/xspace.sty
+Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
+)
+\c@blindtext=\count193
+\c@Blindtext=\count194
+\c@blind@countparstart=\count195
+\blind@countxx=\count196
+\blindtext@numBlindtext=\count197
+\blind@countyy=\count198
+\c@blindlist=\count199
+\c@blindlistlevel=\count266
+\c@blindlist@level=\count267
+\blind@listitem=\count268
+\c@blind@listcount=\count269
+\c@blind@levelcount=\count270
+\blind@mathformula=\count271
+\blind@Mathformula=\count272
+\c@blind@randomcount=\count273
+\c@blind@randommax=\count274
+\c@blind@pangramcount=\count275
+\c@blind@pangrammax=\count276
+) (/usr/local/texlive/2022/texmf-dist/tex/latex/natbib/natbib.sty
+Package: natbib 2010/09/13 8.31b (PWD, AO)
+\bibhang=\skip50
+\bibsep=\skip51
+LaTeX Info: Redefining \cite on input line 694.
+\c@NAT@ctr=\count277
 ) (/usr/local/texlive/2022/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2023-01-16 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count193
+\l__color_backend_stack_int=\count278
 \l__pdf_internal_box=\box51
-) (./main.aux)
+) (./main.aux
+
+LaTeX Warning: Label `Reg:4_l_m' multiply defined.
+
+)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 4.
-LaTeX Font Info:    ... okay on input line 4.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 4.
-LaTeX Font Info:    ... okay on input line 4.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 4.
-LaTeX Font Info:    ... okay on input line 4.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 4.
-LaTeX Font Info:    ... okay on input line 4.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 4.
-LaTeX Font Info:    ... okay on input line 4.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 4.
-LaTeX Font Info:    ... okay on input line 4.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 4.
-LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
  (/usr/local/texlive/2022/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count194
+\scratchcounter=\count279
 \scratchdimen=\dimen143
 \scratchbox=\box52
-\nofMPsegments=\count195
-\nofMParguments=\count196
+\nofMPsegments=\count280
+\nofMParguments=\count281
 \everyMPshowfont=\toks17
-\MPscratchCnt=\count197
+\MPscratchCnt=\count282
 \MPscratchDim=\dimen144
-\MPnumerator=\count198
-\makeMPintoPDFobject=\count199
+\MPnumerator=\count283
+\makeMPintoPDFobject=\count284
 \everyMPtoPDFconversion=\toks18
 ) (/usr/local/texlive/2022/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+ (/usr/local/texlive/2022/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+) (/usr/local/texlive/2022/texmf-dist/tex/latex/grfext/grfext.sty
+Package: grfext 2019/12/03 v1.3 Manage graphics extensions (HO)
+ (/usr/local/texlive/2022/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+)) (/usr/local/texlive/2022/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
+ (/usr/local/texlive/2022/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
+) (/usr/local/texlive/2022/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
+Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
+)) (/usr/local/texlive/2022/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO)
+ (/usr/local/texlive/2022/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2022/02/03 v1.0f TeX engine tests
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPEG,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 504.
  (/usr/local/texlive/2022/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
-)) [1
-
-{/usr/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2]
+))
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 91.
+(Font)              <14.4> on input line 31.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 91.
+(Font)              <7> on input line 31.
+ [1
+
+{/usr/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 91.
- [3] [4] [5] [6] [7] [8]
-
-LaTeX Warning: Reference `reg1b' on page 9 undefined on input line 247.
-
-
-LaTeX Warning: Reference `reg1b' on page 9 undefined on input line 247.
-
-[9]
-
-LaTeX Warning: Reference `2.a_m_s' on page 10 undefined on input line 262.
-
-
-LaTeX Warning: Reference `2.a_m_ls' on page 10 undefined on input line 262.
-
-
-LaTeX Warning: Reference `2.a_f_s' on page 10 undefined on input line 262.
-
-
-LaTeX Warning: Reference `2.a_f_ls' on page 10 undefined on input line 262.
-
-
-LaTeX Warning: Reference `fig:w_gend_h' on page 10 undefined on input line 271.
-
-
-LaTeX Warning: Reference `fig:h_h_cohorts' on page 10 undefined on input line 303.
-
-
-LaTeX Warning: Reference `fig:h_h_cohorts' on page 10 undefined on input line 303.
-
-[10] [11] [12] [13] (./table1.tex
+(Font)              <12> on input line 54.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 20.
+(Font)              <8> on input line 54.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 20.
-) (./table2.tex
-Overfull \hbox (62.0392pt too wide) in paragraph at lines 3--21
+(Font)              <6> on input line 54.
+ [2] [3] [4] [5]
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 173.
+ [6] [7] [8] [9] [10] [11] [12] [13] [14] [15] [16] (./table1.tex) (./table2.tex
+Overfull \hbox (36.58113pt too wide) in paragraph at lines 3--21
  [][] 
  []
 
-) (./cohort.tex) (./regression1.tex) (./regression2.tex) (./regression3.tex) (./regression4.tex) (./oax1.tex) (./oax2.tex) (./oax3.tex) (./oax4.tex) [14]
-<graph1.png, id=60, 924.45375pt x 672.5125pt>
+) (./cohort.tex) (./regression1.tex) (./regression2.tex
+Overfull \hbox (39.90044pt too wide) in paragraph at lines 4--31
+ [][] 
+ []
+
+) (./regression3.tex) (./regression4.tex) (./oax1.tex) (./oax2.tex) (./oax3.tex) (./oax4.tex)
+<graph1.png, id=66, 924.45375pt x 672.5125pt>
 File: graph1.png Graphic file (type png)
 <use graph1.png>
-Package pdftex.def Info: graph1.png  used on input line 343.
+Package pdftex.def Info: graph1.png  used on input line 478.
 (pdftex.def)             Requested size: 369.77495pt x 269.00023pt.
-<graph2.png, id=61, 924.45375pt x 672.5125pt>
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<graph2.png, id=67, 924.45375pt x 672.5125pt>
 File: graph2.png Graphic file (type png)
 <use graph2.png>
-Package pdftex.def Info: graph2.png  used on input line 349.
+Package pdftex.def Info: graph2.png  used on input line 485.
 (pdftex.def)             Requested size: 369.77495pt x 269.00023pt.
-<graph4.png, id=62, 924.45375pt x 672.5125pt>
+<graph2_1.png, id=68, 924.45375pt x 672.5125pt>
+File: graph2_1.png Graphic file (type png)
+<use graph2_1.png>
+Package pdftex.def Info: graph2_1.png  used on input line 487.
+(pdftex.def)             Requested size: 369.77495pt x 269.00023pt.
+
+LaTeX Warning: Float too large for page by 56.33377pt on input line 490.
+
+<graph4.png, id=69, 924.45375pt x 672.5125pt>
 File: graph4.png Graphic file (type png)
 <use graph4.png>
-Package pdftex.def Info: graph4.png  used on input line 356.
+Package pdftex.def Info: graph4.png  used on input line 493.
 (pdftex.def)             Requested size: 369.77495pt x 269.00023pt.
-<graph5.png, id=63, 1104.125pt x 803.0pt>
+<graph5.png, id=70, 1104.125pt x 803.0pt>
 File: graph5.png Graphic file (type png)
 <use graph5.png>
-Package pdftex.def Info: graph5.png  used on input line 362.
-(pdftex.def)             Requested size: 441.64218pt x 321.1943pt.
+Package pdftex.def Info: graph5.png  used on input line 497.
+(pdftex.def)             Requested size: 386.44954pt x 281.05421pt.
+<graph5_1.png, id=71, 1104.125pt x 803.0pt>
+File: graph5_1.png Graphic file (type png)
+<use graph5_1.png>
+Package pdftex.def Info: graph5_1.png  used on input line 499.
+(pdftex.def)             Requested size: 386.44954pt x 281.05421pt.
 
-Overfull \hbox (51.64218pt too wide) in paragraph at lines 362--363
- [][] 
+LaTeX Warning: Float too large for page by 68.27505pt on input line 501.
+
+(./main.bbl [17]
+Underfull \hbox (badness 5203) in paragraph at lines 44--51
+[]\OT1/cmr/m/n/12 Claudia Goldin and Solomon Po-lachek.  Resid-ual dif-fer-ences by
  []
 
-[15] [16] [17 <./graph1.png>] [18 <./graph2.png>] [19 <./graph4.png>] [20 <./graph5.png>] [21] [22] [23] [24] [25] [26] [27] [28] (./main.aux)
 
-LaTeX Warning: There were undefined references.
+Underfull \hbox (badness 2205) in paragraph at lines 44--51
+\OT1/cmr/m/n/12 sex: Per-spec-tives on the gen-der gap in earn-ings.  \OT1/cmr/m/it/12 The Amer-i-
+ []
+
+[18] [19]
+Underfull \hbox (badness 10000) in paragraph at lines 62--69
+[]\OT1/cmr/m/n/12 Massimiliano Bratti, Emilia Del Bono, and Daniela Vuri.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 62--69
+\OT1/cmr/m/n/12 New moth-ers' labour force par-tic-i-pa-tion in italy: The
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 62--69
+\OT1/cmr/m/n/12 role of job char-ac-ter-is-tics.  \OT1/cmr/m/it/12 LABOUR\OT1/cmr/m/n/12 , 19(s1):79--121, 2005.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 62--69
+\OT1/cmr/m/n/12 doi: https://doi.org/10.1111/j.1467-9914.2005.00324.x.  URL
+ []
+
+
+Overfull \hbox (69.61395pt too wide) in paragraph at lines 62--69
+\OT1/cmtt/m/n/12 https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1467-9914.2005.00324.x\OT1/cmr/m/n/12 . 
+ []
+
+) [20] [21] [22] [23] [24] [25] [26] [27] [28 <./graph1.png>] [29 <./graph2.png> <./graph2_1.png>] [30 <./graph4.png>] [31 <./graph5.png> <./graph5_1.png>] (./main.aux)
+
+LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 1428 strings out of 476024
- 23552 string characters out of 5790019
- 1898388 words of memory out of 5000000
- 21874 multiletter control sequences out of 15000+600000
- 517832 words of font info for 50 fonts, out of 8000000 for 9000
+ 2644 strings out of 476024
+ 44898 string characters out of 5790019
+ 1902388 words of memory out of 5000000
+ 23039 multiletter control sequences out of 15000+600000
+ 518955 words of font info for 54 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,10n,62p,903b,443s stack positions out of 10000i,1000n,20000p,200000b,200000s
-{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on main.pdf (28 pages, 669712 bytes).
+ 62i,10n,67p,1053b,415s stack positions out of 10000i,1000n,20000p,200000b,200000s
+{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb>
+Output written on main.pdf (31 pages, 944395 bytes).
 PDF statistics:
- 170 PDF objects out of 1000 (max. 8388607)
- 106 compressed objects within 2 object streams
+ 202 PDF objects out of 1000 (max. 8388607)
+ 125 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 21 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 31 words of extra memory for PDF output out of 10000 (max. 10000000)
 

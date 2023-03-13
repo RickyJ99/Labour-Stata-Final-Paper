@@ -1,9 +1,9 @@
 \begin{table}[htbp]\centering
 \def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
-\caption{Regression table \label{reg4}}
+\caption{Regression table \(E[log(hours)|female,educ]\) \label{reg4}}
 \begin{tabular}{l*{4}{c}}
 \toprule
-                    &\multicolumn{1}{c}{(1)}         &\multicolumn{1}{c}{(2)}         &\multicolumn{1}{c}{(3)}         &\multicolumn{1}{c}{(4)}         \\
+                    &\multicolumn{1}{c}{(1)\([1,0]\)\label{Reg:4_h_m}}         &\multicolumn{1}{c}{(2)\([1,1]\)\label{Reg:4_h_f}}         &\multicolumn{1}{c}{(3)\([0,0]\)\label{Reg:4_l_m}}         &\multicolumn{1}{c}{(4)\([1,1]\)\label{Reg:4_l_m}}         \\
 \midrule
 Age                 &     0.00788         &     0.00706         &     0.00202         &    -0.01676\sym{***}\\
                     &   (0.00567)         &   (0.00597)         &   (0.00163)         &   (0.00357)         \\
@@ -22,8 +22,11 @@ Constant            &     7.43107\sym{***}&     6.78971\sym{***}&     7.69220\sy
 \midrule
 Observations        &        4593         &        5495         &       19045         &        9923         \\
 \bottomrule
+\multicolumn{5}{l}{\footnotesize The regressions are conditinal on education and female, }\\
+\multicolumn{5}{l}{\footnotesize  indeed the column has as [index]
+[educ,female] if educ==1 the group  }\\
+\multicolumn{5}{l}{\footnotesize has a secondary school education level, otherwhise it has a lower secondary one.}\\
 \multicolumn{5}{l}{\footnotesize Standard errors in parentheses}\\
-\multicolumn{5}{l}{\footnotesize }\\
 \multicolumn{5}{l}{\footnotesize \sym{*} \(p<0.10\), \sym{**} \(p<0.05\), \sym{***} \(p<0.01\)}\\
 \end{tabular}
 \end{table}

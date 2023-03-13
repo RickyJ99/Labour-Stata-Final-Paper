@@ -1,0 +1,70 @@
+\begin{thebibliography}{9}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Ben-Porath(1967)]{ben1967production}
+Yoram Ben-Porath.
+\newblock The production of human capital and the life cycle of earnings.
+\newblock \emph{Journal of political economy}, 75\penalty0 (4, Part
+  1):\penalty0 352--365, 1967.
+
+\bibitem[Baker and Holsinger(1997)]{baker1997human}
+David~P Baker and Donald~B Holsinger.
+\newblock Human capital formation and school expansion in asia: Does a unique
+  regional model exist?
+\newblock In \emph{Education in Comparative Perspective}, pages 159--173.
+  Brill, 1997.
+
+\bibitem[Joshi et~al.(2021)Joshi, Bryson, Wilkinson, and Ward]{joshi2021gender}
+Heather Joshi, Alexander Bryson, David Wilkinson, and Kelly Ward.
+\newblock The gender gap in wages over the life course: Evidence from a british
+  cohort born in 1958.
+\newblock \emph{Gender, Work \& Organization}, 28\penalty0 (1):\penalty0
+  397--415, 2021.
+
+\bibitem[Erosa et~al.(2012)Erosa, Fuster, and Restuccia]{erosa2012human}
+Andr{\'e}s Erosa, Luisa Fuster, and Diego Restuccia.
+\newblock Human capital and the gender gap in wages.
+\newblock 2012.
+
+\bibitem[Mincer(1981)]{mincer1981human}
+Jacob Mincer.
+\newblock Human capital and economic growth, 1981.
+
+\bibitem[Hendricks(2013)]{hendricks2013ben}
+Lutz Hendricks.
+\newblock The ben-porath model and age-wage profiles.
+\newblock \emph{Manuscript, University of North Carolina, Chapel Hill,
+  January}, 1\penalty0 (2):\penalty0 16, 2013.
+
+\bibitem[Goldin and Polachek(1987)]{goldin}
+Claudia Goldin and Solomon Polachek.
+\newblock Residual differences by sex: Perspectives on the gender gap in
+  earnings.
+\newblock \emph{The American Economic Review}, 77\penalty0 (2):\penalty0
+  143--151, 1987.
+\newblock ISSN 00028282.
+\newblock URL \url{http://www.jstor.org/stable/1805442}.
+
+\bibitem[Krueger and Kumar(2004)]{Kruger}
+Dirk Krueger and Krishna~B. Kumar.
+\newblock Skill-specific rather than general education: A reason for us-europe
+  growth differences?
+\newblock \emph{Journal of Economic Growth}, 9\penalty0 (2):\penalty0 167--207,
+  2004.
+\newblock ISSN 13814338, 15737020.
+\newblock URL \url{http://www.jstor.org/stable/40212697}.
+
+\bibitem[Bratti et~al.(2005)Bratti, Bono, and Vuri]{Bratti2005}
+Massimiliano Bratti, Emilia~Del Bono, and Daniela Vuri.
+\newblock New mothers' labour force participation in italy: The role of job
+  characteristics.
+\newblock \emph{LABOUR}, 19\penalty0 (s1):\penalty0 79--121, 2005.
+\newblock \doi{https://doi.org/10.1111/j.1467-9914.2005.00324.x}.
+\newblock URL
+  \url{https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1467-9914.2005.00324.x}.
+
+\end{thebibliography}
