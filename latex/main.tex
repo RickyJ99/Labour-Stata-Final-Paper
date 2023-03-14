@@ -1,9 +1,10 @@
-%\documentclass{sistedes}
+
 \documentclass[12pt]{article}
 \usepackage{graphicx}
 \usepackage{blindtext}
+\usepackage{hyperref}
 \usepackage[round]{natbib}   % omit 'round' option if you prefer square brackets
-\bibliographystyle{unsrtnat}
+\bibliographystyle{apalike}
 
 \newcommand{\midrule}{\hline}
 \newcommand{\toprule}{\hline}
@@ -31,8 +32,16 @@
 \maketitle
 \begin{abstract}
 
-This study aims to estimate age-wage profiles and human capital depreciation rates for different education levels in Italy, using a dynamic panel dataset covering the period from 1980 to 2019. Specifically, we estimate depreciation rates for primary, secondary, and tertiary education levels, providing a comprehensive understanding of differences in human capital depreciation. We also investigate gender differences in depreciation rates, which can have implications for long-term economic growth and development. Our findings indicate that achieving a secondary education level compared to lower secondary leads to a 1\% increase in the return of human capital and a 0.5\% decrease in time spent working. Additionally, the study suggests that the gender gap in wage-age and hours-age profiles is wider for higher-educated women, with a return on human capital of 2.2\% per year lower compared to men.
+This study aims to estimate age-wage profiles and human capital depreciation rates for different education levels in
+Italy, using a dynamic panel dataset covering the period from 1980 to 2019. Specifically, we estimate depreciation rates
+for primary, secondary, and tertiary education levels, providing a comprehensive understanding of differences in human
+capital depreciation. We also investigate gender differences in depreciation rates, which can have implications for
+long-term economic growth and development. Our findings indicate that achieving a secondary education level compared to
+lower secondary leads to a 1\% increase in the return of human capital and a 0.5\% decrease in time spent working.
+Additionally, the study suggests that the gender gap in wage-age and hours-age profiles is wider for higher-educated
+women, with a return on the human capital of 2.2\% per year lower, compared to men.\footnote{Total words: 4996}
 \end{abstract}
+
 \newpage
 \section{Introduction}
 The Ben-Porath model has been widely used in economic research to explain differences in wage-age profiles resulting
@@ -41,15 +50,15 @@ through education and training, enabling them to participate in the labor market
 human capital is subject to depreciation over time, individuals can invest in their human capital to improve it. The
 difference equation that describes human capital includes a depreciation rate, a cohort-specific productivity parameter,
 a curvature parameter, and age t.
-\newline
+\par
 Numerous studies have employed the model\citet{ben1967production} to analyze cross-regional differences in wage profiles
 \citet{baker1997human} and the evolution of wage inequality as in \citet{joshi2021gender} and in\citet{erosa2012human}.
-However, there is still a need to explore how human capital evolves over time for individuals with different levels of
+However, there is still a need to explore how human capital evolves for individuals with different levels of
 schooling, with a focus on potential differences in the wage profiles of women. Understanding the evolution of human
 capital is crucial to identifying potential constraints to long-term economic growth as shown in \cite{mincer1981human},
-as a population with higher depreciation rates and poor human capital can limit potential growth. Moreover, identified
-different returns on human capital, allows to better understand the incentive to invest in education.
-\newline
+as a population with higher depreciation rates and poor human capital can limit potential growth. Moreover, identifying
+different returns on human capital allows us to better understand the incentive to invest in education.
+\par
 This paper aims to estimate the age-wage profiles and depreciation rates for different education levels while minimizing
 assumptions, following Hendriks\cite{hendricks2013ben}' method $\log{y}$. Additionally, we will examine the impact of
 gender discrimination on the long-term human capital of women, which can generate different returns to education. The
@@ -57,7 +66,7 @@ findings of this study will provide valuable insights into the dynamics of human
 in Italy. This research also informs policy interventions aimed at promoting economic growth and development by
 highlighting potential constraints to long-term growth and the importance of reducing discrimination in the labor
 market.
-\newline
+\par
 Ultimately, this research contributes to the broader literature on the role of education and human capital in economic
 growth and development, as well as the importance of promoting gender equality in the labor market.
 
@@ -72,11 +81,10 @@ The Ben-Porath model suggests that the depreciation rate of human capital is a l
 the level of human capital. This is because individuals with higher human capital face a higher depreciation rate,
 similar to the relationship between capital and growth in the growth theory. As such, we can expect that individuals
 with lower education levels, and therefore lower levels of human capital, will experience a lower depreciation rate
-compared to those with higher levels of education. \newline
+compared to those with higher levels of education. \par
 In terms of the wage-age profile, individuals with lower education levels will typically invest less in human capital
-and reach their maximum wage sooner and at a lower level compared to those with higher education levels. This is due to
-the fact that individuals with higher levels of education are more likely to have  skills and knowledge, which can lead
-to higher wages and greater career opportunities later in the careers.
+and reach their maximum wage sooner and at a lower level compared to those with higher education levels. This is since individuals with higher levels of education are more likely to have skills and knowledge, which can lead
+to higher wages and greater career opportunities later in their careers.
 \subsection{Specification}
 We use regression on the Conditional Expectation Function (CEF) as a method to estimate the relationship between the
 dependent variable:
@@ -96,84 +104,87 @@ while controlling for:
     \item $female={0,1}$  Sex $(=1 if female)$
 \end{itemize}
 
-There are four specification that we are going to use 
+There are four specifications that we are going to use 
 \begin{enumerate}
     \item   \label{spec1}    \(\log{wage}_{i,y}=   \beta_1 age_{i}+ \beta_2 age_{i}^2+i.cohort+i.years |educ={3,5}\)
     \item   \label{spec2}    \(\log{wage}_{i,y}=   \beta_1 age_{i}+ \beta_2 age_{i}^2+i.cohort+i.years |educ={3,5},sex=
     {0 (male), 1 (female)}\)
-    \item  \label{spec3}    \(\log{hours}_{i,y}=  \beta_1 age_{i}+ \beta_2 age_{i}^2+i.cohort+i.years |educ={3,5}\)
+    \item  \label{spec3}    \(\log{mean(hours)}_{i,y}=  \beta_1 age_{i}+ \beta_2 age_{i}^2+i.cohort+i.years |educ={3,5}\)
     \item   \label{spec4}    \(\log{hours}_{i,y}= \beta_1 age_{i}+ \beta_2 age_{i}^2+i.cohort+i.years |educ={3,5},sex=
     {0 (male), 1 (female)}\)
 \end{enumerate}
 We adopt the specifications given by \citet{hendricks2013ben} denoted as \ref{spec1} and \ref{spec2}. However, we do not
 include a gender fixed effect in the regression analysis, as we aim to allow gender to affect the estimates of $\eta$
 and $\eta^2$ in a time-varying manner. This approach is similar to that proposed by \citet{joshi2021gender}. We also
-refrain from using the month of job as a proxy for experience, as it may result in collinearity issues. Moreover, since
-the dataset excludes periods of unemployment, we can assume that $exp + edu \approx \eta$. The CEF method has several
-limitations. First, it assumes that the age and education variables capture all the relevant dimensions of human
-capital, which may not be the case. Other important factors, such as experience or on-the-job training, are not
+refrain from using the month of job as a proxy for experience, as it may result in collinearity issues. The CEF method has several
+limitations. 
+\par
+First, it assumes that the age and education variables capture all the relevant dimensions of human
+capital. Other important factors, such as experience or on-the-job training, are not
 explicitly considered in the model. Second, the method may suffer from omitted variable bias if there are unobserved
 characteristics that affect both wages and education levels. Third, the CEF method assumes that the relationship between
 age, education, and wages is linear, which may not hold in reality. 
 
 \subsection{Identification strategy}
-To estimate the depreciation rate of human capital for different levels of education, we need to implement an
-identification strategy that allows us to separate the effects of age, education, cohort and year on wage profiles. In
-this section, we describe the identification strategy we use in our study.
-\newline
-To begin with, we assume that the cohort effects are the same for all agents in the same 5-year cohort. This assumption
-is motivated by the fact that individuals who are born in the same 5-year period tend to share similar social, economic,
-and political experiences during their formative years. For example, individuals who were born during a period of
-economic growth may have had more educational opportunities compared to those who were born during a period of economic
-recession. By assuming that cohort effects are constant across individuals in the same 5-year cohort, we can control for
-unobserved heterogeneity that is specific to a particular cohort.In order to ensure consistent estimates, it is
-necessary to impose these restrictions. Without them, there would be a problem of collinearity.
-\newline
-Secondly, we assume that the initial human endowment is the same within the same cohort. This assumption implies that
+To estimate the depreciation rate of human capital for different levels of education, it is necessary to
+implement an identification strategy that can isolate the effects of age, education, cohort, and year on wage profiles.
+This section describes the identification strategy used in a study to achieve this objective.
+\par
+Firstly, the assumption is made that cohort effects are constant for all agents in the same 5-year cohort. This is
+because individuals who are born in the same 5-year period tend to share similar social, economic, and political
+experiences during their formative years. By assuming that cohort effects are constant across individuals in the same
+5-year cohort, it is possible to control for unobserved heterogeneity that is specific to a particular cohort.
+
+\par
+Secondly, it is assumed that the initial human endowment is constant within the same cohort. This implies that
 individuals who are born in the same 5-year cohort have similar levels of human capital at the beginning of their
-careers, before they have invested in additional education or training. By assuming that the initial human endowment is
-constant within the same cohort, we can control for unobserved heterogeneity that is specific to a particular birth
+careers, before investing in additional education or training. By assuming that the initial human endowment is constant
+within the same cohort, it is possible to control for unobserved heterogeneity that is specific to a particular birth
 cohort.
-\newline
-The same assumption applies to year effects, meaning that individuals within the same cohort experience the same effects
-on wages over a period of 5 years.
-\newline
-The restrictions imposed on the model are based on some naive assumptions about the behavior of individuals with respect
-to their education and human capital. For instance, it is reasonable to assume that individuals who are born in the same
-5-year cohort would have similar opportunities for education and training. Similarly, individuals who start with the
-same initial human capital endowment within the same cohort are likely to face similar labor market opportunities over
-time.\newline
+
+\par
+Similar assumptions apply to year effects, which means that individuals within the same cohort experience the same
+effects on wages over a period of 5 years. These restrictions on the model are based on some naive assumptions about the
+behaviour of individuals concerning their education and human capital. For instance, it is reasonable to assume that
+individuals who are born in the same 5-year cohort would have similar opportunities for education and training.
+Similarly, individuals who start with the same initial human capital endowment within the same cohort are likely to face
+similar labour market opportunities over time.
+
+\par
 While these assumptions may not hold perfectly in reality, they provide a useful framework for identifying the key
 factors that drive the age-wage profile and depreciation rates of human capital for different levels of education in
-Italy. By controlling for cohort and year effects in our analysis, we can isolate the effect of age and education on
-wages and estimate the rate of human capital depreciation for different groups of individuals.
-\newline
-To estimate the depreciation rate of human capital for different levels of education, we use a longitudinal panel data.
-Specifically, to estimate the age-wage profiles and the depreciation rates of human capital for different levels of
-education in Italy, we employ an OLS approach. We run two separate OLS regressions for individuals with a
-lower-secondary education and those with a high school level education, respectively. The dependent variable is the
-natural logarithm of the wage, and the key independent variables are age and age squared. We control for cohort effects
-and year effects by including birth year dummies and calendar year dummies, respectively. Additionally, the wage
-variable is corrected for inflation using the consumer price index.
-\newline
-Moreover, to examine gender differences in the evolution of human capital, we perform four separate regressions
-conditioned on gender and two levels of education, as specified in\ref{spec2}. To capture the potential variation in
-gender effects over time, we employ the regression on the conditional expectation function. Additionally, we use the
-same method $\log{y}$ to estimate the gender gap in the hours-age profile.
-\newline
- Applied Overall, our identification strategy allows us to separate the effects of age, education, and cohort on wage
- profiles and estimate the depreciation rate of human capital for different levels of education. By using a longitudinal
- panel data approach and controlling for individual-specific unobserved heterogeneity and time-varying factors, we can
- obtain more accurate estimates of the depreciation rate of human capital, which is a crucial variable that affects
- overall economic growth and development.
+Italy. By controlling for cohort and year effects in the analysis, it is possible to isolate the effect of age and
+education on wages and estimate the rate of human capital depreciation for different groups of individuals.
+
+\par
+To estimate the depreciation rate of human capital for different levels of education, a longitudinal panel data approach
+is used. Specifically, two separate OLS regressions are run for individuals with a lower-secondary education and those
+with a high-school-level education, respectively. The dependent variable is the natural logarithm of the wage, and the
+key independent variables are age and age squared. Cohort effects and year effects are controlled by including birth
+year dummies and calendar year dummies, respectively. Additionally, the wage variable is corrected for inflation using
+the consumer price index.
+\par
+
+Moreover, to examine gender differences in the evolution of human capital, four separate regressions are performed
+conditioned on gender and two levels of education as in (\ref{spec2}). To capture the potential variation in gender
+effects over time, the
+regression on the conditional expectation function is employed. Additionally, the same method $\log{y}$ is used to
+estimate the gender gap in the hours-age profile.
+\par
+Overall, the identification strategy used in this study allows for the separation of the effects of age, education, and
+cohort on wage profiles and the estimation of the depreciation rate of human capital for different levels of education.
+By using a longitudinal panel data approach and controlling for individual-specific unobserved heterogeneity and
+time-varying factors, more accurate estimates of the depreciation rate of human capital can be obtained. This is a
+crucial variable that affects overall economic growth and development.
+
 \section{Data and descriptive statistics}
 \subsection{Data}
 The data used in this study are obtained from the Family Income Survey of the Bank of Italy, which spans a period from
 1980 to 2020 with $\sim100.000 obs$. The sample comprises employees\footnote{We drop the observation for self-employed
 since including would rise an issue of undereporting} both men and women born between 1940 and 2020. To expand our
-sample size, we have divided the population into 56 birth cohorts, where each cohort covers five consecutive birth
+sample size, we have divided the population into 15 birth cohorts, where each cohort covers five consecutive birth
 years. We have also applied the same division for years, where each group includes five years. The following
-table\ref{Tab:desc-cohort} tabulate the distribution on observations for cohort. The cohort with the highest density of
+table\ref{Tab:desc-cohort} tabulates the distribution of observations for the cohorts. The cohort with the highest density of
 observations is cohort 10, whereas the younger and older cohorts have relatively few observations. The objective of the
 study is to estimate wage-age profiles, which required the use of employee income reports merged with family and
 individual statistics. To calculate $\\log{wage}_{i,t}$, we employed a series of transformations. Firstly, we summed the
@@ -181,89 +192,60 @@ monetary and non-monetary components of income. Secondly, we deflated the income
 (CPI). Thirdly, we divided the income figures by the monthly hours worked and multiplied by 13 months to obtain the
 annual income. Fourthly, we took the logarithm of the annual income figure. Finally, we merged the resulting dataset
 with individual-level data.
-\newline
+\par
 The process of computing $\\log{wage}_{i,t}$ was essential for the analysis, as it allowed us to measure the variation
 in wages over time, which is critical for estimating wage-age profiles. By merging different datasets, we were able to
-obtain a more comprehensive picture of the factors influencing wage dynamics in Italy. We follow these steps to get
-$\\log{wage}_{i,t}$:
-\begin{enumerate}
-    \item Sum monetary and non monetary components 
-    \item Deflating for CPI
-    \item dividing for the monthly hours and multiply for 13 month
-    \item take $\log{s}$
-    \item merging with other dataset with individual data
-\end{enumerate}
+obtain a more comprehensive picture of the factors influencing wage dynamics in Italy. 
 \subsection{Descriptive statistics}
 
 The tables presented in this paper (see Tables\ref{Tab:desc-1a} and\ref{Tab:desc-1b}) provide a detailed overview of the
 descriptive statistics for two key variables: the logarithm of wages and annual working hours. The tables show the mean,
 standard error, and t-test for the difference in mean for each variable across four different groups based on education
 level and gender. Specifically, the groups are defined by individuals with a low level of secondary school education,
-those with a secondary school education level, and these subgroups further differentiated by sex.
-\newline
-The statistical results from the tables indicate that individuals with a secondary school education level tend to earn
+and those with a secondary school education level and these subgroups are further differentiated by sex.
+\par
+The statistical results from the tables\ref{Tab:desc-1a}indicate that individuals with a secondary school education level tend to earn
 higher wages than those with a lower level of education. Moreover, the wage gap between genders is more pronounced among
 those with a secondary school education level. In other words, women tend to earn less than men across all education
 levels, and the difference is wider for those with a higher level of education.
-\newline
-In terms of annual working hours, the statistics indicate that individuals with a lower level of education tend to work
-more hours than those with a higher level of education. However, this trend is reversed when looking at gender
-differences. Women tend to work fewer hours compared to men across all education levels as show in \citet{goldin}. Interestingly, this gender gap
-in working hours narrows as the level of education increases. It is important to note that the data used in the analysis
-covers a period from 1980 to 2020, during which the participation of women in the labor market has increased
-significantly. Thus, the true difference in working hours between genders may be even greater for individuals with the
-same characteristics.\newline
-In order to better understand the relationship between education level and economic outcomes, it is often useful to
-examine a specific cohort in a given year. This approach is particularly relevant when working with panel data, as it
-allows for a more detailed analysis of trends and patterns over time. By focusing on a single cohort, we can examine the
-distribution of key economic variables such as wage, income, and annual hours worked, conditional on different levels of
-education. This type of analysis can reveal important insights into the labour market for specific subgroups, and help
-to identify disparities and trends that may not be apparent when analyzing data at the aggregate level.
-\newline
-The table\ref{tab:desc-cohort10} presented in this study reports on the wage and working hours of a specific cohort in the
-year 2008. The descriptive statistics show that wages are positively correlated with education level, which is
-consistent with the trend observed in the previous  tables\ref{Tab:desc-1a}\ref{Tab:desc-1b}. Additionally, the
-statistics reveal a decreasing trend in working hours as the level of education increases. This finding suggests that
-individuals with higher levels of education are able to earn higher wages while working fewer hours, potentially due to
-their possession of skills or abilities that increase their productivity as according to the human capital model. It is
-important to note that this specific cohort has a mean age of 50, which is a significant age for the human capital
-model. This is because at this age, individuals have typically spent their time endowments in work without investing in
-human capital. Therefore, these summary statistics must be interpreted in light of the fact that this cohort represents
-middle-aged workers who have already invested significant time and resources into their careers.\newline
-In conclusion, the descriptive statistics presented in this paper provide valuable insights into the labor market
-outcomes of individuals with different levels of education. Our analysis revealed that, on average, individuals with
-higher levels of education tend to earn higher wages and work fewer hours than those with lower levels of education. We
-also found that there are significant gender disparities in labor market outcomes, with women generally earning less and
-working fewer hours than men.
+\par
+Individuals with lower education tend to work more hours annually than those with higher education, while women tend to
+work fewer hours than men across all education levels. However, the gender gap in working hours narrows as the level of
+education increases, according to \citet{goldin}. It is worth noting that the data analyzed covers the period from 1980
+to 2020, during which women's participation in the labour market increased significantly. Therefore, the actual
+difference in working hours between genders may be even greater for individuals with the same characteristics.
+\par
+The descriptive statistics in this study of a specific cohort in 2008 show that higher education is positively
+correlated with wages and a decreasing trend in working hours, potentially due to possessing skills or abilities that
+increase productivity. This cohort represents middle-aged workers who have already invested significant time and
+resources into their careers, so these summary statistics must be interpreted with that in mind. The findings reveal
+significant disparities in labour market outcomes between individuals with different education levels and genders, with
+higher-educated individuals earning more and working fewer hours. The gender gap in working hours narrows with
+increasing education. (References: Table\ref{tab:desc-cohort10}, Table\ref{Tab:desc-1a}, Table\ref{Tab:desc-1b})
 \section{Empirical results}
-The empirical results section of this paper is dedicated to presenting our comprehensive analysis of the relationship
-between human capital evolution and education and gender characteristics. In this section, we aim to shed light on
-several key questions that are relevant to understanding the dynamics of the labor market. Specifically, we explore the
-impact of attaining a secondary education level on the wage age profile, and whether gender differences exist in the
-wage age profile for individuals with the same level of education. Additionally, we investigate the hours-age profiles
-for individuals with lower levels of education and those with higher levels, assessing how investing in human capital
-affects the hour-age profile. Lastly, we examine the gender gap in these profiles to identify potential disparities and
-trends that may exist. Through this analysis, we hope to provide valuable insights into the labor market for specific
-subgroups and contribute to the broader understanding of human capital evolution.
+In the empirical results section, we analyze the relationship between human capital evolution and education and gender
+characteristics in the labor market. Our analysis aims to answer key questions, such as the impact of secondary
+education on wage age profiles and potential gender differences. We also explore how investing in human capital affects
+hour-age profiles and identify potential disparities and trends in the gender gap.
 \subsection{The estimation of wage age profile}
 According to the human capital theory, the wage-age profile reflects the relationship between an individual's age and
 their wages, which is influenced by their investment in human capital over time. To explore this relationship, we use
 regression analysis with specification\ref{spec1} and present the results in Table\ref{Tab:reg1}. The key parameters
 include $\beta_{age2}$, which indicates the decline in wages over time and reflects depreciation, and $\beta_{age}$,
 which represents the return on investment in human capital over time. All the coefficients are statistically
-significant, providing valuable insights into the dynamics of the labor market and the role of human capital investments
+significant, providing valuable insights into the dynamics of the labour market and the role of human capital investments
 in shaping the wage-age profile.
-\newline
+\par
 If we focus on individuals with lower education\ref{reg1_w_leduc}, the results indicate that an increase of one year in
 age leads to an increase of $\approx 11\%$ in wages. On the other hand, for individuals with higher education
-\ref{reg1_w_heduc}, an increase of one year in age leads to an increase of approximately $\approx 12.6\%$ in wages. These findings
-are consistent with the human capital theory, which suggests that having a secondary level education instead of a lower
-secondary education leads to higher returns, while the depreciation rate remains the same for both groups. However, the low value
-of $R_{overall}^2 \approx 11\%$ suggests that the regression has very limited predictive power, possibly due to the restrictions imposed to
-isolate the cohort and year fixed effects.
-\newline
-To visually inspects the results we show the predicted wages by cohorts.
-\newline
+\ref{reg1_w_heduc}, an increase of one year in age leads to an increase of approximately $\approx 12.6\%$ in wages.
+These findings are consistent with the human capital theory, which suggests that having a secondary level education
+instead of a lower secondary education leads to higher returns, while the depreciation rate remains the same for both
+groups. However, the low value of $R_{overall}^2 \approx 11\%$ suggests that the regression has very limited predictive
+power, possibly due to the restrictions imposed to isolate the cohort and year-fixed effects.
+\par
+To visually inspect the results we show the predicted wages by cohorts.
+\par
 In this section, we present a graph (see Figure\ref{fig:pred_reg}) that visually depicts the relationship between
 education levels and wages across different age cohorts. The results are intriguing, as they suggest that there is a
 notable difference in the wage gap between older and younger cohorts. The graph shows that the wage gap is larger for
@@ -271,177 +253,184 @@ the older cohort, while the younger cohorts have a narrower difference. This fin
 higher educated individuals tend to spend part of their time endowment continuing to invest in their human capital
 during the early stages of their careers, while the lower educated tend to have more experience as they started working
 early, thus accumulating specialized skills. It is worth noting that this observation may indicate that specialized
-skills have a higher depreciation rate and a lower return on the long term. It would be interesting to extend the model
+skills have a higher depreciation rate and a lower return in the long term. It would be interesting to extend the model
 to include two types of human capital assets: one with a higher short-term return and higher depreciation, and another
-that is more costly but has lower depreciation, and then let the agent choose the optimal level of the two assets
+that is more costly but has lower depreciation and then let the agent choose the optimal level of the two assets
 following the idea of \citet{Kruger}.
-\newline
+\par
 The findings of our study support the theory that higher levels of human capital lead to higher wages. Specifically, the
-graph\ref{fig:pred_reg} demonstrates that individuals with higher levels of education consistently earn higher wages compared to those
-with lower education levels across all age cohorts. This observation highlights the importance of investing in human
-capital, particularly at the early stages of one's career, to enhance earning potential in the long term.
-\newline
-Furthermore, the graph\ref{fig:pred_reg} also shows that the wage gap between education levels widens over time. This suggests that
-younger cohorts have a smaller wage gap because the lower-educated individuals are more experienced in the labor market,
-while the higher-educated individuals are just starting out. However, as time goes by, the market starts to remunerate
-better those individuals who have invested in higher human capital.
-\newline
+graph\ref{fig:pred_reg} demonstrates that individuals with higher levels of education consistently earn higher wages
+compared to those with lower education levels across all age cohorts. This observation highlights the importance of
+investing in human capital, particularly at the early stages of one's career, to enhance earning potential in the long
+term.
+\par
+Furthermore, the graph\ref{fig:pred_reg} also shows that the wage gap between education levels widens over time. This
+suggests that younger cohorts have a smaller wage gap because the lower-educated individuals are more experienced in the
+labour market, while the higher-educated individuals are just starting. However, as time goes by, the market starts
+to remunerate better those individuals who have invested in higher human capital.
+\par
 Building upon these findings, we extend our analysis to include the effects of gender on wages by conducting a
 regression analysis similar to the one before but with gender as a conditioning variable. This will allow us to examine
 the gender wage gap across different education levels and age cohorts, providing important insights into the dynamics of
-the labor market and the role of gender in wage determination.
-\newline
+the labour market and the role of gender in wage determination.
+\par
 The results presented in Table\ref{Tab:reg2} indicate that there is clear evidence of a lower return on education for
-females, with $\beta_{age,female}$ (as shown in columns\ref{Reg:2_H_F}\ref{Reg:2_L_F}) being lower than
-$\beta_{age,male}$ (shown in columns\ref{Reg:2_H_M}\ref{Reg:2_L_M}). This effect is more pronounced for individuals
-with higher levels of education, as the marginal gap with respect to age is wider, with $\Delta_{secondary} \approx
-2.2\%$ per year for those with secondary education, and $\Delta_{lower\ secondary} \approx 1.4\%$ per year for those
-with lower secondary education. This result is consistent with previous research \citet{erosa2012human} and implies a
-lower return on investment in human capital for females.
-Interestingly, there is no statistically significant difference in the depreciation of capital over time between males and females, as $\beta_{eta^2}|female,sex = \beta_{eta^2, female}|female,sex$ and is approximately $0.83\%$.
-\newline
-The gender wage gap can be decomposed into two factors that widen it over time: the increase in wages as a result of acquiring working experience, represented by $\beta_{Age}$, and the decrease in wages, represented by $\beta_{Age^2}$.
-\newline
+females, with $\beta_{age, female}$ (as shown in columns(2) (4)\ref{Reg:2_L_F}) being lower than
+$\beta_{age,male}$ (shown in columns (1) (3)\ref{Reg:2_L_M}). This effect is more pronounced for individuals with
+higher levels of education, as the marginal gap concerning age is wider, with $\Delta_{secondary} \approx 2.2\%$
+per year for those with secondary education, and $\Delta_{lower\ secondary} \approx 1.4\%$ per year for those with lower
+secondary education. This result is consistent with previous research \citet{erosa2012human} and implies a lower return
+on investment in human capital for females. Interestingly, there is no statistically significant difference in the
+depreciation of capital over time between males and females, as $\beta_{eta^2}|female, sex = \beta_{eta^2,
+female}|female,sex$ and is approximately $0.83\%$.
+\par
+The gender wage gap can be decomposed into two factors that widen it over time: the increase in wages as a result of
+acquiring working experience, represented by $\beta_{Age}$, and the decrease in wages, represented by $\beta_{Age^2}$.
+\par
 These findings emphasize the importance of considering gender as a conditioning variable in wage regression analysis, as
-it provides valuable insights into the dynamics of the labor market and the role of human capital investments in shaping
+it provides valuable insights into the dynamics of the labour market and the role of human capital investments in shaping
 the wage-age profile. Moreover, the results suggest that women have lower remuneration for their human capital, which
-partially explains the wide difference in wages shown in Table\ref{Tab:desc-1a}.
-To better understand the difference in the evolution of wage-age profiles for women and men, we plot a chart of the
-predicted $\log(wage)$ comparing individuals with the same level of education but with different genders.
-\newline
-The chart\ref{fig:w_gend_l} illustrates that male wage-age profiles conditional on different level of education across
-all cohorts, while the chart\ref{fig:w_gend_l_cohort8} only for cohort 6. Now we take a look at the same results for
+partially explains the wide difference in wages shown in Table\ref{Tab:desc-1a}. To better understand the difference in
+the evolution of wage-age profiles for women and men, we plot a chart of the predicted $\log(wage)$ comparing
+individuals with the same level of education but with different genders.
+\par
+The chart\ref{fig:w_gend_l} illustrates that male wage-age profiles are conditional on a different level of education across
+all cohorts, while the chart\ref{fig:w_gend_l_cohort8} is only for cohort 6. Now we take a look at the same results for
 secondary school and lower secondary. 
-\newline
-The chart\ref{fig:w_gend_l_cohort8} show an higher gender gap for low educated that does not fade out as the time
-passes. It is important to remember that the prediction on wage is base only on th observables, thus  women that drop
-out the job and stay home are not take into account, thus the gap that we observe is only for the women that stays in
-the market. Moreover the wage gap is less accentuated for women with higher education, but this can be justified by the
-fact that female that choose to remain in the market are the ones without childbearing obligations or the ones that are
-paid more.\footnote{Studying the decision of drop out of women can be useful to understand the reservation wage and
-thus to instrument the observability of wage; moreover the drop rates is so high that estimating the effect of having
-child for female increases the wage by 8\% this is clearly due to the fact the the participation rates after first child
+\par
+The chart\ref{fig:w_gend_l_cohort8} shows a higher gender gap for low educated that does not fade out as time
+passes. It is important to remember that the prediction on wage is based only on the observables, thus women that drop
+out of their job and stay home are not taken into account, thus the gap that we observe is only for the women that stays in
+the market. Moreover, the wage gap is less accentuated for women with higher education, but this can be justified by the
+fact that female that chooses to remain in the market are the ones without childbearing obligations or the ones that are
+paid more.\footnote{Studying the decision to drop out of women can be useful to understand the reservation wage and thus
+instrument the observability of wage; moreover the drop rates is so high that estimating the effect of having a child
+for female increases the wage by 8\% this is clearly due to the fact the participation rates after first child
 shrink dramatically leaving only female with higher wages and the once without child } Futhermore, the mean age in
-cohort 6 is 48, thus the graph\ref{fig:w_gend_l_cohort8} approximates the gender gaps  only in the neighborhood  of
-this age. Regardless the strong bias due to endogeneity about the extensive margin decision, the wage age profiles for
-females remains lower than man, meaning female has a lower return on year of education compare to man.
-\newline
-Overall the estimate return in education are consistent with the human capital theory even here the comparison was by
-individual with lower secondary and secondary education level, it would had been better the comparison with individuals
-with a bachelor. However it is not possible since the are only few observations $\approx 600$ to get significant
-estimate of the key dependent variables. Regarding the gender differences it is clear that there is a lower return on
-human capital for female compare to man, notwithstanding this gap is strongly underestimated for the motivations written
+cohort 6 is 48, thus the graph\ref{fig:w_gend_l_cohort8} approximates the gender gaps only in the neighborhood of this
+age. Regardless of the strong bias due to endogeneity about the extensive margin decision, the wage age profiles for
+females remains lower than man, meaning female has a lower return on the year of education compared to man.
+\par
+Overall the estimated return on education are consistent with the human capital theory even here the comparison was by
+an individual with lower secondary and secondary education level, it would have been better the comparison with individuals
+with a bachelor. However, it is not possible since they are only a few observations $\approx 600$ to get a significant
+estimate of the key dependent variables. Regarding the gender differences, it is clear that there is a lower return on
+human capital for females compare to men, notwithstanding this gap is strongly underestimated for the motivations written
 above.
 
 \subsection{The estimation of hour age profile}
-Working hours is a fundamental variable in the human capital model, as it is the outcome of an optimization process
+Working hours are a fundamental variable in the human capital model, as it is the outcome of an optimization process
 whereby individuals choose how much of their time endowment to allocate towards increasing their human capital, and how
 much to devote to working. In this sense, working hours can be seen as a proxy for investment in human capital, as
 individuals who invest more time in developing their skills and knowledge may have fewer hours available for paid
-work.\newline
-First, we will look at the difference in the hours-age profiles for individuals with different levels of education. Second, we will look at the difference in the hours-age profile as before but conditioning on gender. In the following Table \ref{Tab:reg3}, we estimate with OLS the second specification \ref{spec2} for lower secondary and secondary education level. In column (1) \ref{Reg:3_h}, the results of the regression for the group that has achieved a secondary school education level are reported, while in column (2) \ref{Reg:3_l}, the results of the regression on the individuals that achieved only lower secondary school are reported.
-\newline
+work.\par
+First, we will look at the difference in the hours-age profiles for individuals with different levels of education.
+Second, we will look at the difference in the hours-age profile as before but conditioning on gender. In the following
+Table \ref{Tab:reg3}, we estimate with OLS the second specification \ref{spec2} for lower secondary and secondary
+education levels. In column (1) \ref{Reg:3_h}, the results of the regression for the group that has achieved a secondary
+school education level are reported, while in column (2) \ref{Reg:3_l}, the results of the regression on the individuals
+that achieved only lower secondary school are reported.
+\par
 Our analysis shows that individuals with lower levels of education tend to start working earlier in life compared to
 those with higher education. Indeed, the $\beta_{age}$ is positive for those who spend more time in school, while
-negative\footnote{both statistically significant, even if for the higher educated only at 10\%, while for the low
-educated at 1\%}, meaning that for the higher educated, the time endowment spent in working is increasing over time with
-a rate of $0.7\%$ per year.  The observation that the time spent working decreases over time with a rate of $-0.5\%$ per
+negative\footnote{both statistically significant at 1\%}, meaning that for the higher educated, the time endowment spent in working is increasing over time with
+a rate of $0.3\%$ per year.  The observation that the time spent working decreases over time with a rate of $-0.07\%$ per
 year for lower-educated individuals is in line with the idea that higher-educated individuals tend to increase their
 working hours over time as they invest in their human capital early in their careers, and gradually reduce their working
 hours as they gain experience. This pattern is consistent with the human capital model, which predicts that individuals
 with lower levels of education tend to start working earlier in life to maximize their immediate earnings, while those
-with higher education may delay their entry into the labor market as they invest in their human capital.
-\newline
+with higher education may delay their entry into the labour market as they invest in their human capital.
+\par
 To visually inspect these results, we plot the predicted values for working hours by education level, separating each
 cohort (figure.\ref{fig:hours}). This allows us to see the trends in working hours across different levels of education
 for each cohort, providing further insight into the relationship between human capital and working hours
-\newline
-In the presented graph, the red line represents the hours-age profiles for individuals with lower secondary school
+\par
+In the presented graph\ref{fig:hours}, the red line represents the hours-age profiles for individuals with lower secondary school
 education. These individuals tend to start spending their time endowment working earlier compared to those with
 secondary education. Additionally, individuals with lower education have a higher hours-age profile, which decreases
 over time. The peak of the red group's hours-age profile is reached in the early years of their working career, and then
 the curve slightly decreases over time. In contrast, for those with higher education, the peak is reached between 40 and
 50 years old, and then starts to decrease. It is important to emphasize that individuals with higher education spend
 less time working for all years, and this trend is observed in all cohorts.
-\newline
-To look a gender differences in the hours-age profile we run the same regression specification as above\ref{spec4}, but
-conditioning on gender. The results are showed in the table\ref{Reg:4_h_f}. As in the results without conditioning on gender,
-the slope of the hours-age profile is negative for individual with higher education level. Notwithstanding, for women
-the slope are flatter across all level of education, indeed $\Delta_{female-male}\beta_{age} \approx 0.1\%$ per year,
-meaning that women increases more mildly the time spent working\footnote{considering that women that drops the job after
-having children are unobservable, this gap can be even higher}.
-Moreover, female with low education has a steeper negative hours-age profiles $\beta_{eta}|female \approx -1.7\%$ per
-year and $\Delta_{female-male}\beta_{age} \approx 1.2\%$ per year, signaling that low educated women tends
-to decrease at faster rate the participation in the labour market in the intensive margin compare to the higher ones,
-moreover the gender gap is wider compare to the more educated.  
-\newline
-To visually compare the predicted working hours by cohort for males (higher educate in orange, lower educated in red)
-and females (lower educated in blue and higher educated in green) at different levels
-of education, we plotted the the predicted values of the regression of\ref{reg4}in Figure\ref{fig:h_l_cohorts}, while in
-the Figure\ref{fig:h_l_coh8} we plot the predicted value for the middle-age cohort 7. 
-\newline
-The figure\ref{fig:h_l_cohorts} illustrates that, across all cohorts, men have higher hours-age profiles than women,
-indicating that women have lower participation in the intensive margin compared to men, regardless of educational
-attainment. Additionally, for women with lower education, the hours-age profile declines rapidly in the initial stages
-of their working lives, particularly between ages 20 and 30. Consequently, the gap between low-educated females and
-males widens considerably during this period, reaching its peak at around ages 40. Conversely, for women who stay
-in school longer, there is an increase in participation (intensive margin) during the early stages of their careers,
-between ages 20 and 30, when the hours-age profile reaches its maximum. Subsequently, the participation rate either
-declines or remains stable. However, it is worth noting that the decrease in hourly worked for women is significantly
-underestimated since the probability of dropping out of the labor force after having the first child is around 30\% for
-individuals with lower and secondary school education, as demonstrated by \citet{Bratti2005}, which implies that a large
-proportion of female labor force participation is unobservable.
-\newline
-Additionally, the gender gap in the hourly-age profile reaches its peak at around age 50 for those with higher
-education, which is in line with the idea that women who stay in school longer tend to have their first child later,
-thereby delaying their childbearing years to later stages of their working lives. Subsequently, after age 50, the gap
-begins to decrease slightly but remains significant until the end of their working careers. Interestingly, the gender
-gap in the hourly-age profile is wider for those who spent more time in schooling, as observed in the younger cohort.
- One possible explanation can be that Women who pursue higher levels of education may face additional pressure to conform to
-traditional gender roles, such as being a caregiver for children and elderly family members, which can lead to a
-reduction in their labor force participation or hours worked. This can be particularly true during the early stages of
-their careers when they are starting families or establishing themselves in their chosen fields. On the other hand, men
-who pursue higher education may face fewer societal expectations to prioritize caregiving responsibilities over their
-careers. Thus, they may be able to invest more time and effort into their careers, leading to higher hours worked and a
-wider gender gap in the hourly-age profile.
-\newline
-The hours-age
-profiles for lower educated women were consistently lower than for men across all cohorts, indicating that this gender
-gap persists over time. However, for higher educated individuals, the gender differences were not apparent (as shown in
-Figure\ref{fig:h_l_cohorts}).
-\newline
+\par
+To examine gender differences in the hours-age profile, we estimated the same regression model as before (specification
+4), but stratified by gender. Table\ref{Reg:4_h_f} displays the results, which indicate that the slope of the hours-age
+the profile is negative for individuals with higher education levels, as in the results without conditioning on gender.
+However, the negative slope is flatter for women across all education levels, with a difference of only
+$\Delta_{female-male}\beta_{age} \approx 0.1\%$ per year, suggesting that women tend to increase their working hours more
+slowly than men. Nevertheless, low-educated women have steeper negative hours-age profiles ($\beta_{eta}|female \approx
+-1.7\%$ per year) and a wider gender gap ($\Delta_{female-male}\beta_{age} \approx 1.2\%$ per year) compared to highly
+educated women, implying that low-educated women tend to decrease their labour market participation faster than their
+highly educated counterparts.
+
+\par
+We visually compared the predicted working hours by cohort for males and females with different levels of education.
+Figure\ref{fig:h_l_cohorts} displays the predicted values of the regression of specification 4, where males with higher
+education are in orange, males with lower education are in red, females with lower education are in blue, and females
+with higher education are in green. We also plotted the predicted value for the middle-age cohort 7 in Figure\ref{fig:h_l_coh8}.
+
+\par
+The figure illustrates that men have higher hours-age profiles than women across all cohorts, indicating that women have
+lower participation in the intensive margin compared to men, regardless of educational attainment. Additionally, for
+women with lower education, the hours-age profile declines rapidly in the initial stages of their working lives,
+particularly between ages 20 and 30. Consequently, the gap between low-educated females and males widens considerably
+during this period, reaching its peak at around age 40. Conversely, for women who stay in school longer, there is an
+increase in participation during the early stages of their careers, between ages 20 and 30, when the hours-age profile
+reaches its maximum. Subsequently, the participation rate either declines or remains stable. However, it is worth noting
+that the decrease in hourly worked for women is significantly underestimated since the probability of dropping out of
+the labour force after having the first child is around 30% for individuals with lower and secondary school education, as
+demonstrated in \citet{Bratti2005}, which implies that a large proportion of female labour force participation is
+unobservable.
+
+\par
+Moreover, the gender gap in the hourly-age profile reaches its peak at around age 50 for those with higher education,
+which is consistent with the idea that women who stay in school longer tend to have their first child later, delaying
+their childbearing years until later in their working lives. The gap begins to decrease slightly after age 50 but
+remains significant until the end of their working careers. Interestingly, the gender gap in the hourly-age profile is
+wider for those who spent more time in schooling, as observed in the younger cohort. One possible explanation is that
+women who pursue higher levels of education may face additional pressure to conform to traditional gender roles, such as
+being a caregiver for children and elderly family members, which can lead to a reduction in their labour force
+participation or hours worked. This can be particularly true during the early stages of their careers when they are
+starting families or establishing themselves in their chosen fields. On the other hand, men who pursue higher education
+may face fewer societal expectations to prioritize caregiving responsibilities over their careers. Thus, they may be
+able to invest more time and effort into their careers.
+
+
+The hours-age profiles for lower-educated women were consistently lower than for men across all cohorts, indicating that
+this gender gap persists over time. However, for higher educated individuals, the gender differences were not apparent
+(as shown in Figure\ref{fig:h_l_cohorts}).
+
 Overall, our empirical findings are in line with the human capital theory, as we found a positive and statistically
-significant effect of education on human capital remuneration, and a concave wage-age profile as predicted by the model
+significant effect of education on human capital remuneration and a concave wage-age profile as predicted by the model
 with depreciation $\Delta > 0$. Additionally, the hours-age profile supports the human capital model's predictions, with
-higher educated individuals having an increasing hours-age profile, and lower educated individuals having a decreasing
-one. Furthermore, our analysis of the gender gap in the hours-age profile shows that women tend to have a lower participation in
-the intensive margin compared to men, regardless of their level of educational attainment. The gap is wider for lower educated
-women, and it decreases slightly for higher educated women after the age of 50, which is consistent with the fact that
-they tend to have their first child later and shift childbearing years later in their working life. It is also
-interesting to note that the gender gap in the hourly-age profile at the beginning of the career is wider for those who
-spent more time in schooling, as seen in the younger cohort. These findings provide insights into the complex interplay
-between education, gender, and labor market outcomes.
+higher-educated individuals having an increasing hours-age profile, and lower-educated individuals having a decreasing
+one. Furthermore, our analysis of the gender gap in the hours-age profile shows that women tend to have lower
+participation in the intensive margin compared to men, regardless of their level of educational attainment. The gap is
+wider for lower-educated women, and it decreases slightly for higher-educated women after the age of 50, which is
+consistent with the fact that they tend to have their first child later and shift childbearing years later in their
+working life. It is also interesting to note that the gender gap in the hourly-age profile at the beginning of the
+career is wider for those who spent more time in schooling, as seen in the younger cohort. These findings provide
+insights into the complex interplay between education, gender, and labour market outcomes.
 \section{Conclusions}
 In conclusion, this paper has provided an analysis of the gender wage gap in a European country, focusing on the role of
 education and human capital. The empirical findings are consistent with the human capital theory, as we observe a
 positive statistically significant effect of education on the remuneration of human capital and a concave shape of the
 wage-age profile, in line with the model with $\Delta > 0$.
-\newline
+\par
 Furthermore, the analysis shows that the gender wage gap widens over time, mainly due to differences in the remuneration
 of human capital between men and women. Women have a lower remuneration of human capital, even for the same level of
 education, which can be partly explained by differences in working hours, as women tend to invest less time in
 developing their skills and knowledge.
-\newline
-The results also indicate that individuals with lower levels of education start working earlier, with the aim of
-maximizing their immediate earnings, while those with higher levels of education may take longer to start working as
-they invest in their human capital. This is reflected in the hours-age profile, which decreases over time for those with
+\par
+The results also indicate that individuals with lower levels of education start working earlier, to maximize their immediate earnings, while those with higher levels of education may take longer to start working as
+they invest in their human capital (as in \citet{yoram}). This is reflected in the hours-age profile, which decreases over time for those with
 lower education, while it increases for those with higher education.
-\newline
+\par
 However, it is important to note that the analysis has certain limitations. Firstly, the restriction imposed on cohort
-fixed effects and years fixed effects, which may not capture all the heterogeneity in the data. Secondly, the analysis
+fixed effects and years fixed effects, may not capture all the heterogeneity in the data. Secondly, the analysis
 only focuses on a single country, and the results may not be generalizable to other contexts. Finally, the study does
 not account for the potential impact of discrimination and other factors that may contribute to the gender wage gap.
-\newline
+\par
 Overall, this study provides insights into the factors that contribute to the gender wage gap and highlights the
 importance of education and human capital in determining individuals' earnings. Further research is needed to explore
 the role of other factors, such as discrimination and family responsibilities, and to investigate the effectiveness of
@@ -453,7 +442,10 @@ policies aimed at reducing the gender wage gap.
 
 
 \newpage
-\section{Tables}
+\medskip
+\bibliography{ref}
+\newpage
+\section{Tables and figures}
 \begin{center}
     \input{table1}
     \input{table2}
@@ -462,14 +454,10 @@ policies aimed at reducing the gender wage gap.
     \input{regression2}
     \input{regression3}
     \input{regression4}
-    \input{oax1.tex}
-    \input{oax2.tex}
-    \input{oax3.tex}
-    \input{oax4.tex}
 \end{center}
 
+\newpage
 
-\section{Figures}
 \begin{center}
     
 
@@ -477,30 +465,36 @@ policies aimed at reducing the gender wage gap.
     \centering
     \includegraphics[scale=0.4]{graph1.png}
     \caption{\label{fig:pred_reg}Predicted wage-age profiles by cohort}
-
-    \centering
-    
 \end{figure}
-\begin{figure}
+\begin{figure}[!h]
     \includegraphics[scale=0.4]{graph2.png}
     \caption{\label{fig:w_gend_l}Gender gap in the wage age profiles for different education level}
+\end{figure}
+\begin{figure}[!h]
     \includegraphics[scale=0.4]{graph2_1.png}
     \caption{\label{fig:w_gend_l_cohort8}Gender gap in the wage age profiles for different education level in the cohort
     8}
 \end{figure}
-\begin{figure}    
+\begin{figure}[!h]    
     \centering
     \includegraphics[scale=0.4]{graph4.png}
     \caption{\label{fig:hours}Hours-age profile}
 \end{figure}
-\begin{figure}
+\begin{figure}[!h]
     \includegraphics[scale=0.35]{graph5.png}
     \caption{\label{fig:h_l_cohorts}Hours-age profile and gender gap}
+\end{figure}
+\begin{figure}[!h]
     \includegraphics[scale=0.35]{graph5_1.png}
     \caption{\label{fig:h_l_coh8}Hours-age profile and gender gap in the cohort 8}
 \end{figure}
 \end{center}
-\bibliography{ref}
+
+
+
+
+ 
+
 \end{document}
 
 

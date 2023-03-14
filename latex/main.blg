@@ -1,48 +1,48 @@
 This is BibTeX, Version 0.99d (TeX Live 2022)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: main.aux
-The style file: unsrtnat.bst
+The style file: apalike.bst
 Database file #1: ref.bib
 Warning--empty journal in erosa2012human
-You've used 9 entries,
-            2481 wiz_defined-function locations,
-            622 strings with 6165 characters,
-and the built_in function-call counts, 3459 in all, are:
-= -- 315
-> -- 135
-< -- 7
-+ -- 56
-- -- 38
-* -- 256
-:= -- 540
-add.period$ -- 33
-call.type$ -- 9
-change.case$ -- 18
+You've used 10 entries,
+            1935 wiz_defined-function locations,
+            541 strings with 5334 characters,
+and the built_in function-call counts, 3845 in all, are:
+= -- 385
+> -- 126
+< -- 8
++ -- 49
+- -- 40
+* -- 324
+:= -- 662
+add.period$ -- 29
+call.type$ -- 10
+change.case$ -- 70
 chr.to.int$ -- 9
-cite$ -- 10
-duplicate$ -- 178
-empty$ -- 332
-format.name$ -- 53
-if$ -- 744
-int.to.chr$ -- 1
-int.to.str$ -- 10
-missing$ -- 8
-newline$ -- 58
-num.names$ -- 27
-pop$ -- 72
+cite$ -- 11
+duplicate$ -- 148
+empty$ -- 284
+format.name$ -- 56
+if$ -- 752
+int.to.chr$ -- 2
+int.to.str$ -- 0
+missing$ -- 9
+newline$ -- 51
+num.names$ -- 30
+pop$ -- 53
 preamble$ -- 1
-purify$ -- 9
+purify$ -- 70
 quote$ -- 0
-skip$ -- 112
+skip$ -- 116
 stack$ -- 0
-substring$ -- 174
-swap$ -- 26
+substring$ -- 309
+swap$ -- 17
 text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 63
+type$ -- 60
 warning$ -- 1
-while$ -- 31
+while$ -- 35
 width$ -- 0
-write$ -- 132
+write$ -- 127
 (There was 1 warning)

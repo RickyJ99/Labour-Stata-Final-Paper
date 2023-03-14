@@ -3,7 +3,8 @@
 clear 
 ** Our working directory today is:
 cd "/Users/riccardodalcero/Library/CloudStorage/OneDrive-UniversitaCattolicaSacroCuore-ICATT/Materials/Labour/project/"
-
+*all plot are commented to run fast the code
+*all the export .tex and .png are commented 
 *+++++++++++++++++++*
 *Rearenging the dataset*
 *+++++++++++++++++++*
@@ -18,7 +19,7 @@ drop if anno==2020
 merge 1:m nquest nord anno  using "STATA/ldip.dta", generate(newv)
 replace nonoc=0 if missing(nonoc)
 drop if newv!=3 & eta>30
-drop if eta>26 & ylm==0
+drop if eta>26 & ylm==0 // drop if is unemployed but with age >26
 drop if eta>26 & missing(ylm)
 drop if eta<=15  /*drop observation before elementary school */
 drop if eta>=65 /*drop observation that are in the retirment age */
@@ -68,10 +69,15 @@ gen cohort = ceil((anasc-1925)/5)
 gen years  = ceil((year-1988)/5)
 egen mean_ly    =   mean(l_y), by(educ cohort age)
 egen mean_hours =   mean(oretot*12*4), by(educ cohort age)
+replace mean_hours=1 if missing(mean_hours)
+egen mean_hours_sex =   mean(oretot*12*4), by(educ cohort age female)
+replace mean_hours_sex=1 if missing(mean_hours_sex)
 gen mean_lhours =   log(mean_hours)
+gen mean_lhours_sex = log(mean_hours_sex)
+
 gen mean_lwage =   log(mean_y/mean_hours)
 gen wage = y/hours
-replace mean_hours=0 if missing(mean_hours)
+
 gen time_e = mean_hours / 2000
 gen age2    =   age^2
 
@@ -195,7 +201,7 @@ estpost tabstat mean_lwage mean_hours mean_y female if cohort==10 & year==2008, 
 * Wage age profiles*
 ********************
 *some naive inspections
-graph twoway (scatter mean_lwage  age  if educ==5 ) (scatter mean_lwage  age  if educ==3), by(cohort, title("Mean wage by cohorts"))  legend(label(1 "Secondary")) legend(label(2 "Lower secondary"))
+*graph twoway (scatter mean_lwage  age  if educ==5 ) (scatter mean_lwage  age  if educ==3), by(cohort, title("Mean wage by cohorts"))  legend(label(1 "Secondary")) legend(label(2 "Lower secondary"))
 *graph export "./latex/graph.png", replace
 
 est clear
@@ -204,13 +210,13 @@ predict w_1
 eststo: xtreg  l_wage  age age2  i.cohort i.years if educ==3 
 predict w_2
 
-*esttab using "./latex/regression1.tex", replace  ///
- nomtitle label star(* 0.10 ** 0.05 *** 0.01) ///
+*esttab using "./regression1.tex", replace  ///
+ stats(r2 r2_a r2_w) nomtitle label star(* 0.10 ** 0.05 *** 0.01) ///
  booktabs  ///
  title("Regression on \(log(wage)\)\label{Tab:reg1}")   ///
 addnotes("Regression on \(log(wage)\) for lower secondary group (1) and for secondary school ")
 
-graph twoway (lowess w_1 age)  (lowess w_1 age) , by(cohort, title("Wage age profiles cond. on education")) legend(label(1 "Secondary")) legend(label(2 "Lower secondary"))
+*graph twoway (lowess w_1 age)  (lowess w_1 age) , by(cohort, title("Wage age profiles cond. on education")) legend(label(1 "Secondary")) legend(label(2 "Lower secondary"))
 *graph export "./latex/graph1.png", replace
 
 
@@ -226,32 +232,34 @@ eststo: xtreg l_wage  age age2  i.cohort i.years if group_l==0
 predict w_m_l
 eststo: xtreg l_wage  age age2  i.cohort i.years if group_l==1
 predict w_f_l
-*esttab using "./latex/regression2.tex", replace  ///
- b(5) se(5) nomtitle label star(* 0.10 ** 0.05 *** 0.01) ///
+*esttab using "./regression2.tex", replace  ///
+ stats(r2 r2_a r2_w) b(5) se(5) nomtitle label star(* 0.10 ** 0.05 *** 0.01) ///
  booktabs  ///
  title("Regression table \label{reg2}")   ///
  addnotes("")
-graph twoway (lowess w_f_l age) (lowess w_m_l age) (lowess w_f_h age) (lowess w_m_h age), by(cohort,title("Wage profiles per education vs gender gap"))  legend(label(1 "Female L.S.")) legend(label(2 "Male L.S.")) legend(label(3 "Female S.")) legend(label(4 "Male S."))
+*graph twoway (lowess w_f_l age) (lowess w_m_l age) (lowess w_f_h age) (lowess w_m_h age), by(cohort,title("Wage profiles per education vs gender gap"))  legend(label(1 "Female L.S.")) legend(label(2 "Male L.S.")) legend(label(3 "Female S.")) legend(label(4 "Male S."))
 *graph export "./latex/graph2.png", replace
-graph twoway (lowess w_f_l age if cohort==6) (lowess w_m_l age if cohort==6) (lowess w_f_h age if cohort==6) (lowess w_m_h age if cohort==6),title("Wage profiles per education vs gender gap")  legend(label(1 "Female L.S.")) legend(label(2 "Male L.S.")) legend(label(3 "Female S.")) legend(label(4 "Male S."))
-graph export "./latex/graph2_1.png", replace
+*graph twoway (lowess w_f_l age if cohort==6) (lowess w_m_l age if cohort==6) (lowess w_f_h age if cohort==6) (lowess w_m_h age if cohort==6),title("Wage profiles per education vs gender gap")  legend(label(1 "Female L.S.")) legend(label(2 "Male L.S.")) legend(label(3 "Female S.")) legend(label(4 "Male S."))
+*graph export "./latex/graph2_1.png", replace
+
+
 *********************
 * Hours age profile*
 *********************
 est clear
-eststo: xtreg  l_hours  age ag2  i.cohort i.years if educ==5 
+eststo: xtreg  mean_lhours  age age2  i.cohort i.years if educ==5 
 predict h_1
-eststo: xtreg  l_hours  age age2  i.cohort i.years if educ==3 
+eststo: xtreg  mean_lhours  age age2  i.cohort i.years if educ==3 
 predict h_2
 
-*esttab using "./latex/regression3.tex", replace  ///
- b(3) se(3) nomtitle label star(* 0.10 ** 0.05 *** 0.01) ///
+*esttab using "./regression3.tex", replace  ///
+  stats(r2 r2_a r2_w) b(3) se(3) nomtitle label star(* 0.10 ** 0.05 *** 0.01) ///
  booktabs  ///
  title("Regression table \label{reg3}")   ///
  addnotes("")
 
-graph twoway (lowess h_1 age) (lowess h_2 age), by(cohort, title("Hour age profiles cond. on education")) legend(label(1 "Secondary")) legend(label(2 "Lower secondary"))
-*graph export "/latex/graph4.png", replace
+*graph twoway (lowess h_1 age) (lowess h_2 age), by(cohort, title("Hour age profiles cond. on education")) legend(label(1 "Secondary")) legend(label(2 "Lower secondary"))
+*graph export "./graph4.png", replace
 
 
 *++++++++++++++++++++++++++++*
@@ -262,19 +270,19 @@ eststo: xtreg l_hours  age age2  i.cohort i.years if group_h==0
 predict h_m_h
 eststo: xtreg l_hours  age age2  i.cohort i.years if group_h==1
 predict h_f_h
-eststo: xtreg l_hours  age age2  i.cohort i.years if group_l==0
+eststo: xtreg l_hours age age2  i.cohort i.years if group_l==0
 predict h_m_l
 eststo: xtreg l_hours  age age2  i.cohort i.years if group_l==1
 predict h_f_l
-*esttab using "./latex/regression4.tex", replace  ///
- b(5) se(5) nomtitle label star(* 0.10 ** 0.05 *** 0.01) ///
+*esttab using "./regression4.tex", replace  ///
+ stats(r2 r2overall r2_w) b(5) se(5) nomtitle label star(* 0.10 ** 0.05 *** 0.01) ///
  booktabs  ///
  title("Regression table \label{reg4}")   ///
  addnotes("")
-graph twoway (lowess h_f_l age) (lowess h_m_l age) (lowess h_f_h age) (lowess h_m_h age), by(cohort,title("Hours-age profiles per education vs gender gap"))  legend(label(1 "Female L.S.")) legend(label(2 "Male L.S.")) legend(label(3 "Female S.")) legend(label(4 "Male S."))
+*graph twoway (lowess h_f_l age) (lowess h_m_l age) (lowess h_f_h age) (lowess h_m_h age), by(cohort,title("Hours-age profiles per education vs gender gap"))  legend(label(1 "Female L.S.")) legend(label(2 "Male L.S.")) legend(label(3 "Female S.")) legend(label(4 "Male S."))
 *graph export "./latex/graph5.png", replace
-graph twoway (lowess h_f_l age if cohort==7) (lowess h_m_l age if cohort==7) (lowess h_f_h age if cohort==7) (lowess h_m_h age if cohort==7), title("Hours-age profiles per education vs gender gap")  legend(label(1 "Female L.S.")) legend(label(2 "Male L.S.")) legend(label(3 "Female S.")) legend(label(4 "Male S."))
-graph export "./latex/graph5_1.png", replace
+*graph twoway (lowess h_f_l age if cohort==7) (lowess h_m_l age if cohort==7) (lowess h_f_h age if cohort==7) (lowess h_m_h age if cohort==7), title("Hours-age profiles per education vs gender gap")  legend(label(1 "Female L.S.")) legend(label(2 "Male L.S.")) legend(label(3 "Female S.")) legend(label(4 "Male S."))
+*graph export "./latex/graph5_1.png", replace
 
 *****
 *Oxaca decomposition
@@ -285,8 +293,8 @@ eststo: oaxaca l_wage  age age2,by(group_l) weight(1)
 eststo: oaxaca l_wage  age age2,by(group_h) weight(1)
 *esttab using "./latex/oax2.tex", replace
 est clear
-eststo: oaxaca l_hours  age age2,by(group_l) weight(1)
+eststo: oaxaca mean_lhours  age age2,by(group_l) weight(1)
 *esttab using "./latex/oax3.tex", replace
 est clear
-eststo: oaxaca l_hours  age age2,by(group_h) weight(1)
+eststo: oaxaca mean_lhours  age age2,by(group_h) weight(1)
 *esttab using "./latex/oax4.tex", replace
