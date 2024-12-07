@@ -1,7 +1,7 @@
 ** Riccardo Dal Cero
 ** Labour economics project
 clear 
-** Our working directory today is:
+
 cd "/Users/riccardodalcero/Library/CloudStorage/OneDrive-UniversitaCattolicaSacroCuore-ICATT/Materials/Labour/project/"
 *all plot are commented to run fast the code
 *all the export .tex and .png are commented 
