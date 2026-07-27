@@ -63,20 +63,29 @@ The third row has been removed from the rendered table and preserved as a commen
 
 Flagged, not silently reconciled. Pick one and make it consistent.
 
-### 4. One remaining magnitude discrepancy — the abstract
+### 4. Abstract hours figure — recast as a levels claim, magnitude changed
 
-Section 4.2's magnitudes **have all been corrected** (see "Changes made" below): the factor-of-ten
-slip "$0.3\%$" → "$3.1\%$" and "$-0.07\%$" → "$-0.7\%$", and the low-educated gender gap
-"$1.2\%$" → "$1.9\%$".
+All Section 4.2 magnitudes have been corrected (factor-of-ten slip "$0.3\%$" → "$3.1\%$" and
+"$-0.07\%$" → "$-0.7\%$"; low-educated gender gap "$1.2\%$" → "$1.9\%$"), and the abstract's hours
+figure has now been recast as a **levels** statement per the author's confirmation that it comes from
+Table 3.
 
-One figure was **not** changed, because it cannot be pinned to a table without guessing at the
-intended comparison:
+**Please confirm this one.** 0.5% does not appear anywhere in Table 3, and no arithmetic on that
+table produces it. What Table 3 actually reports, going from lower secondary to secondary:
 
-- **Abstract, "a 0.5% decrease in time spent working"** for secondary versus lower secondary. Table 7
-  gives age slopes of +3.1% (secondary) and −0.7% (lower secondary), a *difference* of +3.8 pp, and
-  the sign runs the other way from "decrease". The descriptive tables do show the secondary group
-  working fewer hours in levels (Table 3), so this may be a levels statement rather than a slope
-  statement. Please confirm what 0.5% refers to.
+| | Lower secondary | Secondary | Change |
+|---|---|---|---|
+| Men | 1,952.12 h | 1,811.48 h | −140.64 h (−7.2%) |
+| Women | 1,642.11 h | 1,507.51 h | −134.60 h (−8.2%) |
+
+The abstract therefore now reads "**is associated with roughly 7\% fewer hours worked per year**" in
+place of "lowers time spent working by about 0.5\%". This is a change to a reported magnitude — the
+only one in this pass that was not a direct transcription fix — so it is called out here explicitly.
+Table 3 itself was not touched. If 0.5% was derived from something other than the levels gap in
+Table 3, revert this and supply the correct source.
+
+Note also that the framing is now unambiguously descriptive ("is associated with") rather than
+causal, since the hours difference in Table 3 is a raw group mean, not a regression estimate.
 
 ### 5. Word-count footnote
 
@@ -226,11 +235,12 @@ and with properly braced sets (`educ=\{3,5\}`), so the notation matches the tabl
 
 ### Priority 5 — abstract and footnote
 
-**Abstract** rewritten to 129 words, ordered question → data → method → results → caveat. Same
-findings, same numbers (1%, 0.5%, 2.2%); adds the explicit selection caveat and now names the data
-source and method. The claim "we estimate depreciation rates for primary, secondary, and tertiary
-education levels" was dropped — the paper estimates lower-secondary and secondary only, and says so
-in Section 4.1.
+**Abstract** rewritten to ~130 words, ordered question → data → method → results → caveat. Adds the
+explicit selection caveat and now names the data source and method. The 1% and 2.2% figures are
+unchanged; the hours figure was recast from "0.5%" to "roughly 7% fewer hours worked per year" as a
+levels claim — see flag 4 above, which is the one number in this pass that changed value. The claim
+"we estimate depreciation rates for primary, secondary, and tertiary education levels" was dropped —
+the paper estimates lower-secondary and secondary only, and says so in Section 4.1.
 
 **"+8% wage from having a child" footnote** rewritten from a 60-word run-on into:
 

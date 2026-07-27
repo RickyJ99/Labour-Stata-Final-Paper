@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.7.27)  27 JUL 2026 15:17
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.7.27)  27 JUL 2026 15:21
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -175,24 +175,24 @@ File: l3backend-pdftex.def 2026-02-18 L3 backend support: PDF output (pdfTeX)
 ) (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
  (c:/Users/nickb/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
  (c:/Users/nickb/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/grfext/grfext.sty
@@ -205,26 +205,26 @@ Package grfext Info: Graphics extension search list:
  (c:/Users/nickb/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-Package hyperref Info: Link coloring OFF on input line 44.
+Package hyperref Info: Link coloring OFF on input line 47.
  (./main.out) (./main.out)
 \@outlinefile=\write3
 \openout3 = `main.out'.
 
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <10.95> on input line 49.
+(Font)              <10.95> on input line 52.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 49.
+(Font)              <8> on input line 52.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 49.
+(Font)              <6> on input line 52.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 55.
+(Font)              <7> on input line 59.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 55.
+(Font)              <5> on input line 59.
  [1
 
 {c:/Users/nickb/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 77.
+(Font)              <12> on input line 81.
  [2] [3] [4] [5] [6] [7] [8] [9] [10] [11] [12] [13] [14] [15] (./main.bbl
 Underfull \hbox (badness 1062) in paragraph at lines 29--32
 []\OT1/cmr/m/n/12 Hendricks, L. (2013).  The ben-porath model and age-wage pro-files.
@@ -254,12 +254,12 @@ Overfull \hbox (18.81172pt too wide) in paragraph at lines 17--47
 <graph1.png, id=271, 924.45375pt x 672.5125pt>
 File: graph1.png Graphic file (type png)
 <use graph1.png>
-Package pdftex.def Info: graph1.png  used on input line 484.
+Package pdftex.def Info: graph1.png  used on input line 488.
 (pdftex.def)             Requested size: 369.77495pt x 269.00023pt.
 <graph2.png, id=272, 924.45375pt x 672.5125pt>
 File: graph2.png Graphic file (type png)
 <use graph2.png>
-Package pdftex.def Info: graph2.png  used on input line 488.
+Package pdftex.def Info: graph2.png  used on input line 492.
 (pdftex.def)             Requested size: 369.77495pt x 269.00023pt.
 
 
@@ -268,7 +268,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 <graph2_1.png, id=273, 924.45375pt x 672.5125pt>
 File: graph2_1.png Graphic file (type png)
 <use graph2_1.png>
-Package pdftex.def Info: graph2_1.png  used on input line 492.
+Package pdftex.def Info: graph2_1.png  used on input line 496.
 (pdftex.def)             Requested size: 369.77495pt x 269.00023pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -276,7 +276,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 <graph4.png, id=274, 924.45375pt x 672.5125pt>
 File: graph4.png Graphic file (type png)
 <use graph4.png>
-Package pdftex.def Info: graph4.png  used on input line 497.
+Package pdftex.def Info: graph4.png  used on input line 501.
 (pdftex.def)             Requested size: 369.77495pt x 269.00023pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -284,7 +284,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 <graph5.png, id=275, 1104.125pt x 803.0pt>
 File: graph5.png Graphic file (type png)
 <use graph5.png>
-Package pdftex.def Info: graph5.png  used on input line 501.
+Package pdftex.def Info: graph5.png  used on input line 505.
 (pdftex.def)             Requested size: 386.44954pt x 281.05421pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -292,7 +292,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 <graph5_1.png, id=276, 1104.125pt x 803.0pt>
 File: graph5_1.png Graphic file (type png)
 <use graph5_1.png>
-Package pdftex.def Info: graph5_1.png  used on input line 505.
+Package pdftex.def Info: graph5_1.png  used on input line 509.
 (pdftex.def)             Requested size: 386.44954pt x 281.05421pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -314,7 +314,7 @@ Here is how much of TeX's memory you used:
  14 hyphenation exceptions out of 8191
  74i,9n,79p,317b,504s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <c:/Users/nickb/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1200.600pk><c:/Users/nickb/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/Users/nickb/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/Users/nickb/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/Users/nickb/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><c:/Users/nickb/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/Users/nickb/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/Users/nickb/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/Users/nickb/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><c:/Users/nickb/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/Users/nickb/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/Users/nickb/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/Users/nickb/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/Users/nickb/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/Users/nickb/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/Users/nickb/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/Users/nickb/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on main.pdf (29 pages, 931392 bytes).
+Output written on main.pdf (29 pages, 931541 bytes).
 PDF statistics:
  393 PDF objects out of 1000 (max. 8388607)
  319 compressed objects within 4 object streams

@@ -9,8 +9,11 @@
 %   3. Sample period: the abstract says 1980-2019 and Section 3 says 1980-2020,
 %      but main.do:16-17 drops anno<1981 and anno==2020, implying 1981-2019.
 %      Left unchanged -- please reconcile.
-%   4. One magnitude still unresolved: the abstract's "0.5% decrease in time
-%      spent working" cannot be tied to a table. Left unchanged -- please check.
+%   4. Abstract hours figure: "0.5% decrease in time spent working" was recast
+%      as a levels claim per the author. Table 3 gives 1952.12 -> 1811.48 hours
+%      for men and 1642.11 -> 1507.51 for women (lower sec. -> sec.), i.e. about
+%      -7%, so the abstract now reads "roughly 7% fewer hours worked per year".
+%      0.5% does not appear anywhere in Table 3 -- please confirm the recast.
 % ============================================================================
 \documentclass[12pt]{article}
 \usepackage{graphicx}
@@ -49,7 +52,8 @@ How does the return to human capital vary with education and gender over the lif
 on Household Income and Wealth for 1980--2019 ($\sim$100,000 observations), we estimate age--wage and hours--age profiles
 by ordinary least squares on the conditional expectation function, absorbing cohort and year fixed effects, following
 \citet{hendricks2013ben}. Two results emerge. First, a secondary rather than a lower secondary education raises the
-return to human capital by about 1\% per year of age and lowers time spent working by about 0.5\%. Second, the gender
+return to human capital by about 1\% per year of age and is associated with roughly 7\% fewer hours worked per year.
+Second, the gender
 gap in that return is wider among the higher-educated, at roughly 2.2\% per year lower for women. Because women who
 leave employment are unobserved, selection on the extensive margin biases the female estimates and the gap reported here
 should be read as a lower bound.\footnote{Total words: 4996}
