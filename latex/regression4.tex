@@ -1,32 +1,46 @@
+% ============================================================================
+% TODO (author): the "R^2 overall" row of this table was previously filled with
+% the values 0.0499 / 0.0777 / 0.1085 / 0.1114, which are byte-identical to the
+% corresponding row of Table 6 (regression2.tex, the log-wage regressions).
+% Cause: main.do:278 requests stats(r2 r2overall r2_w), but "r2overall" is not a
+% valid e() scalar for xtreg (the correct name is r2_o), so esttab produced an
+% empty cell and the row was filled by hand from the wage table.
+% The four hours regressions (main.do:269-276) were never written to STATA.log,
+% so the true values cannot be recovered from this repository.
+% ACTION: fix main.do:278 to stats(r2 r2_o r2_w), re-run, and paste e(r2_o).
+% The "Observations" row below IS correct: the wage and hours regressions run on
+% identical group_h / group_l subsamples, so the counts legitimately coincide.
+% ============================================================================
 \begin{table}[htbp]\centering
 \def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
-\caption{Regression table \(E[log(hours)|female,educ]\) \label{reg4}}
+\caption{Regression table \(E[\log(hours)\mid female,educ]\) \label{Tab:reg4}}
 \begin{tabular}{l*{4}{c}}
 \toprule
-                    &\multicolumn{1}{c}{(1)\([1,0]\)\label{Reg:4_h_m}}         &\multicolumn{1}{c}{(2)\([1,1]\)\label{Reg:4_h_f}}         &\multicolumn{1}{c}{(3)\([0,0]\)\label{Reg:4_l_m}}         &\multicolumn{1}{c}{(4)\([1,1]\)\label{Reg:4_l_m}}         \\
+                    &\multicolumn{1}{c}{(1)\([1,0]\)\label{Reg:4_h_m}}         &\multicolumn{1}{c}{(2)\([1,1]\)\label{Reg:4_h_f}}         &\multicolumn{1}{c}{(3)\([0,0]\)\label{Reg:4_l_m}}         &\multicolumn{1}{c}{(4)\([0,1]\)\label{Reg:4_l_f}}         \\
 \midrule
 Age                 &     0.00788         &     0.00706         &     0.00202         &    -0.01676\sym{***}\\
                     &   (0.00567)         &   (0.00597)         &   (0.00163)         &   (0.00357)         \\
 \addlinespace
-age2                &    -0.00009         &    -0.00008         &    -0.00006\sym{***}&     0.00014\sym{***}\\
+Age\(^2\)           &    -0.00009         &    -0.00008         &    -0.00006\sym{***}&     0.00014\sym{***}\\
                     &   (0.00006)         &   (0.00006)         &   (0.00002)         &   (0.00004)         \\
                     \\
-                    Cohort f.e           &       Yes        &      Yes &       Yes        &      Yes \\
+                    Cohort f.e.          &       Yes        &      Yes &       Yes        &      Yes \\
                                                 \\
                     \addlinespace
-                    years f.e.            &       Yes         &       Yes   &       Yes        &      Yes       \\
+                    Years f.e.            &       Yes         &       Yes   &       Yes        &      Yes       \\
                                                \\
                     \addlinespace
 Constant            &     7.43107\sym{***}&     6.78971\sym{***}&     7.69220\sym{***}&     7.47544\sym{***}\\
                     &   (0.22349)         &   (0.33563)         &   (0.11123)         &   (0.41583)         \\
 \midrule
 Observations        &        4593         &        5495         &       19045         &        9923         \\
-$R^2$ overall       &   0.0499 &0.0777 &0.1085&0.1114\\
+$R^2$ overall       &   ---   &   ---   &   ---   &   ---   \\
 \bottomrule
-\multicolumn{5}{l}{\footnotesize The regressions are conditinal on education and female, }\\
-\multicolumn{5}{l}{\footnotesize  indeed the column has as [index]
-[educ,female] if educ==1 the group  }\\
-\multicolumn{5}{l}{\footnotesize has a secondary school education level, otherwhise it has a lower secondary one.}\\
+\multicolumn{5}{l}{\footnotesize The regressions are conditional on education and gender: each column is}\\
+\multicolumn{5}{l}{\footnotesize indexed by \([educ,female]\), where educ\(=1\) denotes a secondary school}\\
+\multicolumn{5}{l}{\footnotesize education level and educ\(=0\) a lower secondary one.}\\
+\multicolumn{5}{l}{\footnotesize \textbf{\(R^2\) overall is not reported: the values carried in an earlier draft were}}\\
+\multicolumn{5}{l}{\textbf{\footnotesize erroneously duplicated from Table~\ref{Tab:reg2} and these regressions await re-estimation.}}\\
 \multicolumn{5}{l}{\footnotesize Standard errors in parentheses}\\
 \multicolumn{5}{l}{\footnotesize \sym{*} \(p<0.10\), \sym{**} \(p<0.05\), \sym{***} \(p<0.01\)}\\
 \end{tabular}

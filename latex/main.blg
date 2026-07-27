@@ -1,48 +1,46 @@
-This is BibTeX, Version 0.99d (TeX Live 2022)
+This is BibTeX, Version 0.99e (TeX Live 2026)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: main.aux
 The style file: apalike.bst
 Database file #1: ref.bib
-Warning--empty journal in erosa2012human
-You've used 10 entries,
+You've used 9 entries,
             1935 wiz_defined-function locations,
-            541 strings with 5334 characters,
-and the built_in function-call counts, 3845 in all, are:
-= -- 385
-> -- 126
-< -- 8
-+ -- 49
-- -- 40
-* -- 324
-:= -- 662
-add.period$ -- 29
-call.type$ -- 10
-change.case$ -- 70
+            537 strings with 5206 characters,
+and the built_in function-call counts, 3459 in all, are:
+= -- 349
+> -- 119
+< -- 7
++ -- 44
+- -- 38
+* -- 290
+:= -- 599
+add.period$ -- 27
+call.type$ -- 9
+change.case$ -- 64
 chr.to.int$ -- 9
-cite$ -- 11
-duplicate$ -- 148
-empty$ -- 284
-format.name$ -- 56
-if$ -- 752
-int.to.chr$ -- 2
+cite$ -- 9
+duplicate$ -- 131
+empty$ -- 249
+format.name$ -- 53
+if$ -- 677
+int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 9
-newline$ -- 51
-num.names$ -- 30
-pop$ -- 53
+missing$ -- 7
+newline$ -- 47
+num.names$ -- 27
+pop$ -- 46
 preamble$ -- 1
-purify$ -- 70
+purify$ -- 64
 quote$ -- 0
-skip$ -- 116
+skip$ -- 104
 stack$ -- 0
-substring$ -- 309
-swap$ -- 17
+substring$ -- 270
+swap$ -- 16
 text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 60
-warning$ -- 1
-while$ -- 35
+type$ -- 54
+warning$ -- 0
+while$ -- 31
 width$ -- 0
-write$ -- 127
-(There was 1 warning)
+write$ -- 116

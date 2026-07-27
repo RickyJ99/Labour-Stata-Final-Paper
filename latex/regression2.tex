@@ -1,6 +1,6 @@
 \begin{table}[htbp]\centering
 \def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
-\caption{Regression on \(E[log(wage)|female,educ]\) \label{Tab:reg2}}
+\caption{Regression on \(E[\log(wage)\mid female,educ]\) \label{Tab:reg2}}
 \begin{tabular}{l*{4}{c}}
 \toprule
                     &\multicolumn{1}{c}{(1)M., H. educ.\label{Reg:2_H_M}}         &\multicolumn{1}{c}{(2)F. H. educ.\label{Reg:2_H_F} }        &\multicolumn{1}{c}{(3)M., L. educ.\label{Reg:2_L_M}}         &\multicolumn{1}{c}{(4)F., L. educ.\label{Reg:2_L_F}}         \\
@@ -8,14 +8,14 @@
 Age                 &     0.13710\sym{***}&     0.11522\sym{***}&     0.11396\sym{***}&     0.10093\sym{***}\\
                     &   (0.03092)         &   (0.02028)         &   (0.00794)         &   (0.01015)         \\
 \addlinespace
-age2                &    -0.00090\sym{***}&    -0.00083\sym{***}&    -0.00089\sym{***}&    -0.00070\sym{***}\\
+Age\(^2\)           &    -0.00090\sym{***}&    -0.00083\sym{***}&    -0.00089\sym{***}&    -0.00070\sym{***}\\
                     &   (0.00032)         &   (0.00021)         &   (0.00008)         &   (0.00010)         \\
 
 \\
-Cohort f.e           &       Yes        &      Yes &       Yes        &      Yes \\
+Cohort f.e.          &       Yes        &      Yes &       Yes        &      Yes \\
                             \\
 \addlinespace
-years f.e.            &       Yes         &       Yes   &       Yes        &      Yes       \\
+Years f.e.            &       Yes         &       Yes   &       Yes        &      Yes       \\
                            \\
 \addlinespace
 

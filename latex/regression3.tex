@@ -1,23 +1,32 @@
+% ============================================================================
+% TODO (author): this table previously printed THREE coefficient rows, two of
+% them labelled "age2". The specification in main.do:250-253 contains only
+% "age age2", so the third row corresponds to no regressor and its provenance
+% could not be established. It has been commented out below rather than
+% silently relabelled. Please confirm it was spurious (or restore it with the
+% correct label). The two rows kept match the values quoted in the text
+% (+0.031 and -0.007) and the footnote "both statistically significant at 1%".
+% Removed row was:
+%   age2                &      -0.000\sym{*}  &       0.000         \\
+%                       &     (0.000)         &     (0.000)         \\
+% ============================================================================
 \begin{table}[htbp]\centering
 \def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
-\caption{Regression \(E[log(Hours)|educ]\) \label{Tab:reg3}}
+\caption{Regression \(E[\log(hours)\mid educ]\) \label{Tab:reg3}}
 \begin{tabular}{l*{2}{c}}
 \toprule
-                    &\multicolumn{1}{c}{(1)\(educ=1\)\label{Reg:3_h}}         &\multicolumn{1}{c}{\(educ=0\)\label{Reg:3_l}}         \\
+                    &\multicolumn{1}{c}{(1) Sec.\label{Reg:3_h}}         &\multicolumn{1}{c}{(2) Lower sec.\label{Reg:3_l}}         \\
 \midrule
 Age                 &       0.031\sym{***}&      -0.007\sym{***}\\
                     &     (0.003)         &     (0.000)         \\
 \addlinespace
-age2                &      -0.000\sym{***}&       0.000\sym{***}\\
-                    &     (0.000)         &     (0.000)         \\
-\addlinespace
-age2                &      -0.000\sym{*}  &       0.000         \\
+Age\(^2\)           &      -0.000\sym{***}&       0.000\sym{***}\\
                     &     (0.000)         &     (0.000)         \\
 \\
-Cohort f.e           &       Yes        &      Yes \\
+Cohort f.e.          &       Yes        &      Yes \\
                             \\
 \addlinespace
-years f.e.            &       Yes         &       Yes         \\
+Years f.e.            &       Yes         &       Yes         \\
                            \\
 \addlinespace
 Constant            &       6.786\sym{***}&       7.833\sym{***}\\
@@ -26,8 +35,9 @@ Constant            &       6.786\sym{***}&       7.833\sym{***}\\
 Observations        &       10088         &       28968         \\
 $R^2$ overall       &   0.0345&0.3897 \\
 \bottomrule
+\multicolumn{3}{l}{\footnotesize Column (1) is the secondary school group (educ\(=5\)), column (2) the}\\
+\multicolumn{3}{l}{\footnotesize lower secondary group (educ\(=3\)).}\\
 \multicolumn{3}{l}{\footnotesize Standard errors in parentheses}\\
-\multicolumn{3}{l}{\footnotesize }\\
 \multicolumn{3}{l}{\footnotesize \sym{*} \(p<0.10\), \sym{**} \(p<0.05\), \sym{***} \(p<0.01\)}\\
 \end{tabular}
 \end{table}
